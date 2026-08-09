@@ -20,9 +20,7 @@ export function loadPets(): PetProfile[] {
     const parsed = JSON.parse(raw);
     if (!Array.isArray(parsed)) return [];
     const valid = parsed.filter((p: any) => p && typeof p.name === 'string');
-    const unsupported = valid.filter((p: any) => p.species === 'feline');
-    archiveUnsupported(unsupported);
-    return valid.filter((p: any) => p.species !== 'feline');
+    return valid;
   } catch {
     // Corrupted data — reset
     localStorage.removeItem(accountKey(STORAGE_KEY));
