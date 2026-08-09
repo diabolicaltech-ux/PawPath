@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <circle cx="50" cy="50" r="48" fill="#4f46e5"/>
+  <!-- Main pad -->
+  <path d="M50 58c-3.5 0-6.5-1.5-8.5-3.8-2-2.3-3-5.2-3-8.2 0-6 5-11 11.5-11s11.5 5 11.5 11c0 3-1 5.9-3 8.2-2 2.3-5 3.8-8.5 3.8z" fill="white"/>
+  <!-- Toe pads -->
+  <ellipse cx="32" cy="42" rx="5" ry="6" fill="white" transform="rotate(-20 32 42)"/>
+  <ellipse cx="43" cy="33" rx="4.5" ry="5.5" fill="white" transform="rotate(-5 43 33)"/>
+  <ellipse cx="57" cy="33" rx="4.5" ry="5.5" fill="white" transform="rotate(5 57 33)"/>
+  <ellipse cx="68" cy="42" rx="5" ry="6" fill="white" transform="rotate(20 68 42)"/>
+</svg>

@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  /* Primary brand colors */
+  --color-primary: #8ECAE6;
+  --color-primary-light: #E8F4F8;
+  --color-primary-pale: #D4ECF5;
+  --color-primary-dark: #6BB5D6;
+  --color-primary-deeper: #4A9FC6;
+
+  /* Text colors */
+  --color-dark: #1A1A2E;
+  --color-dark-muted: #636E72;
+
+  /* Surface/background colors */
+  --color-surface: #FFFFFF;
+  --color-surface-alt: #F8F9FA;
+  --color-surface-warm: #F0F4F8;
+
+  /* Accent/semantic colors */
+  --color-accent-red: #E74C3C;
+  --color-accent-orange: #F39C12;
+  --color-accent-green: #2ECC71;
+  --color-accent-blue: #3498DB;
+
+  /* Border colors */
+  --color-bd: #E2E8F0;
+  --color-bd-light: #D4ECF5;
+}
+
+/* Mobile ergonomics: prevent page-level horizontal scroll and respect device safe areas. */
+html, body, #root { max-width: 100%; overflow-x: hidden; }
+img, svg { max-width: 100%; }
+button, a, input, select, textarea { touch-action: manipulation; }
+@media (max-width: 640px) {
+  body { padding-bottom: env(safe-area-inset-bottom); }
+  nav > div { padding-left: max(0.75rem, env(safe-area-inset-left)); padding-right: max(0.75rem, env(safe-area-inset-right)); }
+  nav > div > div { min-width: 0; gap: 0.5rem; }
+  nav > div > div > div:first-child { min-width: 0; gap: 0.5rem; overflow: hidden; }
+  nav > div > div > div:first-child > div { min-width: 0; overflow-x: auto; scrollbar-width: none; }
+  nav > div > div > div:first-child > div::-webkit-scrollbar { display: none; }
+  nav button { min-height: 44px; }
+  nav button span { white-space: nowrap; }
+  main, section { max-width: 100%; }
+  input, select, textarea { font-size: 16px; }
+}

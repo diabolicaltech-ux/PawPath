@@ -1,0 +1,166 @@
+{
+  "framework": null,
+  "rewrites": [
+    {
+      "source": "/guides/:slug",
+      "destination": "/guides/:slug.html"
+    },
+    {
+      "source": "/tools/:slug",
+      "destination": "/tools/:slug.html"
+    },
+    {
+      "source": "/breed-health",
+      "destination": "/breed-health/breed-health.html"
+    },
+    {
+      "source": "/breed-health/:slug",
+      "destination": "/breed-health/:slug.html"
+    },
+    {
+      "source": "/og-image.png",
+      "destination": "/og-image-dog.png"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/breed-health/maine-coon",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/ragdoll",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/persian",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/siamese",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/bengal",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/british-shorthair",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/scottish-fold",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/sphynx",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/abyssinian",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/russian-blue",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/burmese",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/norwegian-forest-cat",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/cornish-rex",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/guides/cat-vaccination-schedule",
+      "destination": "/guides/dog-vaccination-schedule",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/abyssinian.html",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/bengal.html",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/british-shorthair.html",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/burmese.html",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/cornish-rex.html",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/maine-coon.html",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/norwegian-forest-cat.html",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/persian.html",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/ragdoll.html",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/russian-blue.html",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/scottish-fold.html",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/siamese.html",
+      "destination": "/breed-health",
+      "permanent": true
+    },
+    {
+      "source": "/breed-health/sphynx.html",
+      "destination": "/breed-health",
+      "permanent": true
+    }
+  ]
+}

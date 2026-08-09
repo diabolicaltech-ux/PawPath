@@ -1,0 +1,7 @@
+# PawPath — robots.txt
+# Allow full crawling of the production site
+
+User-agent: *
+Allow: /
+
+Sitemap: https://pawpath.quest/sitemap.xml
