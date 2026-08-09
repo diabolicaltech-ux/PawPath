@@ -11,7 +11,7 @@ export interface BreedData {
 }
 
 export const BREEDS: BreedData[] = [
-{
+  {
     "name": "Affenpinscher",
     "species": "canine",
     "ideal_weight_min_kg": 3,
@@ -56,7 +56,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Afghan Hound",
     "species": "canine",
     "ideal_weight_min_kg": 23,
@@ -111,7 +111,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Airedale Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -142,7 +142,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Akita",
     "species": "canine",
     "ideal_weight_min_kg": 32,
@@ -203,7 +203,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Alaskan Klee Kai",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -240,7 +240,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Alaskan Malamute",
     "species": "canine",
     "ideal_weight_min_kg": 34,
@@ -272,18 +272,18 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 3,
           "severity": 1,
           "screening": "Genetic testing"
-        }
-      ,
+        },
         {
           "condition": "Gastric Dilatation-Volvulus (GDV)",
           "onsetAgeMonths": 36,
           "severity": 3,
           "screening": "Prophylactic gastropexy discussion"
-        }],
+        }
+      ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Alpine Dachsbracke",
     "species": "canine",
     "ideal_weight_min_kg": 11,
@@ -314,7 +314,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "American Bulldog",
     "species": "canine",
     "ideal_weight_min_kg": 27,
@@ -324,54 +324,54 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Elbow Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA elbow evaluation"
-                },
+          "condition": "Elbow Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA elbow evaluation"
+        },
         {
-                  "condition": "Gastric Dilatation-Volvulus",
-                  "onsetAgeMonths": 36,
-                  "severity": 3,
-                  "screening": "Prophylactic gastropexy discussion"
-                },
+          "condition": "Gastric Dilatation-Volvulus",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Prophylactic gastropexy discussion"
+        },
         {
-                  "condition": "Osteosarcoma",
-                  "onsetAgeMonths": 60,
-                  "severity": 3,
-                  "screening": "Annual lameness evaluation"
-                },
+          "condition": "Osteosarcoma",
+          "onsetAgeMonths": 60,
+          "severity": 3,
+          "screening": "Annual lameness evaluation"
+        },
         {
-                  "condition": "Hypothyroidism",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "T4/TSH"
-                },
+          "condition": "Hypothyroidism",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "T4/TSH"
+        },
         {
-                  "condition": "Exercise-Induced Collapse",
-                  "onsetAgeMonths": 12,
-                  "severity": 1,
-                  "screening": "Genetic test"
-                },
+          "condition": "Exercise-Induced Collapse",
+          "onsetAgeMonths": 12,
+          "severity": 1,
+          "screening": "Genetic test"
+        },
         {
-                  "condition": "Brachycephalic Airway Syndrome (BOAS)",
-                  "onsetAgeMonths": 12,
-                  "severity": 3,
-                  "screening": "Brachycephalic breed screening"
-                }
+          "condition": "Brachycephalic Airway Syndrome (BOAS)",
+          "onsetAgeMonths": 12,
+          "severity": 3,
+          "screening": "Brachycephalic breed screening"
+        }
       ],
       "contraindications": [
         "Brachycephalic breed: Avoid overexertion in hot/humid weather; monitor breathing closely."
       ]
     }
   },
-{
+  {
     "name": "American Bully",
     "species": "canine",
     "ideal_weight_min_kg": 25,
@@ -420,7 +420,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "American English Coonhound",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -440,18 +440,18 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 6,
           "severity": 1,
           "screening": "Weekly ear cleaning"
-        }
-      ,
+        },
         {
           "condition": "Gastric Dilatation-Volvulus (GDV)",
           "onsetAgeMonths": 36,
           "severity": 3,
           "screening": "Prophylactic gastropexy discussion"
-        }],
+        }
+      ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "American Eskimo Dog",
     "species": "canine",
     "ideal_weight_min_kg": 8,
@@ -461,28 +461,28 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Patellar Luxation",
-                  "onsetAgeMonths": 12,
-                  "severity": 2,
-                  "screening": "Orthopedic exam"
-                }
+          "condition": "Patellar Luxation",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Orthopedic exam"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "American Eskimo Dog (Miniature)",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -513,7 +513,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "American Eskimo Dog (Standard)",
     "species": "canine",
     "ideal_weight_min_kg": 9,
@@ -544,7 +544,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "American Eskimo Dog (Toy)",
     "species": "canine",
     "ideal_weight_min_kg": 3,
@@ -581,7 +581,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "American Hairless Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -618,7 +618,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "American Pit Bull Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 14,
@@ -655,7 +655,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "American Staffordshire Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -692,7 +692,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "American Water Spaniel",
     "species": "canine",
     "ideal_weight_min_kg": 13,
@@ -717,7 +717,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Anatolian Shepherd Dog",
     "species": "canine",
     "ideal_weight_min_kg": 36,
@@ -763,7 +763,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Appenzeller Sennenhund",
     "species": "canine",
     "ideal_weight_min_kg": 22,
@@ -812,7 +812,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Argentine Pila Dog",
     "species": "canine",
     "ideal_weight_min_kg": 8,
@@ -843,7 +843,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Argentinian Dogo",
     "species": "canine",
     "ideal_weight_min_kg": 36,
@@ -892,7 +892,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Australian Cattle Dog",
     "species": "canine",
     "ideal_weight_min_kg": 16,
@@ -902,40 +902,40 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Progressive Retinal Atrophy",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "CERF exam"
-                },
+          "condition": "Progressive Retinal Atrophy",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "CERF exam"
+        },
         {
-                  "condition": "Deafness",
-                  "onsetAgeMonths": 0,
-                  "severity": 2,
-                  "screening": "BAER testing"
-                },
+          "condition": "Deafness",
+          "onsetAgeMonths": 0,
+          "severity": 2,
+          "screening": "BAER testing"
+        },
         {
-                  "condition": "MDR1 Drug Sensitivity",
-                  "onsetAgeMonths": 0,
-                  "severity": 4,
-                  "screening": "MDR1 genetic test"
-                }
+          "condition": "MDR1 Drug Sensitivity",
+          "onsetAgeMonths": 0,
+          "severity": 4,
+          "screening": "MDR1 genetic test"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Australian Kelpie",
     "species": "canine",
     "ideal_weight_min_kg": 14,
@@ -960,7 +960,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Australian Shepherd",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -986,20 +986,20 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 0,
           "severity": 4,
           "screening": "MDR1 genetic test"
-        }
-      ,
+        },
         {
           "condition": "Gastric Dilatation-Volvulus (GDV)",
           "onsetAgeMonths": 36,
           "severity": 3,
           "screening": "Prophylactic gastropexy discussion"
-        }],
+        }
+      ],
       "contraindications": [
         "MDR1 mutation risk: Avoid ivermectin, milbemycin, loperamide, and use reduced doses of acepromazine and butorphanol unless genetically cleared."
       ]
     }
   },
-{
+  {
     "name": "Australian Stumpy Tail Cattle Dog",
     "species": "canine",
     "ideal_weight_min_kg": 16,
@@ -1030,7 +1030,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Australian Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -1067,7 +1067,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Azawakh",
     "species": "canine",
     "ideal_weight_min_kg": 15,
@@ -1104,7 +1104,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Bankhar Dog",
     "species": "canine",
     "ideal_weight_min_kg": 40,
@@ -1153,7 +1153,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Barbet",
     "species": "canine",
     "ideal_weight_min_kg": 17,
@@ -1190,7 +1190,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Basenji",
     "species": "canine",
     "ideal_weight_min_kg": 9,
@@ -1233,7 +1233,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Basset Art\u00e9sien Normand",
     "species": "canine",
     "ideal_weight_min_kg": 9,
@@ -1264,7 +1264,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Basset Bleu de Gascogne",
     "species": "canine",
     "ideal_weight_min_kg": 14,
@@ -1295,7 +1295,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Basset Fauve de Bretagne",
     "species": "canine",
     "ideal_weight_min_kg": 12,
@@ -1326,7 +1326,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Basset Griffon Vend\u00e9en (Grand)",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -1369,7 +1369,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Basset Griffon Vend\u00e9en (Petit)",
     "species": "canine",
     "ideal_weight_min_kg": 11,
@@ -1400,7 +1400,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Basset Hound",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -1410,34 +1410,34 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "IVDD",
-                  "onsetAgeMonths": 36,
-                  "severity": 3,
-                  "screening": "Spinal care; weight management"
-                },
+          "condition": "IVDD",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Spinal care; weight management"
+        },
         {
-                  "condition": "Glaucoma",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "Tonometry"
-                }
+          "condition": "Glaucoma",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "Tonometry"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Bavarian Mountain Scent Hound",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -1480,7 +1480,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Beagle",
     "species": "canine",
     "ideal_weight_min_kg": 9,
@@ -1511,7 +1511,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Bearded Collie",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -1521,42 +1521,42 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Collie Eye Anomaly",
-                  "onsetAgeMonths": 6,
-                  "severity": 2,
-                  "screening": "CERF eye exam"
-                },
+          "condition": "Collie Eye Anomaly",
+          "onsetAgeMonths": 6,
+          "severity": 2,
+          "screening": "CERF eye exam"
+        },
         {
-                  "condition": "Epilepsy",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "Neurological evaluation"
-                },
+          "condition": "Epilepsy",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "Neurological evaluation"
+        },
         {
-                  "condition": "MDR1 Drug Sensitivity",
-                  "onsetAgeMonths": 0,
-                  "severity": 4,
-                  "screening": "MDR1 genetic test"
-                }
+          "condition": "MDR1 Drug Sensitivity",
+          "onsetAgeMonths": 0,
+          "severity": 4,
+          "screening": "MDR1 genetic test"
+        }
       ],
       "contraindications": [
         "MDR1 mutation risk: Avoid ivermectin, milbemycin, loperamide, and use reduced doses of acepromazine and butorphanol unless genetically cleared."
       ]
     }
   },
-{
+  {
     "name": "Beauceron",
     "species": "canine",
     "ideal_weight_min_kg": 30,
@@ -1581,7 +1581,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Bedlington Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 8,
@@ -1606,7 +1606,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Belgian Laekenois",
     "species": "canine",
     "ideal_weight_min_kg": 22,
@@ -1637,7 +1637,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Belgian Malinois",
     "species": "canine",
     "ideal_weight_min_kg": 25,
@@ -1668,7 +1668,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Belgian Sheepdog",
     "species": "canine",
     "ideal_weight_min_kg": 25,
@@ -1693,7 +1693,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Belgian Shepherd Groenendael",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -1736,7 +1736,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Belgian Shepherd Laekenois",
     "species": "canine",
     "ideal_weight_min_kg": 22,
@@ -1779,7 +1779,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Belgian Shepherd Malinois",
     "species": "canine",
     "ideal_weight_min_kg": 22,
@@ -1828,7 +1828,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Belgian Shepherd Tervuren",
     "species": "canine",
     "ideal_weight_min_kg": 22,
@@ -1871,7 +1871,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Belgian Tervuren",
     "species": "canine",
     "ideal_weight_min_kg": 25,
@@ -1902,7 +1902,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Bergamasco Sheepdog",
     "species": "canine",
     "ideal_weight_min_kg": 26,
@@ -1927,7 +1927,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Bergamasco Shepherd Dog",
     "species": "canine",
     "ideal_weight_min_kg": 26,
@@ -1976,7 +1976,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Berger Picard",
     "species": "canine",
     "ideal_weight_min_kg": 23,
@@ -2001,7 +2001,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Bernese Mountain Dog",
     "species": "canine",
     "ideal_weight_min_kg": 30,
@@ -2047,7 +2047,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Bichon Frise",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -2078,7 +2078,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Black Mouth Cur",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -2127,7 +2127,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Black Russian Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 36,
@@ -2158,7 +2158,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Black and Tan Coonhound",
     "species": "canine",
     "ideal_weight_min_kg": 29,
@@ -2168,40 +2168,40 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Elbow Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA elbow evaluation"
-                },
+          "condition": "Elbow Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA elbow evaluation"
+        },
         {
-                  "condition": "Gastric Dilatation-Volvulus",
-                  "onsetAgeMonths": 36,
-                  "severity": 3,
-                  "screening": "Prophylactic gastropexy discussion"
-                },
+          "condition": "Gastric Dilatation-Volvulus",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Prophylactic gastropexy discussion"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Osteosarcoma",
-                  "onsetAgeMonths": 60,
-                  "severity": 3,
-                  "screening": "Annual lameness evaluation"
-                }
+          "condition": "Osteosarcoma",
+          "onsetAgeMonths": 60,
+          "severity": 3,
+          "screening": "Annual lameness evaluation"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Bloodhound",
     "species": "canine",
     "ideal_weight_min_kg": 36,
@@ -2211,52 +2211,52 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Elbow Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA elbow evaluation"
-                },
+          "condition": "Elbow Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA elbow evaluation"
+        },
         {
-                  "condition": "Gastric Dilatation-Volvulus",
-                  "onsetAgeMonths": 36,
-                  "severity": 3,
-                  "screening": "Prophylactic gastropexy discussion"
-                },
+          "condition": "Gastric Dilatation-Volvulus",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Prophylactic gastropexy discussion"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Osteosarcoma",
-                  "onsetAgeMonths": 60,
-                  "severity": 3,
-                  "screening": "Annual lameness evaluation"
-                },
+          "condition": "Osteosarcoma",
+          "onsetAgeMonths": 60,
+          "severity": 3,
+          "screening": "Annual lameness evaluation"
+        },
         {
-                  "condition": "Entropion",
-                  "onsetAgeMonths": 6,
-                  "severity": 2,
-                  "screening": "Ophthalmic exam"
-                },
+          "condition": "Entropion",
+          "onsetAgeMonths": 6,
+          "severity": 2,
+          "screening": "Ophthalmic exam"
+        },
         {
-                  "condition": "Skin Infections",
-                  "onsetAgeMonths": 12,
-                  "severity": 1,
-                  "screening": "Ear/skin fold care"
-                }
+          "condition": "Skin Infections",
+          "onsetAgeMonths": 12,
+          "severity": 1,
+          "screening": "Ear/skin fold care"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Blue Lacy",
     "species": "canine",
     "ideal_weight_min_kg": 14,
@@ -2287,7 +2287,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Bluetick Coonhound",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -2297,46 +2297,46 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Elbow Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA elbow evaluation"
-                },
+          "condition": "Elbow Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA elbow evaluation"
+        },
         {
-                  "condition": "Gastric Dilatation-Volvulus",
-                  "onsetAgeMonths": 36,
-                  "severity": 3,
-                  "screening": "Prophylactic gastropexy discussion"
-                },
+          "condition": "Gastric Dilatation-Volvulus",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Prophylactic gastropexy discussion"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Osteosarcoma",
-                  "onsetAgeMonths": 60,
-                  "severity": 3,
-                  "screening": "Annual lameness evaluation"
-                },
+          "condition": "Osteosarcoma",
+          "onsetAgeMonths": 60,
+          "severity": 3,
+          "screening": "Annual lameness evaluation"
+        },
         {
-                  "condition": "Ear Infections",
-                  "onsetAgeMonths": 6,
-                  "severity": 1,
-                  "screening": "Weekly ear cleaning"
-                }
+          "condition": "Ear Infections",
+          "onsetAgeMonths": 6,
+          "severity": 1,
+          "screening": "Weekly ear cleaning"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Boerboel",
     "species": "canine",
     "ideal_weight_min_kg": 50,
@@ -2373,7 +2373,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Bolognese",
     "species": "canine",
     "ideal_weight_min_kg": 2.5,
@@ -2410,7 +2410,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Bordeaux Dogue",
     "species": "canine",
     "ideal_weight_min_kg": 45,
@@ -2465,7 +2465,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Border Collie",
     "species": "canine",
     "ideal_weight_min_kg": 14,
@@ -2498,7 +2498,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Border Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -2535,7 +2535,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Borzoi",
     "species": "canine",
     "ideal_weight_min_kg": 27,
@@ -2545,52 +2545,52 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Elbow Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA elbow evaluation"
-                },
+          "condition": "Elbow Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA elbow evaluation"
+        },
         {
-                  "condition": "Gastric Dilatation-Volvulus",
-                  "onsetAgeMonths": 36,
-                  "severity": 3,
-                  "screening": "Prophylactic gastropexy discussion"
-                },
+          "condition": "Gastric Dilatation-Volvulus",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Prophylactic gastropexy discussion"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Osteosarcoma",
-                  "onsetAgeMonths": 60,
-                  "severity": 3,
-                  "screening": "Annual lameness evaluation"
-                },
+          "condition": "Osteosarcoma",
+          "onsetAgeMonths": 60,
+          "severity": 3,
+          "screening": "Annual lameness evaluation"
+        },
         {
-                  "condition": "Anesthesia Sensitivity",
-                  "onsetAgeMonths": 0,
-                  "severity": 3,
-                  "screening": "Use propofol; avoid thiobarbiturates"
-                },
+          "condition": "Anesthesia Sensitivity",
+          "onsetAgeMonths": 0,
+          "severity": 3,
+          "screening": "Use propofol; avoid thiobarbiturates"
+        },
         {
-                  "condition": "Hypothyroidism",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "Annual T4/TSH"
-                }
+          "condition": "Hypothyroidism",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "Annual T4/TSH"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Boston Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -2622,8 +2622,7 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 3,
           "severity": 3,
           "screening": "Blood glucose monitoring in puppies"
-        }
-      ,
+        },
         {
           "condition": "Brachycephalic Airway Syndrome",
           "onsetAgeMonths": 6,
@@ -2638,7 +2637,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Boxer",
     "species": "canine",
     "ideal_weight_min_kg": 25,
@@ -2692,11 +2691,11 @@ export const BREEDS: BreedData[] = [
       ],
       "contraindications": [
         "Brachycephalic Obstructive Airway Syndrome (BOAS): avoid overexertion in hot/humid weather",
-        "Acepromazine: use extreme caution in brachycephalic breeds — significantly increased respiratory depression risk"
+        "Acepromazine: use extreme caution in brachycephalic breeds \u2014 significantly increased respiratory depression risk"
       ]
     }
   },
-{
+  {
     "name": "Boykin Spaniel",
     "species": "canine",
     "ideal_weight_min_kg": 11,
@@ -2727,7 +2726,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Bracco Italiano",
     "species": "canine",
     "ideal_weight_min_kg": 25,
@@ -2770,7 +2769,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Braque Fran\u00e7ais (Gascogne)",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -2813,7 +2812,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Braque Fran\u00e7ais (Pyr\u00e9n\u00e9es)",
     "species": "canine",
     "ideal_weight_min_kg": 16,
@@ -2850,7 +2849,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Braque Saint-Germain",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -2887,7 +2886,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Braque d'Auvergne",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -2930,7 +2929,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Braque de l'Ari\u00e8ge",
     "species": "canine",
     "ideal_weight_min_kg": 15,
@@ -2967,7 +2966,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Braque du Bourbonnais",
     "species": "canine",
     "ideal_weight_min_kg": 16,
@@ -3004,7 +3003,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Brazilian Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 7,
@@ -3041,7 +3040,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Briard",
     "species": "canine",
     "ideal_weight_min_kg": 30,
@@ -3072,7 +3071,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Brittany",
     "species": "canine",
     "ideal_weight_min_kg": 14,
@@ -3082,28 +3081,28 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Epilepsy",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "Neurological evaluation"
-                }
+          "condition": "Epilepsy",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "Neurological evaluation"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Broholmer",
     "species": "canine",
     "ideal_weight_min_kg": 40,
@@ -3158,7 +3157,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Brussels Griffon",
     "species": "canine",
     "ideal_weight_min_kg": 3,
@@ -3205,7 +3204,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Bull Terrier (Miniature)",
     "species": "canine",
     "ideal_weight_min_kg": 11,
@@ -3242,7 +3241,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Bull Terrier (Standard)",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -3285,7 +3284,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Bulldog",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -3331,7 +3330,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Bullmastiff",
     "species": "canine",
     "ideal_weight_min_kg": 45,
@@ -3341,47 +3340,47 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Gastric Dilatation-Volvulus",
-                  "onsetAgeMonths": 12,
-                  "severity": 4,
-                  "screening": "Prophylactic gastropexy at spay/neuter"
-                },
+          "condition": "Gastric Dilatation-Volvulus",
+          "onsetAgeMonths": 12,
+          "severity": 4,
+          "screening": "Prophylactic gastropexy at spay/neuter"
+        },
         {
-                  "condition": "Dilated Cardiomyopathy",
-                  "onsetAgeMonths": 24,
-                  "severity": 4,
-                  "screening": "Annual echocardiogram"
-                },
+          "condition": "Dilated Cardiomyopathy",
+          "onsetAgeMonths": 24,
+          "severity": 4,
+          "screening": "Annual echocardiogram"
+        },
         {
-                  "condition": "Osteosarcoma",
-                  "onsetAgeMonths": 60,
-                  "severity": 3,
-                  "screening": "Monitor for lameness"
-                },
+          "condition": "Osteosarcoma",
+          "onsetAgeMonths": 60,
+          "severity": 3,
+          "screening": "Monitor for lameness"
+        },
         {
-                  "condition": "Cruciate Ligament Rupture",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "Weight management; orthopedic exam"
-                },
+          "condition": "Cruciate Ligament Rupture",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "Weight management; orthopedic exam"
+        },
         {
-                  "condition": "Brachycephalic Airway Syndrome (BOAS)",
-                  "onsetAgeMonths": 12,
-                  "severity": 3,
-                  "screening": "Veterinary upper airway assessment"
-                }
+          "condition": "Brachycephalic Airway Syndrome (BOAS)",
+          "onsetAgeMonths": 12,
+          "severity": 3,
+          "screening": "Veterinary upper airway assessment"
+        }
       ],
       "contraindications": [
         "Brachycephalic breed: Highly prone to heat stroke. Avoid strenuous exercise in hot or humid conditions; maintain ideal weight (BCS 4-5) to minimize respiratory effort.",
@@ -3389,7 +3388,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Cairn Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -3420,7 +3419,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Canadian Eskimo Dog",
     "species": "canine",
     "ideal_weight_min_kg": 30,
@@ -3469,7 +3468,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Cane Corso",
     "species": "canine",
     "ideal_weight_min_kg": 40,
@@ -3526,7 +3525,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Cardigan Welsh Corgi",
     "species": "canine",
     "ideal_weight_min_kg": 11,
@@ -3536,46 +3535,46 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Patellar Luxation",
-                  "onsetAgeMonths": 12,
-                  "severity": 2,
-                  "screening": "Orthopedic exam"
-                },
+          "condition": "Patellar Luxation",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Orthopedic exam"
+        },
         {
-                  "condition": "Dental Disease",
-                  "onsetAgeMonths": 12,
-                  "severity": 2,
-                  "screening": "Annual dental prophylaxis"
-                },
+          "condition": "Dental Disease",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Annual dental prophylaxis"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "IVDD",
-                  "onsetAgeMonths": 36,
-                  "severity": 3,
-                  "screening": "Spinal care; no jumping"
-                },
+          "condition": "IVDD",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Spinal care; no jumping"
+        },
         {
-                  "condition": "PRA",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "CERF exam"
-                },
+          "condition": "PRA",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "CERF exam"
+        },
         {
-                  "condition": "MDR1 Drug Sensitivity",
-                  "onsetAgeMonths": 0,
-                  "severity": 4,
-                  "screening": "MDR1 genetic test"
-                }
+          "condition": "MDR1 Drug Sensitivity",
+          "onsetAgeMonths": 0,
+          "severity": 4,
+          "screening": "MDR1 genetic test"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Carolina Dog",
     "species": "canine",
     "ideal_weight_min_kg": 13,
@@ -3606,7 +3605,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Catahoula Leopard Dog",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -3655,7 +3654,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Caucasian Ovcharka",
     "species": "canine",
     "ideal_weight_min_kg": 45,
@@ -3704,7 +3703,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Caucasian Shepherd Dog",
     "species": "canine",
     "ideal_weight_min_kg": 45,
@@ -3735,7 +3734,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Cavalier King Charles Spaniel",
     "species": "canine",
     "ideal_weight_min_kg": 6,
@@ -3767,18 +3766,18 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 3,
           "severity": 3,
           "screening": "Blood glucose monitoring in puppies"
-        }
-      ,
+        },
         {
           "condition": "Brachycephalic Airway Syndrome (BOAS)",
           "onsetAgeMonths": 12,
           "severity": 3,
           "screening": "Brachycephalic breed screening"
-        }],
+        }
+      ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Central Asian Shepherd Dog",
     "species": "canine",
     "ideal_weight_min_kg": 40,
@@ -3803,7 +3802,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Cesky Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 6,
@@ -3822,7 +3821,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Charnigue Hound",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -3859,7 +3858,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Chesapeake Bay Retriever",
     "species": "canine",
     "ideal_weight_min_kg": 25,
@@ -3869,28 +3868,28 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Gastric Dilatation-Volvulus",
-                  "onsetAgeMonths": 36,
-                  "severity": 3,
-                  "screening": "Gastropexy discussion"
-                }
+          "condition": "Gastric Dilatation-Volvulus",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Gastropexy discussion"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Chihuahua",
     "species": "canine",
     "ideal_weight_min_kg": 1,
@@ -3927,7 +3926,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Chihuahua (Long Coat)",
     "species": "canine",
     "ideal_weight_min_kg": 1.5,
@@ -3964,7 +3963,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Chihuahua (Smooth Coat)",
     "species": "canine",
     "ideal_weight_min_kg": 1.5,
@@ -4001,7 +4000,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Chinese Chongqing Dog",
     "species": "canine",
     "ideal_weight_min_kg": 14,
@@ -4032,7 +4031,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Chinese Crested",
     "species": "canine",
     "ideal_weight_min_kg": 2,
@@ -4042,40 +4041,40 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Patellar Luxation",
-                  "onsetAgeMonths": 12,
-                  "severity": 2,
-                  "screening": "Orthopedic exam"
-                },
+          "condition": "Patellar Luxation",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Orthopedic exam"
+        },
         {
-                  "condition": "Tracheal Collapse",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "Cervical radiographs; use harness"
-                },
+          "condition": "Tracheal Collapse",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "Cervical radiographs; use harness"
+        },
         {
-                  "condition": "Dental Disease",
-                  "onsetAgeMonths": 12,
-                  "severity": 3,
-                  "screening": "Annual dental prophylaxis"
-                },
+          "condition": "Dental Disease",
+          "onsetAgeMonths": 12,
+          "severity": 3,
+          "screening": "Annual dental prophylaxis"
+        },
         {
-                  "condition": "Hypoglycemia",
-                  "onsetAgeMonths": 3,
-                  "severity": 3,
-                  "screening": "Blood glucose monitoring in puppies"
-                },
+          "condition": "Hypoglycemia",
+          "onsetAgeMonths": 3,
+          "severity": 3,
+          "screening": "Blood glucose monitoring in puppies"
+        },
         {
-                  "condition": "Skin Conditions",
-                  "onsetAgeMonths": 6,
-                  "severity": 2,
-                  "screening": "Dermatological exam"
-                }
+          "condition": "Skin Conditions",
+          "onsetAgeMonths": 6,
+          "severity": 2,
+          "screening": "Dermatological exam"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Chinese Shar-Pei",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -4124,7 +4123,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Chinook",
     "species": "canine",
     "ideal_weight_min_kg": 25,
@@ -4149,7 +4148,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Chow Chow",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -4159,42 +4158,42 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Entropion",
-                  "onsetAgeMonths": 6,
-                  "severity": 3,
-                  "screening": "Ophthalmic exam"
-                },
+          "condition": "Entropion",
+          "onsetAgeMonths": 6,
+          "severity": 3,
+          "screening": "Ophthalmic exam"
+        },
         {
-                  "condition": "Hypothyroidism",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "T4/TSH"
-                },
+          "condition": "Hypothyroidism",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "T4/TSH"
+        },
         {
-                  "condition": "Brachycephalic Airway Syndrome (BOAS)",
-                  "onsetAgeMonths": 12,
-                  "severity": 3,
-                  "screening": "Brachycephalic breed screening"
-                }
+          "condition": "Brachycephalic Airway Syndrome (BOAS)",
+          "onsetAgeMonths": 12,
+          "severity": 3,
+          "screening": "Brachycephalic breed screening"
+        }
       ],
       "contraindications": [
         "Brachycephalic breed: Avoid overexertion in hot/humid weather; monitor breathing closely."
       ]
     }
   },
-{
+  {
     "name": "Cimarr\u00f3n Uruguayo",
     "species": "canine",
     "ideal_weight_min_kg": 30,
@@ -4243,7 +4242,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Cirneco dell'Etna",
     "species": "canine",
     "ideal_weight_min_kg": 10,
@@ -4268,7 +4267,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Clumber Spaniel",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -4311,7 +4310,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Cocker Spaniel",
     "species": "canine",
     "ideal_weight_min_kg": 10,
@@ -4342,7 +4341,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Collie",
     "species": "canine",
     "ideal_weight_min_kg": 22,
@@ -4352,36 +4351,36 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Collie Eye Anomaly",
-                  "onsetAgeMonths": 6,
-                  "severity": 2,
-                  "screening": "CERF exam"
-                },
+          "condition": "Collie Eye Anomaly",
+          "onsetAgeMonths": 6,
+          "severity": 2,
+          "screening": "CERF exam"
+        },
         {
-                  "condition": "MDR1 Drug Sensitivity",
-                  "onsetAgeMonths": 0,
-                  "severity": 4,
-                  "screening": "MDR1 genetic test"
-                }
+          "condition": "MDR1 Drug Sensitivity",
+          "onsetAgeMonths": 0,
+          "severity": 4,
+          "screening": "MDR1 genetic test"
+        }
       ],
       "contraindications": [
         "MDR1 mutation risk: Avoid ivermectin, milbemycin, loperamide, and use reduced doses of acepromazine and butorphanol unless genetically cleared."
       ]
     }
   },
-{
+  {
     "name": "Coton de Tulear",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -4418,7 +4417,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Curly-Coated Retriever",
     "species": "canine",
     "ideal_weight_min_kg": 25,
@@ -4428,28 +4427,28 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Gastric Dilatation-Volvulus",
-                  "onsetAgeMonths": 36,
-                  "severity": 3,
-                  "screening": "Gastropexy discussion"
-                }
+          "condition": "Gastric Dilatation-Volvulus",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Gastropexy discussion"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Czechoslovakian Wolfdog",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -4468,7 +4467,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "C\u00e3o Fila de S\u00e3o Miguel",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -4517,7 +4516,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "C\u00e3o da Serra da Estrela",
     "species": "canine",
     "ideal_weight_min_kg": 35,
@@ -4566,7 +4565,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "C\u00e3o de Castro Laboreiro",
     "species": "canine",
     "ideal_weight_min_kg": 25,
@@ -4615,7 +4614,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Dachshund",
     "species": "canine",
     "ideal_weight_min_kg": 7,
@@ -4652,7 +4651,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Dachshund (Miniature Longhaired)",
     "species": "canine",
     "ideal_weight_min_kg": 3.5,
@@ -4683,7 +4682,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Dachshund (Miniature Smooth)",
     "species": "canine",
     "ideal_weight_min_kg": 3.5,
@@ -4714,7 +4713,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Dachshund (Miniature Wirehaired)",
     "species": "canine",
     "ideal_weight_min_kg": 3.5,
@@ -4745,7 +4744,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Dachshund (Rabbit Longhaired)",
     "species": "canine",
     "ideal_weight_min_kg": 2.5,
@@ -4782,7 +4781,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Dachshund (Rabbit Smooth)",
     "species": "canine",
     "ideal_weight_min_kg": 2.5,
@@ -4819,7 +4818,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Dachshund (Rabbit Wirehaired)",
     "species": "canine",
     "ideal_weight_min_kg": 2.5,
@@ -4856,7 +4855,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Dachshund (Standard Longhaired)",
     "species": "canine",
     "ideal_weight_min_kg": 7,
@@ -4893,7 +4892,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Dachshund (Standard Smooth)",
     "species": "canine",
     "ideal_weight_min_kg": 7,
@@ -4930,7 +4929,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Dachshund (Standard Wirehaired)",
     "species": "canine",
     "ideal_weight_min_kg": 7,
@@ -4967,7 +4966,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Dalmatian",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -4977,34 +4976,34 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Deafness (Congenital)",
-                  "onsetAgeMonths": 0,
-                  "severity": 3,
-                  "screening": "BAER testing in puppies"
-                },
+          "condition": "Deafness (Congenital)",
+          "onsetAgeMonths": 0,
+          "severity": 3,
+          "screening": "BAER testing in puppies"
+        },
         {
-                  "condition": "Urinary Stones (Urate)",
-                  "onsetAgeMonths": 12,
-                  "severity": 3,
-                  "screening": "Low-purine diet; urinalysis"
-                }
+          "condition": "Urinary Stones (Urate)",
+          "onsetAgeMonths": 12,
+          "severity": 3,
+          "screening": "Low-purine diet; urinalysis"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Dandie Dinmont Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 8,
@@ -5014,34 +5013,34 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Patellar Luxation",
-                  "onsetAgeMonths": 12,
-                  "severity": 2,
-                  "screening": "Orthopedic exam"
-                },
+          "condition": "Patellar Luxation",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Orthopedic exam"
+        },
         {
-                  "condition": "Dental Disease",
-                  "onsetAgeMonths": 12,
-                  "severity": 2,
-                  "screening": "Annual dental prophylaxis"
-                },
+          "condition": "Dental Disease",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Annual dental prophylaxis"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "IVDD",
-                  "onsetAgeMonths": 36,
-                  "severity": 3,
-                  "screening": "Spinal care"
-                }
+          "condition": "IVDD",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Spinal care"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Danish-Swedish Farmdog",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -5078,7 +5077,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Deutsch Stichelhaar",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -5115,7 +5114,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Dingo",
     "species": "canine",
     "ideal_weight_min_kg": 10,
@@ -5152,7 +5151,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Dog Argentino",
     "species": "canine",
     "ideal_weight_min_kg": 36,
@@ -5195,7 +5194,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Dogo Argentino",
     "species": "canine",
     "ideal_weight_min_kg": 36,
@@ -5226,7 +5225,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Dogo Canario",
     "species": "canine",
     "ideal_weight_min_kg": 40,
@@ -5281,7 +5280,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Dogue de Bordeaux",
     "species": "canine",
     "ideal_weight_min_kg": 45,
@@ -5327,7 +5326,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Doxie-Pin",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -5364,7 +5363,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Drever",
     "species": "canine",
     "ideal_weight_min_kg": 11,
@@ -5395,7 +5394,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Dutch Shepherd Dog",
     "species": "canine",
     "ideal_weight_min_kg": 23,
@@ -5444,7 +5443,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "English Cocker Spaniel",
     "species": "canine",
     "ideal_weight_min_kg": 11,
@@ -5481,7 +5480,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "English Foxhound",
     "species": "canine",
     "ideal_weight_min_kg": 25,
@@ -5530,7 +5529,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "English Setter",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -5556,18 +5555,18 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 36,
           "severity": 2,
           "screening": "T4/TSH"
-        }
-      ,
+        },
         {
           "condition": "Gastric Dilatation-Volvulus (GDV)",
           "onsetAgeMonths": 36,
           "severity": 3,
           "screening": "Prophylactic gastropexy discussion"
-        }],
+        }
+      ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "English Shepherd",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -5598,7 +5597,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "English Springer Spaniel",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -5608,34 +5607,34 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Ear Infections",
-                  "onsetAgeMonths": 6,
-                  "severity": 1,
-                  "screening": "Weekly ear cleaning"
-                },
+          "condition": "Ear Infections",
+          "onsetAgeMonths": 6,
+          "severity": 1,
+          "screening": "Weekly ear cleaning"
+        },
         {
-                  "condition": "Epilepsy",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "Neurological evaluation"
-                }
+          "condition": "Epilepsy",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "Neurological evaluation"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "English Toy (King Charles)",
     "species": "canine",
     "ideal_weight_min_kg": 4,
@@ -5666,7 +5665,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "English Toy Spaniel",
     "species": "canine",
     "ideal_weight_min_kg": 4,
@@ -5713,7 +5712,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Entlebucher Mountain Dog",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -5738,7 +5737,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Eurasier",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -5781,7 +5780,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Field Spaniel",
     "species": "canine",
     "ideal_weight_min_kg": 16,
@@ -5791,40 +5790,40 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Ear Infections (Otitis Externa)",
-                  "onsetAgeMonths": 6,
-                  "severity": 1,
-                  "screening": "Weekly ear cleaning"
-                },
+          "condition": "Ear Infections (Otitis Externa)",
+          "onsetAgeMonths": 6,
+          "severity": 1,
+          "screening": "Weekly ear cleaning"
+        },
         {
-                  "condition": "Cataracts",
-                  "onsetAgeMonths": 12,
-                  "severity": 2,
-                  "screening": "Annual CERF exam"
-                },
+          "condition": "Cataracts",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Annual CERF exam"
+        },
         {
-                  "condition": "Hypothyroidism",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "Annual T4/TSH"
-                }
+          "condition": "Hypothyroidism",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "Annual T4/TSH"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Finnish Hound",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -5861,7 +5860,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Finnish Lapphund",
     "species": "canine",
     "ideal_weight_min_kg": 14,
@@ -5886,7 +5885,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Finnish Spitz",
     "species": "canine",
     "ideal_weight_min_kg": 11,
@@ -5911,7 +5910,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Flat-Coated Retriever",
     "species": "canine",
     "ideal_weight_min_kg": 25,
@@ -5921,34 +5920,34 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Cancer (Histiocytic Sarcoma)",
-                  "onsetAgeMonths": 60,
-                  "severity": 3,
-                  "screening": "Annual CBC/chem"
-                },
+          "condition": "Cancer (Histiocytic Sarcoma)",
+          "onsetAgeMonths": 60,
+          "severity": 3,
+          "screening": "Annual CBC/chem"
+        },
         {
-                  "condition": "Gastric Dilatation-Volvulus (GDV)",
-                  "onsetAgeMonths": 36,
-                  "severity": 3,
-                  "screening": "Prophylactic gastropexy discussion"
-                }
+          "condition": "Gastric Dilatation-Volvulus (GDV)",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Prophylactic gastropexy discussion"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "French Bulldog",
     "species": "canine",
     "ideal_weight_min_kg": 8,
@@ -5974,8 +5973,7 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 24,
           "severity": 2,
           "screening": "BCS monitoring"
-        }
-      ,
+        },
         {
           "condition": "Brachycephalic Airway Syndrome",
           "onsetAgeMonths": 6,
@@ -5990,7 +5988,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "French Spaniel",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -6027,7 +6025,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Galgah (Persian Greyhound)",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -6070,7 +6068,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "German Longhaired Pointer",
     "species": "canine",
     "ideal_weight_min_kg": 22,
@@ -6113,7 +6111,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "German Pinscher",
     "species": "canine",
     "ideal_weight_min_kg": 11,
@@ -6144,7 +6142,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "German Shepherd Dog",
     "species": "canine",
     "ideal_weight_min_kg": 22,
@@ -6187,7 +6185,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "German Shorthaired Pointer",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -6218,7 +6216,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "German Wirehaired Pointer",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -6243,7 +6241,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Giant Schnauzer",
     "species": "canine",
     "ideal_weight_min_kg": 25,
@@ -6292,7 +6290,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Glen of Imaal Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 14,
@@ -6323,7 +6321,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Golden Retriever",
     "species": "canine",
     "ideal_weight_min_kg": 25,
@@ -6372,7 +6370,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Gordon Setter",
     "species": "canine",
     "ideal_weight_min_kg": 25,
@@ -6382,34 +6380,34 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Gastric Dilatation-Volvulus",
-                  "onsetAgeMonths": 36,
-                  "severity": 3,
-                  "screening": "Gastropexy discussion"
-                },
+          "condition": "Gastric Dilatation-Volvulus",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Gastropexy discussion"
+        },
         {
-                  "condition": "Hypothyroidism",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "T4/TSH"
-                }
+          "condition": "Hypothyroidism",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "T4/TSH"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Grand Basset Griffon Vend\u00e9en",
     "species": "canine",
     "ideal_weight_min_kg": 16,
@@ -6440,7 +6438,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Grand Bleu de Gascogne",
     "species": "canine",
     "ideal_weight_min_kg": 30,
@@ -6489,7 +6487,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Great Dane",
     "species": "canine",
     "ideal_weight_min_kg": 50,
@@ -6544,7 +6542,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Great Pyrenees",
     "species": "canine",
     "ideal_weight_min_kg": 36,
@@ -6590,7 +6588,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Greater Swiss Mountain Dog",
     "species": "canine",
     "ideal_weight_min_kg": 45,
@@ -6636,7 +6634,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Greenland Dog",
     "species": "canine",
     "ideal_weight_min_kg": 30,
@@ -6685,7 +6683,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Greyhound",
     "species": "canine",
     "ideal_weight_min_kg": 27,
@@ -6695,52 +6693,52 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Elbow Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA elbow evaluation"
-                },
+          "condition": "Elbow Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA elbow evaluation"
+        },
         {
-                  "condition": "Gastric Dilatation-Volvulus",
-                  "onsetAgeMonths": 36,
-                  "severity": 3,
-                  "screening": "Prophylactic gastropexy discussion"
-                },
+          "condition": "Gastric Dilatation-Volvulus",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Prophylactic gastropexy discussion"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Osteosarcoma",
-                  "onsetAgeMonths": 60,
-                  "severity": 3,
-                  "screening": "Annual lameness evaluation"
-                },
+          "condition": "Osteosarcoma",
+          "onsetAgeMonths": 60,
+          "severity": 3,
+          "screening": "Annual lameness evaluation"
+        },
         {
-                  "condition": "Anesthesia Sensitivity",
-                  "onsetAgeMonths": 0,
-                  "severity": 3,
-                  "screening": "Use propofol; avoid thiobarbiturates"
-                },
+          "condition": "Anesthesia Sensitivity",
+          "onsetAgeMonths": 0,
+          "severity": 3,
+          "screening": "Use propofol; avoid thiobarbiturates"
+        },
         {
-                  "condition": "Hypothyroidism",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "Annual T4/TSH"
-                }
+          "condition": "Hypothyroidism",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "Annual T4/TSH"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Hairless Khala",
     "species": "canine",
     "ideal_weight_min_kg": 8,
@@ -6777,7 +6775,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Halden Hound",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -6814,7 +6812,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Hamiltonstovare",
     "species": "canine",
     "ideal_weight_min_kg": 23,
@@ -6833,7 +6831,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Hannoveraner Schweisshund",
     "species": "canine",
     "ideal_weight_min_kg": 25,
@@ -6876,7 +6874,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Harrier",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -6901,7 +6899,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Havanese",
     "species": "canine",
     "ideal_weight_min_kg": 3,
@@ -6938,7 +6936,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Hokkaido",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -6969,7 +6967,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Holland Shepherd Dog",
     "species": "canine",
     "ideal_weight_min_kg": 23,
@@ -7018,7 +7016,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Hovawart",
     "species": "canine",
     "ideal_weight_min_kg": 25,
@@ -7043,7 +7041,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Hungarian Vizsla (Wirehaired)",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -7092,7 +7090,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Hygen Hound",
     "species": "canine",
     "ideal_weight_min_kg": 15,
@@ -7129,7 +7127,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Ibizan Hound",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -7166,7 +7164,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Icelandic Sheepdog",
     "species": "canine",
     "ideal_weight_min_kg": 9,
@@ -7191,7 +7189,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Irish Red and White Setter",
     "species": "canine",
     "ideal_weight_min_kg": 24,
@@ -7222,7 +7220,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Irish Setter",
     "species": "canine",
     "ideal_weight_min_kg": 25,
@@ -7232,40 +7230,40 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Gastric Dilatation-Volvulus",
-                  "onsetAgeMonths": 36,
-                  "severity": 3,
-                  "screening": "Gastropexy discussion"
-                },
+          "condition": "Gastric Dilatation-Volvulus",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Gastropexy discussion"
+        },
         {
-                  "condition": "Hypothyroidism",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "T4/TSH"
-                },
+          "condition": "Hypothyroidism",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "T4/TSH"
+        },
         {
-                  "condition": "Progressive Retinal Atrophy",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "CERF exam"
-                }
+          "condition": "Progressive Retinal Atrophy",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "CERF exam"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Irish Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 11,
@@ -7296,7 +7294,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Irish Water Spaniel",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -7345,7 +7343,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Irish Wolfhound",
     "species": "canine",
     "ideal_weight_min_kg": 48,
@@ -7391,7 +7389,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Istrian Short-haired Hound",
     "species": "canine",
     "ideal_weight_min_kg": 14,
@@ -7428,7 +7426,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Istrian Wire-haired Hound",
     "species": "canine",
     "ideal_weight_min_kg": 14,
@@ -7465,7 +7463,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Italian Greyhound",
     "species": "canine",
     "ideal_weight_min_kg": 3,
@@ -7475,40 +7473,40 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Patellar Luxation",
-                  "onsetAgeMonths": 12,
-                  "severity": 2,
-                  "screening": "Orthopedic exam"
-                },
+          "condition": "Patellar Luxation",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Orthopedic exam"
+        },
         {
-                  "condition": "Tracheal Collapse",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "Cervical radiographs; use harness"
-                },
+          "condition": "Tracheal Collapse",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "Cervical radiographs; use harness"
+        },
         {
-                  "condition": "Dental Disease",
-                  "onsetAgeMonths": 12,
-                  "severity": 2,
-                  "screening": "Annual dental prophylaxis"
-                },
+          "condition": "Dental Disease",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Annual dental prophylaxis"
+        },
         {
-                  "condition": "Hypoglycemia",
-                  "onsetAgeMonths": 3,
-                  "severity": 3,
-                  "screening": "Blood glucose monitoring in puppies"
-                },
+          "condition": "Hypoglycemia",
+          "onsetAgeMonths": 3,
+          "severity": 3,
+          "screening": "Blood glucose monitoring in puppies"
+        },
         {
-                  "condition": "Osteosarcoma",
-                  "onsetAgeMonths": 60,
-                  "severity": 3,
-                  "screening": "Lameness evaluation"
-                }
+          "condition": "Osteosarcoma",
+          "onsetAgeMonths": 60,
+          "severity": 3,
+          "screening": "Lameness evaluation"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Jack Russell Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -7545,7 +7543,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Japanese Chin",
     "species": "canine",
     "ideal_weight_min_kg": 2,
@@ -7592,7 +7590,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Japanese Spitz",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -7623,7 +7621,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Japanese Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 3,
@@ -7660,7 +7658,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Jindo",
     "species": "canine",
     "ideal_weight_min_kg": 15,
@@ -7691,7 +7689,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Kai",
     "species": "canine",
     "ideal_weight_min_kg": 14,
@@ -7722,7 +7720,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Kangal",
     "species": "canine",
     "ideal_weight_min_kg": 40,
@@ -7771,7 +7769,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Karelian Bear Dog",
     "species": "canine",
     "ideal_weight_min_kg": 15,
@@ -7802,7 +7800,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Keeshond",
     "species": "canine",
     "ideal_weight_min_kg": 16,
@@ -7812,28 +7810,28 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Hypothyroidism",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "T4/TSH"
-                }
+          "condition": "Hypothyroidism",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "T4/TSH"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Kerry Blue Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 14,
@@ -7870,7 +7868,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "King Charles Spaniel",
     "species": "canine",
     "ideal_weight_min_kg": 4,
@@ -7901,7 +7899,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Kishu",
     "species": "canine",
     "ideal_weight_min_kg": 14,
@@ -7932,7 +7930,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Komondor",
     "species": "canine",
     "ideal_weight_min_kg": 36,
@@ -7942,40 +7940,40 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Elbow Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA elbow evaluation"
-                },
+          "condition": "Elbow Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA elbow evaluation"
+        },
         {
-                  "condition": "Gastric Dilatation-Volvulus",
-                  "onsetAgeMonths": 36,
-                  "severity": 3,
-                  "screening": "Prophylactic gastropexy discussion"
-                },
+          "condition": "Gastric Dilatation-Volvulus",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Prophylactic gastropexy discussion"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Osteosarcoma",
-                  "onsetAgeMonths": 60,
-                  "severity": 3,
-                  "screening": "Annual lameness evaluation"
-                }
+          "condition": "Osteosarcoma",
+          "onsetAgeMonths": 60,
+          "severity": 3,
+          "screening": "Annual lameness evaluation"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Kooikerhondje",
     "species": "canine",
     "ideal_weight_min_kg": 9,
@@ -8006,7 +8004,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Korean Jindo",
     "species": "canine",
     "ideal_weight_min_kg": 15,
@@ -8037,7 +8035,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Korthals Griffon",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -8074,7 +8072,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Kuvasz",
     "species": "canine",
     "ideal_weight_min_kg": 36,
@@ -8084,40 +8082,40 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Elbow Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA elbow evaluation"
-                },
+          "condition": "Elbow Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA elbow evaluation"
+        },
         {
-                  "condition": "Gastric Dilatation-Volvulus",
-                  "onsetAgeMonths": 36,
-                  "severity": 3,
-                  "screening": "Prophylactic gastropexy discussion"
-                },
+          "condition": "Gastric Dilatation-Volvulus",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Prophylactic gastropexy discussion"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Osteosarcoma",
-                  "onsetAgeMonths": 60,
-                  "severity": 3,
-                  "screening": "Annual lameness evaluation"
-                }
+          "condition": "Osteosarcoma",
+          "onsetAgeMonths": 60,
+          "severity": 3,
+          "screening": "Annual lameness evaluation"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Labrador Retriever",
     "species": "canine",
     "ideal_weight_min_kg": 25,
@@ -8166,7 +8164,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Lagotto Romagnolo",
     "species": "canine",
     "ideal_weight_min_kg": 11,
@@ -8191,7 +8189,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Lakeland Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 7,
@@ -8222,7 +8220,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Lancashire Heeler",
     "species": "canine",
     "ideal_weight_min_kg": 3,
@@ -8247,7 +8245,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Landseer",
     "species": "canine",
     "ideal_weight_min_kg": 45,
@@ -8278,7 +8276,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Large M\u00fcnsterl\u00e4nder",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -8321,7 +8319,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Leonberger",
     "species": "canine",
     "ideal_weight_min_kg": 34,
@@ -8367,7 +8365,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Lhasa Apso",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -8418,7 +8416,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Longdog",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -8461,7 +8459,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Lowchen",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -8498,7 +8496,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Lurcher",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -8541,7 +8539,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Magyar Agar (Hungarian)",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -8584,7 +8582,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Maltese",
     "species": "canine",
     "ideal_weight_min_kg": 2,
@@ -8621,7 +8619,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Manchester Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 6,
@@ -8658,7 +8656,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Manchester Terrier (Standard)",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -8695,7 +8693,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Manchester Terrier (Toy)",
     "species": "canine",
     "ideal_weight_min_kg": 3,
@@ -8732,7 +8730,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Mastiff",
     "species": "canine",
     "ideal_weight_min_kg": 54,
@@ -8778,7 +8776,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Miniature American Shepherd",
     "species": "canine",
     "ideal_weight_min_kg": 7,
@@ -8817,7 +8815,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Miniature Bull Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 11,
@@ -8842,7 +8840,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Miniature Pinscher",
     "species": "canine",
     "ideal_weight_min_kg": 3,
@@ -8885,7 +8883,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Miniature Schnauzer",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -8916,7 +8914,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Moscow Watchdog",
     "species": "canine",
     "ideal_weight_min_kg": 45,
@@ -8971,7 +8969,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Mountain Cur",
     "species": "canine",
     "ideal_weight_min_kg": 16,
@@ -9002,7 +9000,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Mudi",
     "species": "canine",
     "ideal_weight_min_kg": 10,
@@ -9033,7 +9031,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Neapolitan Mastiff",
     "species": "canine",
     "ideal_weight_min_kg": 50,
@@ -9090,7 +9088,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Newfoundland",
     "species": "canine",
     "ideal_weight_min_kg": 45,
@@ -9136,7 +9134,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Norbottenspets",
     "species": "canine",
     "ideal_weight_min_kg": 10,
@@ -9167,7 +9165,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Norfolk Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -9198,7 +9196,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Norrbottenspets",
     "species": "canine",
     "ideal_weight_min_kg": 10,
@@ -9229,7 +9227,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Norwegian Buhund",
     "species": "canine",
     "ideal_weight_min_kg": 12,
@@ -9248,7 +9246,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Norwegian Elkhound",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -9273,7 +9271,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Norwegian Lundehund",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -9298,7 +9296,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Norwich Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -9329,7 +9327,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Nova Scotia Duck Tolling Retriever",
     "species": "canine",
     "ideal_weight_min_kg": 16,
@@ -9339,40 +9337,40 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Collie Eye Anomaly",
-                  "onsetAgeMonths": 6,
-                  "severity": 2,
-                  "screening": "CERF exam"
-                },
+          "condition": "Collie Eye Anomaly",
+          "onsetAgeMonths": 6,
+          "severity": 2,
+          "screening": "CERF exam"
+        },
         {
-                  "condition": "Hypothyroidism",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "T4/TSH"
-                },
+          "condition": "Hypothyroidism",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "T4/TSH"
+        },
         {
-                  "condition": "MDR1 Drug Sensitivity",
-                  "onsetAgeMonths": 0,
-                  "severity": 4,
-                  "screening": "MDR1 genetic test"
-                }
+          "condition": "MDR1 Drug Sensitivity",
+          "onsetAgeMonths": 0,
+          "severity": 4,
+          "screening": "MDR1 genetic test"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Old English Sheepdog",
     "species": "canine",
     "ideal_weight_min_kg": 27,
@@ -9382,42 +9380,42 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Collie Eye Anomaly",
-                  "onsetAgeMonths": 6,
-                  "severity": 2,
-                  "screening": "CERF eye exam"
-                },
+          "condition": "Collie Eye Anomaly",
+          "onsetAgeMonths": 6,
+          "severity": 2,
+          "screening": "CERF eye exam"
+        },
         {
-                  "condition": "Epilepsy",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "Neurological evaluation"
-                },
+          "condition": "Epilepsy",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "Neurological evaluation"
+        },
         {
-                  "condition": "MDR1 Drug Sensitivity",
-                  "onsetAgeMonths": 0,
-                  "severity": 4,
-                  "screening": "MDR1 genetic test"
-                }
+          "condition": "MDR1 Drug Sensitivity",
+          "onsetAgeMonths": 0,
+          "severity": 4,
+          "screening": "MDR1 genetic test"
+        }
       ],
       "contraindications": [
         "MDR1 mutation risk: Avoid ivermectin, milbemycin, loperamide, and use reduced doses of acepromazine and butorphanol unless genetically cleared."
       ]
     }
   },
-{
+  {
     "name": "Old Time Farm Shepherd",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -9460,7 +9458,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Otterhound",
     "species": "canine",
     "ideal_weight_min_kg": 29,
@@ -9470,46 +9468,46 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Elbow Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA elbow evaluation"
-                },
+          "condition": "Elbow Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA elbow evaluation"
+        },
         {
-                  "condition": "Gastric Dilatation-Volvulus",
-                  "onsetAgeMonths": 36,
-                  "severity": 3,
-                  "screening": "Prophylactic gastropexy discussion"
-                },
+          "condition": "Gastric Dilatation-Volvulus",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Prophylactic gastropexy discussion"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Osteosarcoma",
-                  "onsetAgeMonths": 60,
-                  "severity": 3,
-                  "screening": "Annual lameness evaluation"
-                },
+          "condition": "Osteosarcoma",
+          "onsetAgeMonths": 60,
+          "severity": 3,
+          "screening": "Annual lameness evaluation"
+        },
         {
-                  "condition": "Hypothyroidism",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "T4/TSH"
-                }
+          "condition": "Hypothyroidism",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "T4/TSH"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Papillon",
     "species": "canine",
     "ideal_weight_min_kg": 2,
@@ -9519,34 +9517,34 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Patellar Luxation",
-                  "onsetAgeMonths": 12,
-                  "severity": 2,
-                  "screening": "Orthopedic exam"
-                },
+          "condition": "Patellar Luxation",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Orthopedic exam"
+        },
         {
-                  "condition": "Tracheal Collapse",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "Cervical radiographs; use harness"
-                },
+          "condition": "Tracheal Collapse",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "Cervical radiographs; use harness"
+        },
         {
-                  "condition": "Dental Disease",
-                  "onsetAgeMonths": 12,
-                  "severity": 2,
-                  "screening": "Annual dental prophylaxis"
-                },
+          "condition": "Dental Disease",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Annual dental prophylaxis"
+        },
         {
-                  "condition": "Hypoglycemia",
-                  "onsetAgeMonths": 3,
-                  "severity": 3,
-                  "screening": "Blood glucose monitoring in puppies"
-                }
+          "condition": "Hypoglycemia",
+          "onsetAgeMonths": 3,
+          "severity": 3,
+          "screening": "Blood glucose monitoring in puppies"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Parson Russell Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -9571,7 +9569,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Pekingese",
     "species": "canine",
     "ideal_weight_min_kg": 3,
@@ -9618,7 +9616,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Pembroke Welsh Corgi",
     "species": "canine",
     "ideal_weight_min_kg": 10,
@@ -9655,7 +9653,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Perdigueiro Portugu\u00eas",
     "species": "canine",
     "ideal_weight_min_kg": 16,
@@ -9692,7 +9690,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Perro de Presa Mallorquin",
     "species": "canine",
     "ideal_weight_min_kg": 30,
@@ -9741,7 +9739,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Peruvian Inca Orchid",
     "species": "canine",
     "ideal_weight_min_kg": 8,
@@ -9766,7 +9764,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Petit Basset Griffon Vendeen",
     "species": "canine",
     "ideal_weight_min_kg": 11,
@@ -9797,7 +9795,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Petit Basset Griffon Vend\u00e9en",
     "species": "canine",
     "ideal_weight_min_kg": 11,
@@ -9828,7 +9826,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Pharaoh Hound",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -9865,7 +9863,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Picardy Spaniel",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -9902,7 +9900,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Plott Hound",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -9927,7 +9925,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Podenco Canario",
     "species": "canine",
     "ideal_weight_min_kg": 16,
@@ -9964,7 +9962,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Podenco Ibicenco",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -10001,7 +9999,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Pointer",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -10026,7 +10024,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Pointer (English)",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -10075,7 +10073,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Polish Greyhound",
     "species": "canine",
     "ideal_weight_min_kg": 22,
@@ -10118,7 +10116,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Polish Hound",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -10161,7 +10159,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Polish Lowland Sheepdog",
     "species": "canine",
     "ideal_weight_min_kg": 14,
@@ -10198,7 +10196,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Pomeranian",
     "species": "canine",
     "ideal_weight_min_kg": 1.5,
@@ -10235,7 +10233,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Poodle (Miniature)",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -10266,7 +10264,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Poodle (Standard)",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -10315,7 +10313,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Poodle (Toy)",
     "species": "canine",
     "ideal_weight_min_kg": 2,
@@ -10352,7 +10350,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Portugese Water Dog",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -10401,7 +10399,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Portuguese Podengo (Grande)",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -10444,7 +10442,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Portuguese Podengo (M\u00e9dio)",
     "species": "canine",
     "ideal_weight_min_kg": 10,
@@ -10481,7 +10479,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Portuguese Podengo (Pequeno)",
     "species": "canine",
     "ideal_weight_min_kg": 4,
@@ -10518,7 +10516,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Portuguese Podengo Pequeno",
     "species": "canine",
     "ideal_weight_min_kg": 4,
@@ -10549,7 +10547,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Portuguese Sheepdog",
     "species": "canine",
     "ideal_weight_min_kg": 13,
@@ -10568,7 +10566,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Portuguese Water Dog",
     "species": "canine",
     "ideal_weight_min_kg": 16,
@@ -10578,34 +10576,34 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Gastric Dilatation-Volvulus",
-                  "onsetAgeMonths": 36,
-                  "severity": 3,
-                  "screening": "Gastropexy discussion"
-                },
+          "condition": "Gastric Dilatation-Volvulus",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Gastropexy discussion"
+        },
         {
-                  "condition": "Progressive Retinal Atrophy",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "CERF exam"
-                }
+          "condition": "Progressive Retinal Atrophy",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "CERF exam"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Pudelpointer",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -10654,7 +10652,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Pug",
     "species": "canine",
     "ideal_weight_min_kg": 6,
@@ -10686,8 +10684,7 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 3,
           "severity": 3,
           "screening": "Blood glucose monitoring in puppies"
-        }
-      ,
+        },
         {
           "condition": "Brachycephalic Airway Syndrome",
           "onsetAgeMonths": 6,
@@ -10702,7 +10699,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Puli",
     "species": "canine",
     "ideal_weight_min_kg": 11,
@@ -10739,7 +10736,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Pumi",
     "species": "canine",
     "ideal_weight_min_kg": 10,
@@ -10770,7 +10767,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Pyrenean Shepherd",
     "species": "canine",
     "ideal_weight_min_kg": 9,
@@ -10807,7 +10804,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Rat Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -10817,28 +10814,28 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Patellar Luxation",
-                  "onsetAgeMonths": 12,
-                  "severity": 2,
-                  "screening": "Orthopedic exam"
-                },
+          "condition": "Patellar Luxation",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Orthopedic exam"
+        },
         {
-                  "condition": "Dental Disease",
-                  "onsetAgeMonths": 12,
-                  "severity": 2,
-                  "screening": "Annual dental prophylaxis"
-                },
+          "condition": "Dental Disease",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Annual dental prophylaxis"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                }
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Ratonero Bodeguero Andaluz",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -10857,7 +10854,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Redbone Coonhound",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -10882,7 +10879,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Rhodesian Ridgeback",
     "species": "canine",
     "ideal_weight_min_kg": 32,
@@ -10914,18 +10911,18 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 36,
           "severity": 2,
           "screening": "T4/TSH"
-        }
-      ,
+        },
         {
           "condition": "Gastric Dilatation-Volvulus (GDV)",
           "onsetAgeMonths": 36,
           "severity": 3,
           "screening": "Prophylactic gastropexy discussion"
-        }],
+        }
+      ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Rottweiler",
     "species": "canine",
     "ideal_weight_min_kg": 35,
@@ -10974,7 +10971,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Russell Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -11005,7 +11002,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Russian Toy",
     "species": "canine",
     "ideal_weight_min_kg": 1,
@@ -11042,7 +11039,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Saarloos Wolfdog",
     "species": "canine",
     "ideal_weight_min_kg": 30,
@@ -11091,7 +11088,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Saint Bernard",
     "species": "canine",
     "ideal_weight_min_kg": 54,
@@ -11137,7 +11134,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Saluki",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -11147,46 +11144,46 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Elbow Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA elbow evaluation"
-                },
+          "condition": "Elbow Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA elbow evaluation"
+        },
         {
-                  "condition": "Gastric Dilatation-Volvulus",
-                  "onsetAgeMonths": 36,
-                  "severity": 3,
-                  "screening": "Prophylactic gastropexy discussion"
-                },
+          "condition": "Gastric Dilatation-Volvulus",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Prophylactic gastropexy discussion"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Osteosarcoma",
-                  "onsetAgeMonths": 60,
-                  "severity": 3,
-                  "screening": "Annual lameness evaluation"
-                },
+          "condition": "Osteosarcoma",
+          "onsetAgeMonths": 60,
+          "severity": 3,
+          "screening": "Annual lameness evaluation"
+        },
         {
-                  "condition": "Hypothyroidism",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "T4/TSH"
-                }
+          "condition": "Hypothyroidism",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "T4/TSH"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Samoyed",
     "species": "canine",
     "ideal_weight_min_kg": 16,
@@ -11196,34 +11193,34 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Hypothyroidism",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "T4/TSH"
-                },
+          "condition": "Hypothyroidism",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "T4/TSH"
+        },
         {
-                  "condition": "Progressive Retinal Atrophy",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "CERF exam"
-                }
+          "condition": "Progressive Retinal Atrophy",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "CERF exam"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Schapendoes",
     "species": "canine",
     "ideal_weight_min_kg": 12,
@@ -11254,7 +11251,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Schipperke",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -11291,7 +11288,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Schnauzer (Giant)",
     "species": "canine",
     "ideal_weight_min_kg": 25,
@@ -11340,7 +11337,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Schnauzer (Miniature)",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -11377,7 +11374,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Schnauzer (Standard)",
     "species": "canine",
     "ideal_weight_min_kg": 14,
@@ -11408,7 +11405,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Schweizer Laufhund",
     "species": "canine",
     "ideal_weight_min_kg": 15,
@@ -11445,7 +11442,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Schweizer Niederlaufhund",
     "species": "canine",
     "ideal_weight_min_kg": 12,
@@ -11482,7 +11479,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Scottish Deerhound",
     "species": "canine",
     "ideal_weight_min_kg": 36,
@@ -11528,7 +11525,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Scottish Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 8,
@@ -11559,7 +11556,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Sealyham Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 8,
@@ -11584,7 +11581,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Segugio Italiano",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -11603,7 +11600,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Segugio Italiano a Pelo Forte",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -11646,7 +11643,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Segugio Italiano a Pelo Raso",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -11689,7 +11686,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Shetland Sheepdog",
     "species": "canine",
     "ideal_weight_min_kg": 6,
@@ -11734,7 +11731,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Shiba Inu",
     "species": "canine",
     "ideal_weight_min_kg": 8,
@@ -11777,7 +11774,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Shih Tzu",
     "species": "canine",
     "ideal_weight_min_kg": 4,
@@ -11809,8 +11806,7 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 3,
           "severity": 3,
           "screening": "Blood glucose monitoring in puppies"
-        }
-      ,
+        },
         {
           "condition": "Brachycephalic Airway Syndrome",
           "onsetAgeMonths": 6,
@@ -11825,7 +11821,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Shikoku",
     "species": "canine",
     "ideal_weight_min_kg": 16,
@@ -11856,7 +11852,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Siberian Husky",
     "species": "canine",
     "ideal_weight_min_kg": 16,
@@ -11881,7 +11877,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Silky Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 3,
@@ -11918,7 +11914,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Skye Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 7,
@@ -11943,7 +11939,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Sloughi",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -11968,7 +11964,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Slovakian Hound",
     "species": "canine",
     "ideal_weight_min_kg": 15,
@@ -12005,7 +12001,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Small Munsterlander",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -12030,7 +12026,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Small M\u00fcnsterl\u00e4nder",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -12067,7 +12063,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Smooth Fox Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 7,
@@ -12098,7 +12094,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Sm\u00e5land Hound",
     "species": "canine",
     "ideal_weight_min_kg": 12,
@@ -12129,7 +12125,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Soft Coated Wheaten Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 14,
@@ -12160,7 +12156,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "South Russian Shepherd Dog",
     "species": "canine",
     "ideal_weight_min_kg": 35,
@@ -12209,7 +12205,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Spanish Hound",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -12246,7 +12242,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Spanish Mastiff",
     "species": "canine",
     "ideal_weight_min_kg": 50,
@@ -12301,7 +12297,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Spanish Water Dog",
     "species": "canine",
     "ideal_weight_min_kg": 14,
@@ -12311,28 +12307,28 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Hypothyroidism",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "T4/TSH"
-                }
+          "condition": "Hypothyroidism",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "T4/TSH"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Spino",
     "species": "canine",
     "ideal_weight_min_kg": 28,
@@ -12375,7 +12371,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Spinone Italiano",
     "species": "canine",
     "ideal_weight_min_kg": 28,
@@ -12406,7 +12402,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Spotting Hound",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -12449,7 +12445,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Staffordshire Bull Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 12,
@@ -12486,7 +12482,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Standard Schnauzer",
     "species": "canine",
     "ideal_weight_min_kg": 14,
@@ -12496,28 +12492,28 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Pancreatitis",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "Low-fat diet"
-                }
+          "condition": "Pancreatitis",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "Low-fat diet"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Stephens Cur",
     "species": "canine",
     "ideal_weight_min_kg": 16,
@@ -12548,7 +12544,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Sussex Spaniel",
     "species": "canine",
     "ideal_weight_min_kg": 16,
@@ -12585,7 +12581,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Swedish Lapphund",
     "species": "canine",
     "ideal_weight_min_kg": 14,
@@ -12616,7 +12612,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Swedish Vallhund",
     "species": "canine",
     "ideal_weight_min_kg": 9,
@@ -12635,7 +12631,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Swiss Hound",
     "species": "canine",
     "ideal_weight_min_kg": 15,
@@ -12672,7 +12668,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Taiwan Dog",
     "species": "canine",
     "ideal_weight_min_kg": 12,
@@ -12703,7 +12699,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Teddy Roosevelt Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -12740,7 +12736,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Thai Bangkaew Dog",
     "species": "canine",
     "ideal_weight_min_kg": 13,
@@ -12771,7 +12767,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Thai Ridgeback",
     "species": "canine",
     "ideal_weight_min_kg": 22,
@@ -12791,18 +12787,18 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 3,
           "severity": 2,
           "screening": "Surgical removal"
-        }
-      ,
+        },
         {
           "condition": "Gastric Dilatation-Volvulus (GDV)",
           "onsetAgeMonths": 36,
           "severity": 3,
           "screening": "Prophylactic gastropexy discussion"
-        }],
+        }
+      ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Tibetan Mastiff",
     "species": "canine",
     "ideal_weight_min_kg": 36,
@@ -12812,46 +12808,46 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Gastric Dilatation-Volvulus",
-                  "onsetAgeMonths": 12,
-                  "severity": 4,
-                  "screening": "Prophylactic gastropexy at spay/neuter"
-                },
+          "condition": "Gastric Dilatation-Volvulus",
+          "onsetAgeMonths": 12,
+          "severity": 4,
+          "screening": "Prophylactic gastropexy at spay/neuter"
+        },
         {
-                  "condition": "Dilated Cardiomyopathy",
-                  "onsetAgeMonths": 24,
-                  "severity": 4,
-                  "screening": "Annual echocardiogram"
-                },
+          "condition": "Dilated Cardiomyopathy",
+          "onsetAgeMonths": 24,
+          "severity": 4,
+          "screening": "Annual echocardiogram"
+        },
         {
-                  "condition": "Osteosarcoma",
-                  "onsetAgeMonths": 60,
-                  "severity": 3,
-                  "screening": "Monitor for lameness"
-                },
+          "condition": "Osteosarcoma",
+          "onsetAgeMonths": 60,
+          "severity": 3,
+          "screening": "Monitor for lameness"
+        },
         {
-                  "condition": "Cruciate Ligament Rupture",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "Weight management; orthopedic exam"
-                }
+          "condition": "Cruciate Ligament Rupture",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "Weight management; orthopedic exam"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Tibetan Spaniel",
     "species": "canine",
     "ideal_weight_min_kg": 4,
@@ -12888,7 +12884,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Tibetan Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 8,
@@ -12913,7 +12909,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Tolling Retriever",
     "species": "canine",
     "ideal_weight_min_kg": 16,
@@ -12944,7 +12940,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Tosa",
     "species": "canine",
     "ideal_weight_min_kg": 40,
@@ -12999,7 +12995,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Toy Fox Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 2,
@@ -13036,7 +13032,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Transylvanian Hound",
     "species": "canine",
     "ideal_weight_min_kg": 22,
@@ -13055,7 +13051,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Treeing Cur",
     "species": "canine",
     "ideal_weight_min_kg": 16,
@@ -13086,7 +13082,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Treeing Tennessee Brindle",
     "species": "canine",
     "ideal_weight_min_kg": 16,
@@ -13105,7 +13101,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Treeing Walker Coonhound",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -13130,7 +13126,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Trigg Hound",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -13173,7 +13169,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Tyrolean Hound",
     "species": "canine",
     "ideal_weight_min_kg": 14,
@@ -13210,7 +13206,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Vizsla",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -13230,18 +13226,18 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 24,
           "severity": 2,
           "screening": "BCS monitoring"
-        }
-      ,
+        },
         {
           "condition": "Gastric Dilatation-Volvulus (GDV)",
           "onsetAgeMonths": 36,
           "severity": 3,
           "screening": "Prophylactic gastropexy discussion"
-        }],
+        }
+      ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Volpino Italiano",
     "species": "canine",
     "ideal_weight_min_kg": 4,
@@ -13278,7 +13274,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Walloon Shepherd Dog",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -13321,7 +13317,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Weimaraner",
     "species": "canine",
     "ideal_weight_min_kg": 25,
@@ -13341,18 +13337,18 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 24,
           "severity": 2,
           "screening": "BCS monitoring"
-        }
-      ,
+        },
         {
           "condition": "Gastric Dilatation-Volvulus (GDV)",
           "onsetAgeMonths": 36,
           "severity": 3,
           "screening": "Prophylactic gastropexy discussion"
-        }],
+        }
+      ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Welsh Springer Spaniel",
     "species": "canine",
     "ideal_weight_min_kg": 16,
@@ -13362,40 +13358,40 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Ear Infections (Otitis Externa)",
-                  "onsetAgeMonths": 6,
-                  "severity": 1,
-                  "screening": "Weekly ear cleaning"
-                },
+          "condition": "Ear Infections (Otitis Externa)",
+          "onsetAgeMonths": 6,
+          "severity": 1,
+          "screening": "Weekly ear cleaning"
+        },
         {
-                  "condition": "Cataracts",
-                  "onsetAgeMonths": 12,
-                  "severity": 2,
-                  "screening": "Annual CERF exam"
-                },
+          "condition": "Cataracts",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Annual CERF exam"
+        },
         {
-                  "condition": "Hypothyroidism",
-                  "onsetAgeMonths": 36,
-                  "severity": 2,
-                  "screening": "Annual T4/TSH"
-                }
+          "condition": "Hypothyroidism",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "Annual T4/TSH"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Welsh Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 9,
@@ -13426,7 +13422,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "West Highland White Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 6,
@@ -13469,7 +13465,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Wetterhoun",
     "species": "canine",
     "ideal_weight_min_kg": 16,
@@ -13500,7 +13496,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Whippet",
     "species": "canine",
     "ideal_weight_min_kg": 9,
@@ -13552,7 +13548,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "White Shepherd",
     "species": "canine",
     "ideal_weight_min_kg": 22,
@@ -13595,7 +13591,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Wire Fox Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 7,
@@ -13626,7 +13622,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Wirehaired Pointing Griffon",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -13636,28 +13632,28 @@ export const BREEDS: BreedData[] = [
     "alert_rules": {
       "predispositions": [
         {
-                  "condition": "Hip Dysplasia",
-                  "onsetAgeMonths": 18,
-                  "severity": 2,
-                  "screening": "OFA hip scoring"
-                },
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
         {
-                  "condition": "Obesity",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "BCS monitoring"
-                },
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
         {
-                  "condition": "Epilepsy",
-                  "onsetAgeMonths": 24,
-                  "severity": 2,
-                  "screening": "Neurological evaluation"
-                }
+          "condition": "Epilepsy",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "Neurological evaluation"
+        }
       ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Wirehaired Vizsla",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -13683,18 +13679,18 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 36,
           "severity": 2,
           "screening": "T4/TSH"
-        }
-      ,
+        },
         {
           "condition": "Gastric Dilatation-Volvulus (GDV)",
           "onsetAgeMonths": 36,
           "severity": 3,
           "screening": "Prophylactic gastropexy discussion"
-        }],
+        }
+      ],
       "contraindications": []
     }
   },
-{
+  {
     "name": "Xoloitzcuintli",
     "species": "canine",
     "ideal_weight_min_kg": 7,
@@ -13719,7 +13715,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Xoloitzcuintli (Miniature)",
     "species": "canine",
     "ideal_weight_min_kg": 5,
@@ -13750,7 +13746,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Xoloitzcuintli (Standard)",
     "species": "canine",
     "ideal_weight_min_kg": 9,
@@ -13781,7 +13777,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Xoloitzcuintli (Toy)",
     "species": "canine",
     "ideal_weight_min_kg": 2.5,
@@ -13818,7 +13814,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Yorkshire Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 2,
@@ -13855,7 +13851,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "Zaupal Hound",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -13892,7 +13888,7 @@ export const BREEDS: BreedData[] = [
       "contraindications": []
     }
   },
-{
+  {
     "name": "German Shepherd",
     "species": "canine",
     "ideal_weight_min_kg": 30,
@@ -13944,7 +13940,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Doberman Pinscher",
     "species": "canine",
     "ideal_weight_min_kg": 30,
@@ -14007,7 +14003,7 @@ export const BREEDS: BreedData[] = [
       ]
     }
   },
-{
+  {
     "name": "Bull Terrier",
     "species": "canine",
     "ideal_weight_min_kg": 20,
@@ -14043,4 +14039,4 @@ export const BREEDS: BreedData[] = [
       ]
     }
   }
-].filter(b => b.species === 'canine');
+];
