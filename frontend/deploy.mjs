@@ -34,7 +34,11 @@ const files = getFiles(DIST);
 // Include every serverless function alongside the static SPA. This keeps
 // auth endpoints (and future API routes) deployed with the client bundle.
 const apiDir = join(process.cwd(), 'api');
-files.push(...getFiles(apiDir, 'api'));
+// API handlers live under frontend/api in the complete PawPath source. Include
+// them at Vercel's root api/ path so serverless routes are actually emitted.
+if (readdirSync(apiDir, { withFileTypes: true }).length) files.push(...getFiles(apiDir, 'api'));
+const frontendApiDir = join(process.cwd(), 'frontend', 'api');
+files.push(...getFiles(frontendApiDir, 'api'));
 files.push({ file: 'vercel.json', data: readFileSync(join(process.cwd(), 'vercel.json')).toString('base64'), encoding: 'base64' });
 files.push({ file: 'frontend/package.json', data: readFileSync(join(process.cwd(), 'frontend/package.json')).toString('base64'), encoding: 'base64' });
 files.push({ file: 'frontend/package-lock.json', data: readFileSync(join(process.cwd(), 'frontend/package-lock.json')).toString('base64'), encoding: 'base64' });
