@@ -16,7 +16,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const profile = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', { headers: { authorization: `Bearer ${t.access_token}` } });
     if (!profile.ok) return res.status(401).send('Google profile lookup failed.');
     const u = await profile.json();
-    const payload = JSON.stringify({ sub: u.sub, name: u.name || u.email, email: u.email, picture: u.picture || '' }).replace(/</g, '\u003c');
+    const payload = JSON.stringify({ sub: u.sub, name: u.name || u.email, email: u.email, picture: u.picture || '', idToken: t.id_token || '' }).replace(/</g, '\u003c');
     res.setHeader('content-type', 'text/html');
     res.end(`<!doctype html><script>localStorage.setItem('pawpath_user',${JSON.stringify(payload)});location.href='/'</script>`);
   } catch { return res.status(500).send('Google login failed.'); }

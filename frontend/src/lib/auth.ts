@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-export interface UserProfile { sub: string; name: string; email: string; picture?: string }
+export interface UserProfile { sub: string; name: string; email: string; picture?: string; idToken?: string }
 const KEY='pawpath_user';
 export const getCurrentUser=():UserProfile|null=>{try{const raw=localStorage.getItem(KEY);return raw?JSON.parse(raw):null}catch{return null}};
 export const saveUser=(u:UserProfile)=>localStorage.setItem(KEY,JSON.stringify(u));
