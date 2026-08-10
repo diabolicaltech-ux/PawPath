@@ -1,11 +1,11 @@
 import React from 'react';
-import { PawPrint, LayoutDashboard, Home, BookOpen, HeartHandshake } from 'lucide-react';
+import { PawPrint, Home, BookOpen, HeartHandshake, Settings } from 'lucide-react';
 import { signOut, type UserProfile } from '../lib/auth';
 const UserButton = () => null;
 
 interface NavBarProps {
-  currentView: 'home' | 'dashboard' | 'onboarding' | 'breed-library' | 'rescue';
-  onNavigate: (view: 'home' | 'onboarding' | 'breed-library' | 'rescue') => void;
+  currentView: 'home' | 'dashboard' | 'onboarding' | 'breed-library' | 'rescue' | 'account';
+  onNavigate: (view: 'home' | 'onboarding' | 'breed-library' | 'rescue' | 'account') => void;
   petName?: string;
   user?: UserProfile | null;
 }
@@ -45,6 +45,15 @@ const NavBar: React.FC<NavBarProps> = ({ currentView, onNavigate, petName, user 
               >
                 <HeartHandshake className="w-4 h-4" />
                 <span>Rescue a Dog</span>
+              </button>
+              <button
+                onClick={() => onNavigate('account')}
+                className={`px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-1.5 ${
+                  currentView === 'account' ? 'bg-primary-light text-primary-dark' : 'text-dark-muted hover:text-dark hover:bg-surface-alt'
+                }`}
+              >
+                <Settings className="w-4 h-4" />
+                <span>Account</span>
               </button>
               <button
                 onClick={() => onNavigate('breed-library')}

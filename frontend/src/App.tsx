@@ -14,6 +14,7 @@ const Dashboard = lazy(() => import('./components/Dashboard'));
 const LoggedInHomepage = lazy(() => import('./components/LoggedInHomepage'));
 const BreedLibrary = lazy(() => import('./components/BreedLibrary'));
 const RescuePage = lazy(() => import('./components/RescuePage'));
+const AccountSettings = lazy(() => import('./components/AccountSettings'));
 import type { PetProfile, MedicalHistoryEntry } from './types/pet';
 import { formatBreeds } from './types/pet';
 import { loadPets, addPet, updatePet, deletePet } from './lib/storage';
@@ -32,7 +33,7 @@ const ViewLoader = () => (
   </div>
 );
 
-type View = 'login' | 'home' | 'onboarding' | 'dashboard' | 'breed-library' | 'rescue';
+type View = 'login' | 'home' | 'onboarding' | 'dashboard' | 'breed-library' | 'rescue' | 'account';
 
 const App: React.FC = () => {
   const { user } = useAuth();
@@ -158,7 +159,7 @@ const App: React.FC = () => {
   }, [pets.length]);
 
   // Navigation handler for NavBar
-  const handleNavigate = useCallback((target: 'home' | 'onboarding' | 'breed-library' | 'rescue') => {
+  const handleNavigate = useCallback((target: 'home' | 'onboarding' | 'breed-library' | 'rescue' | 'account') => {
     if (target === 'home') {
       const saved = loadPets();
       setPets(saved);
@@ -173,6 +174,9 @@ const App: React.FC = () => {
     } else if (target === 'rescue') {
       setSelectedPet(null);
       setView('rescue');
+    } else if (target === 'account') {
+      setSelectedPet(null);
+      setView('account');
     }
   }, []);
 
@@ -195,7 +199,7 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-surface-alt">
       {/* Top Navigation Bar */}
       <NavBar
-        currentView={view === 'home' ? 'home' : view === 'dashboard' ? 'dashboard' : view === 'breed-library' ? 'breed-library' : view === 'rescue' ? 'rescue' : 'home'}
+        currentView={view === 'home' ? 'home' : view === 'dashboard' ? 'dashboard' : view === 'breed-library' ? 'breed-library' : view === 'rescue' ? 'rescue' : view === 'account' ? 'account' : 'home'}
         onNavigate={handleNavigate}
         petName={selectedPet?.name || (pets.length > 0 ? pets[0].name : undefined)}
         user={user}
@@ -215,6 +219,8 @@ const App: React.FC = () => {
         </Suspense>
       )}
 
+      {/* Account settings */}
+      {view === 'account' && <Suspense fallback={<ViewLoader />}><AccountSettings account={user?.sub} /></Suspense>}
       {/* Breed Library View */}
       {view === 'breed-library' && (
         <Suspense fallback={<ViewLoader />}>
