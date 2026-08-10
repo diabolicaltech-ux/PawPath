@@ -2,7 +2,8 @@ import { getCurrentUser } from "./auth";
 import type { PetProfile } from '../types/pet';
 
 const STORAGE_KEY = 'pawpath_pets';
-const accountKey=(key:string)=>{const sub=getCurrentUser()?.sub;if(!sub)return key;const scoped=`${key}_${sub}`;try{if(!localStorage.getItem(scoped)&&localStorage.getItem(key))localStorage.setItem(scoped,localStorage.getItem(key)!)}catch{}return scoped};
+// Account data is strictly namespaced. Never copy the unscoped legacy key into a signed-in account; that can expose one user's pets to another.
+const accountKey=(key:string)=>{const sub=getCurrentUser()?.sub;if(!sub)return key;return `${key}_${encodeURIComponent(sub)}`;};
 const UNSUPPORTED_KEY = 'pawpath_unsupported_profiles';
 export function loadUnsupportedProfiles(): Array<{ name: string; species: string; profile: unknown }> {
   try { return JSON.parse(localStorage.getItem(UNSUPPORTED_KEY) || '[]'); } catch { return []; }
