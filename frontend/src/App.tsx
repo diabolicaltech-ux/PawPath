@@ -17,7 +17,8 @@ const RescuePage = lazy(() => import('./components/RescuePage'));
 const AccountSettings = lazy(() => import('./components/AccountSettings'));
 import type { PetProfile, MedicalHistoryEntry } from './types/pet';
 import { formatBreeds } from './types/pet';
-import { loadPets, addPet, updatePet, deletePet } from './lib/storage';
+import { loadPets, addPet, updatePet, deletePet, savePets } from './lib/storage';
+import { loadRemotePets, createRemotePet, updateRemotePet, deleteRemotePet } from './lib/cloudSync';
 import { getWeightUnit, formatWeight } from './lib/weightUnits';
 import { replacePetInCollection, replaceSelectedPet } from './lib/petState';
 import { useAuth } from './lib/auth';
@@ -56,8 +57,10 @@ const App: React.FC = () => {
       setEditingPet(null);
       setView('login');
     } else {
-      const saved = loadPets();
-      setPets(saved);
+      loadRemotePets().then(remote => { savePets(remote); setPets(remote); }).catch(() => {
+        // Authenticated data is remote-authoritative. Never display another device's local data when sync is unavailable.
+        setPets([]);
+      });
       // After sign-in, always go to home/dashboard — never stay on login
       setView('home');
     }
@@ -83,15 +86,17 @@ const App: React.FC = () => {
   }, []);
 
   // Handle onboarding complete (new pet)
-  const handleAddComplete = useCallback((data: PetProfile) => {
-    const updated = addPet(data);
+  const handleAddComplete = useCallback(async (data: PetProfile) => {
+    let updated: PetProfile[];
+    try { const remote = await createRemotePet(data); updated = [...pets, remote]; savePets(updated); }
+    catch { return; }
     setPets(updated);
     setView('home');
     setEditingPet(null);
   }, []);
 
   // Handle onboarding complete (edit pet)
-  const handleEditComplete = useCallback((data: PetProfile) => {
+  const handleEditComplete = useCallback(async (data: PetProfile) => {
     if (editingPet?.id) {
       const today = new Date().toISOString().split('T')[0];
       const editEntry: MedicalHistoryEntry = {
@@ -104,19 +109,23 @@ const App: React.FC = () => {
         ...data,
         medicalHistory: [...(data.medicalHistory || []), editEntry]
       };
-      const updated = updatePet(editingPet.id, dataWithHistory);
-      setPets(updated);
-      setSelectedPet(dataWithHistory);
+      try {
+        const remote = await updateRemotePet(dataWithHistory);
+        const updated = pets.map(p => p.id === editingPet.id ? remote : p);
+        savePets(updated); setPets(updated); setSelectedPet(remote);
+      } catch { return; }
     }
     setView('dashboard');
     setEditingPet(null);
-  }, [editingPet]);
+  }, [editingPet, pets]);
 
   // Keep the app-level pet collection in sync with dashboard actions. Dashboard
   // also persists to localStorage, but App owns the state used by the homepage.
   const handleDashboardPetUpdate = useCallback((updatedPet: PetProfile) => {
-    setPets(currentPets => replacePetInCollection(currentPets, updatedPet));
-    setSelectedPet(currentPet => replaceSelectedPet(currentPet, updatedPet));
+    updateRemotePet(updatedPet).then(remote => {
+      setPets(currentPets => { const next = replacePetInCollection(currentPets, remote); savePets(next); return next; });
+      setSelectedPet(currentPet => replaceSelectedPet(currentPet, remote));
+    }).catch(() => undefined);
   }, []);
 
   // Open pet dashboard
@@ -141,8 +150,7 @@ const App: React.FC = () => {
 
   // Delete pet
   const handleDelete = useCallback((id: string) => {
-    const updated = deletePet(id);
-    setPets(updated);
+    deleteRemotePet(id).then(() => { const updated = pets.filter(p => p.id !== id); savePets(updated); setPets(updated); }).catch(() => undefined);
     setEditingPet(current => current?.id === id ? null : current);
     setSelectedPet(current => {
       if (current?.id !== id) return current;
@@ -165,8 +173,10 @@ const App: React.FC = () => {
   // Navigation handler for NavBar
   const handleNavigate = useCallback((target: 'home' | 'onboarding' | 'breed-library' | 'rescue' | 'account') => {
     if (target === 'home') {
-      const saved = loadPets();
-      setPets(saved);
+      loadRemotePets().then(remote => { savePets(remote); setPets(remote); }).catch(() => {
+        // Authenticated data is remote-authoritative. Never display another device's local data when sync is unavailable.
+        setPets([]);
+      });
       setSelectedPet(null);
       setView('home');
     } else if (target === 'onboarding') {

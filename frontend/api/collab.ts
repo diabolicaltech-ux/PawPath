@@ -8,6 +8,7 @@ async function identity(req: VercelRequest) {
   if (!r.ok) throw new Error('AUTH_INVALID');
   const u = await r.json();
   if (!u.sub || !u.email) throw new Error('AUTH_INVALID');
+  if (process.env.GOOGLE_CLIENT_ID && u.aud && String(u.aud) !== process.env.GOOGLE_CLIENT_ID) throw new Error('AUTH_INVALID');
   return { sub: String(u.sub), email: String(u.email), name: String(u.name || u.email) };
 }
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -21,6 +22,20 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       if (req.method === 'GET') {
         const pets = (await client.query(`SELECT p.id,p.name,p.payload,m.role FROM pets p JOIN pet_memberships m ON m.pet_id=p.id WHERE m.account_id=$1 ORDER BY p.created_at`, [account.id])).rows;
         await client.query('COMMIT'); return res.status(200).json({ account, pets });
+      }
+      if (req.method === 'PUT') {
+        const body = typeof req.body === 'object' ? req.body : {};
+        if (!body.id || typeof body.id !== 'string' || !body.name || typeof body.name !== 'string') { await client.query('ROLLBACK'); return res.status(400).json({error:'PET_REQUIRED'}); }
+        const pet = (await client.query(`UPDATE pets p SET name=$1,payload=$2,updated_at=now() FROM pet_memberships m WHERE p.id=$3 AND m.pet_id=p.id AND m.account_id=$4 RETURNING p.id,p.name,p.payload`, [body.name, body.payload || {}, body.id, account.id])).rows[0];
+        if (!pet) { await client.query('ROLLBACK'); return res.status(404).json({error:'PET_NOT_FOUND'}); }
+        await client.query('COMMIT'); return res.status(200).json({pet,role:'owner'});
+      }
+      if (req.method === 'DELETE') {
+        const id = String(req.query.id || req.headers['x-pet-id'] || '');
+        if (!id) { await client.query('ROLLBACK'); return res.status(400).json({error:'PET_ID_REQUIRED'}); }
+        const deleted = (await client.query(`DELETE FROM pets p USING pet_memberships m WHERE p.id=$1 AND m.pet_id=p.id AND m.account_id=$2 RETURNING p.id`, [id, account.id])).rowCount;
+        if (!deleted) { await client.query('ROLLBACK'); return res.status(404).json({error:'PET_NOT_FOUND'}); }
+        await client.query('COMMIT'); return res.status(204).end();
       }
       if (req.method === 'POST') {
         const body = typeof req.body === 'object' ? req.body : {};
