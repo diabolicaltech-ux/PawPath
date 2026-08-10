@@ -93,7 +93,7 @@ const App: React.FC = () => {
     setPets(updated);
     setView('home');
     setEditingPet(null);
-  }, []);
+  }, [pets]);
 
   // Handle onboarding complete (edit pet)
   const handleEditComplete = useCallback(async (data: PetProfile) => {
@@ -157,7 +157,7 @@ const App: React.FC = () => {
       setView('home');
       return null;
     });
-  }, []);
+  }, [pets]);
 
   // Add new pet (with free tier limit)
   const [showPetLimitModal, setShowPetLimitModal] = useState(false);
