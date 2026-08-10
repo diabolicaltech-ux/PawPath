@@ -133,6 +133,7 @@ const PublicLandingPage: React.FC<PublicLandingPageProps> = ({ onSignInComplete 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {featuredBreeds.map((breed) => (
               <div key={breed.breedName} className="bg-white rounded-2xl border border-bd overflow-hidden hover:shadow-lg hover:border-primary transition-all group">
+                <img src={breed.image} alt={`${breed.breedName} illustration`} className="h-40 w-full object-cover" loading="lazy" />
                 <div className="p-6">
                   <div className="flex items-center gap-2 mb-3">
                     <span className="text-2xl">{breed.origin.region.includes('Canada') ? '🇨🇦' : breed.origin.region.includes('Scotland') || breed.origin.region.includes('United Kingdom') ? '🇬🇧' : breed.origin.region.includes('Germany') ? '🇩🇪' : '🌍'}</span>

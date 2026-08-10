@@ -12,6 +12,7 @@
 
 export interface FeaturedBreed {
   breedName: string;
+  image: string;
   species: string;
   origin: {
     region: string;
@@ -32,6 +33,7 @@ export interface FeaturedBreed {
 export const FEATURED_BREEDS: FeaturedBreed[] = [
   {
     breedName: "Labrador Retriever",
+    image: "/breed-images/labrador-retriever.svg",
     species: "canine",
     origin: {
       region: "Newfoundland, Canada",
@@ -54,6 +56,7 @@ export const FEATURED_BREEDS: FeaturedBreed[] = [
   },
   {
     breedName: "Golden Retriever",
+    image: "/breed-images/golden-retriever.svg",
     species: "canine",
     origin: {
       region: "Scotland, United Kingdom",
@@ -76,6 +79,7 @@ export const FEATURED_BREEDS: FeaturedBreed[] = [
   },
   {
     breedName: "German Shepherd Dog",
+    image: "/breed-images/german-shepherd-dog.svg",
     species: "canine",
     origin: {
       region: "Germany",
