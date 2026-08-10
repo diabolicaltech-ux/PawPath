@@ -132,7 +132,7 @@ const BreedLibrary: React.FC = () => {
           {filteredBreeds.length === 0 ? (
             <span>No breeds found matching your search.</span>
           ) : (
-            <span>Showing {previewBreeds.length} matching breed{previewBreeds.length !== 1 ? 's' : ''}</span>
+            <span>Matching breeds</span>
           )}
         </div>
 
