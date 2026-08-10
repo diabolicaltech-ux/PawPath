@@ -2,8 +2,12 @@
  * PawPath Breed Newsletter Data
  *
  * Expanded breed newsletter content for the breed-specific newsletter feature.
- * Contains 38 dog breeds covering the most popular canine breeds.
+ * Contains curated dog breed newsletter profiles covering popular canine breeds.
  * All content clinically reviewed for breed safety.
+ *
+ * Profiles include popular companion, sporting, working, and toy dog breeds.
+ *
+ * Previous profile names are retained in the data for continuity.
  *
  * Breeds included: Labrador Retriever, Golden Retriever, German Shepherd Dog,
  * French Bulldog, Beagle, Bulldog, Poodle (Standard), Boxer, Rottweiler,
@@ -12,7 +16,7 @@
  * Border Collie, Shetland Sheepdog, Australian Shepherd, Yorkshire Terrier,
  * Cavalier King Charles Spaniel, Pug, Pembroke Welsh Corgi, Maltese,
  * Bernese Mountain Dog, Bichon Frise, Miniature Schnauzer, Doberman Pinscher,
- * Akita, and 8 more.
+ * Akita, and additional profiles.
  *
  * For breeds not yet in this dataset, the component will show a "Coming Soon" state.
  */

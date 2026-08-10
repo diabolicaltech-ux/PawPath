@@ -104,7 +104,7 @@ const PublicLandingPage: React.FC<PublicLandingPageProps> = ({ onSignInComplete 
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: <Globe className="w-6 h-6" />, color: 'bg-primary-light text-primary', title: '373 Dog Breeds', desc: 'Clinical profiles across AKC, FCI, UKC, and other recognized kennel clubs.' },
+              { icon: <Globe className="w-6 h-6" />, color: 'bg-primary-light text-primary', title: 'Breed-Specific Intelligence', desc: 'Clinical profiles across AKC, FCI, UKC, and other recognized kennel clubs.' },
               { icon: <Activity className="w-6 h-6" />, color: 'bg-green-100 text-accent-green', title: 'Metabolic Engine', desc: 'Precise calorie calculations using RER, MER, and activity multipliers.' },
               { icon: <Calendar className="w-6 h-6" />, color: 'bg-blue-100 text-primary-dark', title: 'Life Stage Tracking', desc: 'Automated milestones from puppy through senior years.' },
               { icon: <Stethoscope className="w-6 h-6" />, color: 'bg-primary-light text-primary', title: 'Vet-Ready Records', desc: 'Complete medical history you can share with your veterinarian.' },
