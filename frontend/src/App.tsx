@@ -50,6 +50,10 @@ const App: React.FC = () => {
     setAccount(user?.sub || null);
     if (!isLoaded) return;
     if (!isSignedIn) {
+      // Clear in-memory account state on sign-out; signed-out UI never reads pets.
+      setPets([]);
+      setSelectedPet(null);
+      setEditingPet(null);
       setView('login');
     } else {
       const saved = loadPets();

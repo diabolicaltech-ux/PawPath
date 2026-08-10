@@ -5,13 +5,37 @@ const STORAGE_KEY = 'pawpath_pets';
 // Account data is strictly namespaced. Never copy the unscoped legacy key into a signed-in account; that can expose one user's pets to another.
 const accountKey=(key:string)=>{const sub=getCurrentUser()?.sub;if(!sub)return key;return `${key}_${encodeURIComponent(sub)}`;};
 const UNSUPPORTED_KEY = 'pawpath_unsupported_profiles';
-export function loadUnsupportedProfiles(): Array<{ name: string; species: string; profile: unknown }> {
-  try { return JSON.parse(localStorage.getItem(UNSUPPORTED_KEY) || '[]'); } catch { return []; }
+const LEGACY_KEY = STORAGE_KEY;
+const quarantineKey = (sub: string) => `${STORAGE_KEY}_quarantine_${encodeURIComponent(sub)}`;
+
+/** Explicit recovery only: preserves the unscoped legacy payload in an account quarantine.
+ * It never imports, overwrites, or deletes pet records. */
+export function quarantineLegacyPets(sub: string): PetProfile[] {
+  if (!sub) return [];
+  try {
+    const raw = localStorage.getItem(LEGACY_KEY);
+    if (!raw || localStorage.getItem(quarantineKey(sub))) return [];
+    const parsed = JSON.parse(raw);
+    const pets = Array.isArray(parsed) ? parsed.filter((p: any) => p && typeof p.name === 'string') : [];
+    if (pets.length) localStorage.setItem(quarantineKey(sub), JSON.stringify(pets));
+    return pets;
+  } catch { return []; }
 }
-function archiveUnsupported(profiles: any[]): void {
+
+export function loadQuarantinedLegacyPets(sub: string): PetProfile[] {
+  if (!sub) return [];
+  try { const parsed = JSON.parse(localStorage.getItem(quarantineKey(sub)) || '[]'); return Array.isArray(parsed) ? parsed : []; } catch { return []; }
+}
+export function loadUnsupportedProfiles(sub?: string): Array<{ name: string; species: string; profile: unknown }> {
+  const key = sub ? `${UNSUPPORTED_KEY}_${encodeURIComponent(sub)}` : '';
+  if (!key) return [];
+  try { return JSON.parse(localStorage.getItem(key) || '[]'); } catch { return []; }
+}
+export function archiveUnsupported(profiles: any[], sub: string): void {
   if (!profiles.length) return;
-  const existing = loadUnsupportedProfiles();
-  localStorage.setItem(UNSUPPORTED_KEY, JSON.stringify([...existing, ...profiles.map(profile => ({ name: profile.name, species: String(profile.species), profile }))]));
+  if (!sub) return;
+  const existing = loadUnsupportedProfiles(sub);
+  localStorage.setItem(`${UNSUPPORTED_KEY}_${encodeURIComponent(sub)}`, JSON.stringify([...existing, ...profiles.map(profile => ({ name: profile.name, species: String(profile.species), profile }))]));
 }
 
 export function loadPets(): PetProfile[] {
