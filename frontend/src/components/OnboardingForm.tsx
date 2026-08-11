@@ -55,6 +55,10 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({ onComplete, initialData
   });
 
   const [breedSearch, setSearch] = useState('');
+  // Keep owner-entered history as raw text while typing; parse only on save.
+  const [previousSurgeryText, setPreviousSurgeryText] = useState(() =>
+    (initialData?.previousSurgeries || []).join(', ')
+  );
   const [breedSelectionMode, setBreedSelectionMode] = useState<'simple' | 'advanced'>('simple');
   const [localWeightUnit, setLocalWeightUnit] = useState<'kg' | 'lbs'>(getWeightUnit());
 
@@ -173,6 +177,7 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({ onComplete, initialData
     const dataWithHistory = {
       ...petData,
       weight: weightKg.toString(),
+      previousSurgeries: previousSurgeryText.split(',').map(entry => entry.trim()).filter(Boolean),
       weightHistory: petData.weightHistory || [initialWeightEntry],
       medicalHistory: petData.medicalHistory || [initialMedicalEntry]
     };
@@ -681,12 +686,13 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({ onComplete, initialData
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-dark-muted mb-1">Past Surgeries / Illnesses</label>
+                <label className="block text-sm font-medium text-dark-muted mb-1">Past surgeries or illnesses (owner-reported)</label>
+                <p className="text-xs text-dark-muted mb-2">Tell us what you know, including approximate dates. This information helps you keep a complete record but does not diagnose or assess your dog.</p>
                 <textarea
                   className="w-full px-4 py-2 rounded-lg border border-bd text-sm h-20 outline-none focus:ring-2 focus:ring-primary"
                   placeholder="e.g. Dental cleaning (2025), TPLO surgery (2023)..."
-                  value={petData.previousSurgeries.join(', ')}
-                  onChange={(e) => setPetData({ ...petData, previousSurgeries: e.target.value.split(',').map(s => s.trim()) })}
+                  value={previousSurgeryText}
+                  onChange={(e) => setPreviousSurgeryText(e.target.value)}
                 />
               </div>
             </div>
