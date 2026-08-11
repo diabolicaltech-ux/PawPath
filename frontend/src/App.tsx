@@ -88,10 +88,10 @@ const App: React.FC = () => {
   // Handle onboarding complete (new pet)
   const handleAddComplete = useCallback(async (data: PetProfile) => {
     let updated: PetProfile[];
-    try { const remote = await createRemotePet(data); updated = [...pets, remote]; savePets(updated); }
+    try { const remote = await createRemotePet(data); updated = [...pets, remote]; savePets(updated); setSelectedPet(remote); }
     catch { return; }
     setPets(updated);
-    setView('home');
+    setView('dashboard');
     setEditingPet(null);
   }, [pets]);
 
