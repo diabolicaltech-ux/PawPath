@@ -1218,6 +1218,13 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
           </button>
         </div>
 
+        {pet.previousSurgeries?.length > 0 && (
+          <section className="bg-white p-6 rounded-3xl shadow-sm border border-bd mb-6" aria-label="Owner-reported history">
+            <h2 className="text-lg font-bold text-dark mb-2">Owner-reported history</h2>
+            <p className="text-sm text-dark-muted mb-3">You reported: “{pet.previousSurgeries.join(', ')}”</p>
+            <p className="text-xs text-dark-muted">We’ll keep this in your health record. Ask your veterinarian whether any follow-up is needed.</p>
+          </section>
+        )}
         {/* Medical History Timeline */}
         <section className="bg-white p-6 rounded-3xl shadow-sm border border-bd">
           <div className="flex justify-between items-center mb-6">
