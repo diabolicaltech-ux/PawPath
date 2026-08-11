@@ -8,7 +8,8 @@ import { join } from 'path';
 const TOKEN = process.env.VERCEL_TOKEN;
 const TEAM_ID = process.env.VERCEL_TEAM_ID || 'team_0AUDeyf0zDhsSDekaSYR0yNs';
 const PROJECT = process.env.VERCEL_PROJECT_NAME || 'pawpath';
-const DIST = join(process.cwd(), 'dist');
+const FRONTEND = join(process.cwd(), 'frontend');
+const DIST = join(FRONTEND, 'dist');
 if (!TOKEN) throw new Error('VERCEL_TOKEN is required');
 
 function getFiles(dir, base = '') {
@@ -31,20 +32,18 @@ async function api(path, options = {}) {
 }
 
 const files = getFiles(DIST);
-// Include every serverless function alongside the static SPA. This keeps
-// auth endpoints (and future API routes) deployed with the client bundle.
-const apiDir = join(process.cwd(), 'api');
-// API handlers live under frontend/api in the complete PawPath source. Include
-// them at Vercel's root api/ path so serverless routes are actually emitted.
-if (readdirSync(apiDir, { withFileTypes: true }).length) files.push(...getFiles(apiDir, 'api'));
-const frontendApiDir = join(process.cwd(), 'frontend', 'api');
-files.push(...getFiles(frontendApiDir, 'api'));
+// The canonical generated site and every serverless handler live under
+// frontend/. Place handlers at Vercel's root api/ path in the upload.
+const apiDir = join(FRONTEND, 'api');
+files.push(...getFiles(apiDir, 'api'));
 files.push({ file: 'vercel.json', data: readFileSync(join(process.cwd(), 'vercel.json')).toString('base64'), encoding: 'base64' });
-files.push({ file: 'frontend/package.json', data: readFileSync(join(process.cwd(), 'frontend/package.json')).toString('base64'), encoding: 'base64' });
-files.push({ file: 'frontend/package-lock.json', data: readFileSync(join(process.cwd(), 'frontend/package-lock.json')).toString('base64'), encoding: 'base64' });
+// Vercel resolves serverless dependencies from the upload root, so preserve
+// the frontend runtime manifest at that root rather than under frontend/.
+files.push({ file: 'package.json', data: readFileSync(join(FRONTEND, 'package.json')).toString('base64'), encoding: 'base64' });
+files.push({ file: 'package-lock.json', data: readFileSync(join(FRONTEND, 'package-lock.json')).toString('base64'), encoding: 'base64' });
 const deployment = await api(`/v13/deployments?skipAutoDetectionConfirmation=1`, {
   method: 'POST',
-  body: JSON.stringify({ name: PROJECT, target: 'production', files, projectSettings: { framework: null, buildCommand: 'true', outputDirectory: '.', installCommand: 'true', rootDirectory: null } }),
+  body: JSON.stringify({ name: PROJECT, target: 'production', files, projectSettings: { framework: null, buildCommand: 'true', outputDirectory: '.', installCommand: 'npm ci --ignore-scripts', rootDirectory: null } }),
 });
 console.log(`Deployment: ${deployment.id} ${deployment.url}`);
 await api(`/v9/projects/${PROJECT}?teamId=${TEAM_ID}`, { method: 'PATCH', body: JSON.stringify({ ssoProtection: null }) });
