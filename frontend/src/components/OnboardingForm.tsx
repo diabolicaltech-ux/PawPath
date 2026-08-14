@@ -12,7 +12,7 @@ import { BREEDS } from '../data/breeds';
 import { getWeightUnit, lbsToKg } from '../lib/weightUnits';
 
 interface OnboardingFormProps {
-  onComplete: (data: PetProfile) => void;
+  onComplete: (data: PetProfile) => void | Promise<void>;
   initialData?: PetProfile;
   onCancel?: () => void;
 }
@@ -57,6 +57,8 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({ onComplete, initialData
   const [breedSearch, setSearch] = useState('');
   const [breedSelectionMode, setBreedSelectionMode] = useState<'simple' | 'advanced'>('simple');
   const [localWeightUnit, setLocalWeightUnit] = useState<'kg' | 'lbs'>(getWeightUnit());
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   // Sync localWeightUnit whenever it changes (e.g. from Dashboard)
   const weightUnit = localWeightUnit;
@@ -178,7 +180,15 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({ onComplete, initialData
     };
     // Preserve the id if editing
     const data = initialData?.id ? { ...dataWithHistory, id: initialData.id } : dataWithHistory;
-    onComplete(data);
+    setIsSubmitting(true);
+    setSubmitError(null);
+    try {
+      await onComplete(data);
+    } catch {
+      setSubmitError('We could not save this profile on this device. Please check browser storage and try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const toggleCondition = (condition: string) => {
@@ -875,6 +885,12 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({ onComplete, initialData
           </div>
         )}
 
+        {submitError && (
+          <p className="mt-6 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-800" role="alert">
+            {submitError}
+          </p>
+        )}
+
         {/* Navigation */}
         <div className="mt-10 flex gap-4">
           {onCancel && (
@@ -904,9 +920,10 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({ onComplete, initialData
           ) : (
             <button
               onClick={handleFinalSubmit}
-              className="w-full bg-primary text-white px-6 py-3 rounded-xl font-medium hover:bg-primary-dark transition-all shadow-lg"
+              disabled={isSubmitting}
+              className="w-full bg-primary text-white px-6 py-3 rounded-xl font-medium hover:bg-primary-dark transition-all shadow-lg disabled:cursor-not-allowed disabled:opacity-60"
             >
-              Go to Dashboard
+              {isSubmitting ? 'Saving profile…' : 'Go to Dashboard'}
             </button>
           )}
         </div>
