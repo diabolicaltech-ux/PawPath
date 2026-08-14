@@ -17,10 +17,10 @@ const RescuePage = lazy(() => import('./components/RescuePage'));
 const AccountSettings = lazy(() => import('./components/AccountSettings'));
 import type { PetProfile, MedicalHistoryEntry } from './types/pet';
 import { formatBreeds } from './types/pet';
-import { loadPets, addPet, updatePet, deletePet, savePets } from './lib/storage';
+import { loadPets, addPet, deletePet, savePets } from './lib/storage';
 import { loadRemotePets, createRemotePet, updateRemotePet, deleteRemotePet } from './lib/cloudSync';
 import { getWeightUnit, formatWeight } from './lib/weightUnits';
-import { replacePetInCollection, replaceSelectedPet } from './lib/petState';
+import { mergeRemotePets, replacePetById, replacePetInCollection, replaceSelectedPet } from './lib/petState';
 import { useAuth } from './lib/auth';
 import { setAccount } from './lib/access';
 
@@ -45,6 +45,7 @@ const App: React.FC = () => {
   const [selectedPet, setSelectedPet] = useState<PetProfile | null>(null);
   const [editingPet, setEditingPet] = useState<PetProfile | null>(null);
   const [weightUnit, setWeightUnit] = useState<'kg' | 'lbs'>(getWeightUnit());
+  const [persistenceError, setPersistenceError] = useState<string | null>(null);
 
   // Handle auth state changes
   useEffect(() => {
@@ -57,11 +58,18 @@ const App: React.FC = () => {
       setEditingPet(null);
       setView('login');
     } else {
-      loadRemotePets().then(remote => { savePets(remote); setPets(remote); }).catch(() => {
-        // Authenticated data is remote-authoritative. Never display another device's local data when sync is unavailable.
-        setPets([]);
-      });
-      // After sign-in, always go to home/dashboard — never stay on login
+      // Storage is account-scoped and is the durable first stop. A remote sync
+      // failure must never erase a profile that was saved on this device.
+      const localPets = loadPets();
+      setPets(localPets);
+      loadRemotePets().then(remote => {
+        setPets(currentPets => {
+          const merged = mergeRemotePets(currentPets, remote);
+          savePets(merged);
+          return merged;
+        });
+      }).catch(() => undefined);
+      // After sign-in, always go to home/dashboard — never stay on login.
       setView('home');
     }
   }, [isLoaded, isSignedIn, user]);
@@ -86,14 +94,26 @@ const App: React.FC = () => {
   }, []);
 
   // Handle onboarding complete (new pet)
-  const handleAddComplete = useCallback(async (data: PetProfile) => {
-    let updated: PetProfile[];
-    try { const remote = await createRemotePet(data); updated = [...pets, remote]; savePets(updated); setSelectedPet(remote); }
-    catch { return; }
+  const handleAddComplete = useCallback((data: PetProfile) => {
+    // Commit locally before attempting the optional remote request. This makes
+    // the first dashboard view and the next refresh reliable even if sync is down.
+    const updated = addPet(data);
+    const localPet = updated[updated.length - 1];
     setPets(updated);
+    setSelectedPet(localPet);
     setView('dashboard');
     setEditingPet(null);
-  }, [pets]);
+    setPersistenceError(null);
+
+    void createRemotePet(localPet).then(remote => {
+      setPets(currentPets => {
+        const next = replacePetById(currentPets, localPet.id, remote);
+        if (!savePets(next)) return currentPets;
+        return next;
+      });
+      setSelectedPet(currentPet => currentPet?.id === localPet.id ? remote : currentPet);
+    }).catch(() => undefined);
+  }, []);
 
   // Handle onboarding complete (edit pet)
   const handleEditComplete = useCallback(async (data: PetProfile) => {
@@ -109,23 +129,44 @@ const App: React.FC = () => {
         ...data,
         medicalHistory: [...(data.medicalHistory || []), editEntry]
       };
-      try {
-        const remote = await updateRemotePet(dataWithHistory);
-        const updated = pets.map(p => p.id === editingPet.id ? remote : p);
-        savePets(updated); setPets(updated); setSelectedPet(remote);
-      } catch { return; }
+      const updated = replacePetById(pets, editingPet.id, dataWithHistory);
+      if (!savePets(updated)) throw new Error('LOCAL_PERSISTENCE_FAILED');
+      setPets(updated);
+      setSelectedPet(dataWithHistory);
+      setPersistenceError(null);
+      void updateRemotePet(dataWithHistory).then(remote => {
+        setPets(currentPets => {
+          const next = replacePetInCollection(currentPets, remote);
+          if (!savePets(next)) return currentPets;
+          return next;
+        });
+        setSelectedPet(currentPet => replaceSelectedPet(currentPet, remote));
+      }).catch(() => undefined);
     }
     setView('dashboard');
     setEditingPet(null);
   }, [editingPet, pets]);
 
-  // Keep the app-level pet collection in sync with dashboard actions. Dashboard
-  // also persists to localStorage, but App owns the state used by the homepage.
-  const handleDashboardPetUpdate = useCallback((updatedPet: PetProfile) => {
-    updateRemotePet(updatedPet).then(remote => {
-      setPets(currentPets => { const next = replacePetInCollection(currentPets, remote); savePets(next); return next; });
+  // Keep the app-level pet collection in sync with dashboard actions. Local
+  // persistence is completed first; the remote request is strictly additive.
+  const handleDashboardPetUpdate = useCallback((updatedPet: PetProfile): boolean => {
+    const next = replacePetInCollection(loadPets(), updatedPet);
+    if (!savePets(next)) {
+      setPersistenceError('We could not save this change on this device. Please keep this page open and try again.');
+      return false;
+    }
+    setPets(next);
+    setSelectedPet(currentPet => replaceSelectedPet(currentPet, updatedPet));
+    setPersistenceError(null);
+    void updateRemotePet(updatedPet).then(remote => {
+      setPets(currentPets => {
+        const synced = replacePetInCollection(currentPets, remote);
+        if (!savePets(synced)) return currentPets;
+        return synced;
+      });
       setSelectedPet(currentPet => replaceSelectedPet(currentPet, remote));
     }).catch(() => undefined);
+    return true;
   }, []);
 
   // Open pet dashboard
@@ -150,7 +191,14 @@ const App: React.FC = () => {
 
   // Delete pet
   const handleDelete = useCallback((id: string) => {
-    deleteRemotePet(id).then(() => { const updated = pets.filter(p => p.id !== id); savePets(updated); setPets(updated); }).catch(() => undefined);
+    if (!deletePet(id)) {
+      setPersistenceError('We could not save this change on this device. Please keep this page open and try again.');
+      return;
+    }
+    const updated = pets.filter(p => p.id !== id);
+    setPets(updated);
+    setPersistenceError(null);
+    void deleteRemotePet(id).catch(() => undefined);
     setEditingPet(current => current?.id === id ? null : current);
     setSelectedPet(current => {
       if (current?.id !== id) return current;
@@ -173,10 +221,14 @@ const App: React.FC = () => {
   // Navigation handler for NavBar
   const handleNavigate = useCallback((target: 'home' | 'onboarding' | 'breed-library' | 'rescue' | 'account') => {
     if (target === 'home') {
-      loadRemotePets().then(remote => { savePets(remote); setPets(remote); }).catch(() => {
-        // Authenticated data is remote-authoritative. Never display another device's local data when sync is unavailable.
-        setPets([]);
-      });
+      setPets(loadPets());
+      loadRemotePets().then(remote => {
+        setPets(currentPets => {
+          const merged = mergeRemotePets(currentPets, remote);
+          savePets(merged);
+          return merged;
+        });
+      }).catch(() => undefined);
       setSelectedPet(null);
       setView('home');
     } else if (target === 'onboarding') {
@@ -211,6 +263,11 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-surface-alt">
+      {persistenceError && (
+        <div className="mx-auto mt-3 max-w-3xl rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800" role="alert">
+          {persistenceError}
+        </div>
+      )}
       {/* Top Navigation Bar */}
       <NavBar
         currentView={view === 'home' ? 'home' : view === 'dashboard' ? 'dashboard' : view === 'breed-library' ? 'breed-library' : view === 'rescue' ? 'rescue' : view === 'account' ? 'account' : 'home'}

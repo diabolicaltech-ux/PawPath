@@ -53,35 +53,35 @@ export function loadPets(): PetProfile[] {
   }
 }
 
-export function savePets(pets: PetProfile[]): void {
+/** Returns false when browser storage is unavailable so callers can show an error. */
+export function savePets(pets: PetProfile[]): boolean {
   try {
     localStorage.setItem(accountKey(STORAGE_KEY), JSON.stringify(pets));
+    return true;
   } catch {
-    // localStorage full or other error — silently fail
     console.error('Failed to save pets to localStorage');
+    return false;
   }
 }
 
+/** Add locally before attempting any optional remote synchronization. */
 export function addPet(pet: PetProfile): PetProfile[] {
   const pets = loadPets();
-  const withId = { ...pet, id: crypto.randomUUID?.() || Date.now().toString(36) + Math.random().toString(36).slice(2) };
-  pets.push(withId);
-  savePets(pets);
-  return pets;
+  const withId = { ...pet, id: pet.id || crypto.randomUUID?.() || Date.now().toString(36) + Math.random().toString(36).slice(2) };
+  const next = [...pets, withId];
+  if (!savePets(next)) throw new Error('LOCAL_PERSISTENCE_FAILED');
+  return next;
 }
 
-export function updatePet(id: string, data: PetProfile): PetProfile[] {
+export function updatePet(id: string, data: PetProfile): boolean {
   const pets = loadPets();
   const idx = pets.findIndex(p => (p as any).id === id);
-  if (idx >= 0) {
-    pets[idx] = { ...data, id };
-    savePets(pets);
-  }
-  return pets;
+  if (idx < 0) return false;
+  pets[idx] = { ...data, id };
+  return savePets(pets);
 }
 
-export function deletePet(id: string): PetProfile[] {
+export function deletePet(id: string): boolean {
   const pets = loadPets().filter(p => (p as any).id !== id);
-  savePets(pets);
-  return pets;
+  return savePets(pets);
 }
