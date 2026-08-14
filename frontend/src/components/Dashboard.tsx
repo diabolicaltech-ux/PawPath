@@ -42,7 +42,6 @@ const stageDisplay = (stage: string): string =>
 import type { PetProfile, WeightEntry, MedicalHistoryEntry } from '../types/pet';
 import { formatBreeds } from '../types/pet';
 import { BREEDS } from '../data/breeds';
-import { updatePet } from '../lib/storage';
 import PetNewsletter from './PetNewsletter';
 import { getBreedNewsletter, hasBreedNewsletter } from '../data/breed_newsletter_data';
 import { getWeightUnit, formatWeightWithUnit, formatWeight, kgToLbs, lbsToKg } from '../lib/weightUnits';
@@ -52,7 +51,7 @@ interface DashboardProps {
   onBack?: () => void;
   onEdit?: () => void;
   /** Notify the parent when a dashboard action persists a changed pet profile. */
-  onPetUpdate?: (pet: PetProfile) => void;
+  onPetUpdate?: (pet: PetProfile) => boolean;
   weightUnit?: 'kg' | 'lbs';
 }
 
@@ -109,11 +108,10 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
   const [hiddenAlerts, setHiddenAlerts] = useState<{ condition: string; hiddenAtLifeStage: string }[]>(pet.hiddenAlerts || []);
   const [postponedAlerts, setPostponedAlerts] = useState<{ condition: string; postponeUntilStage: string }[]>(pet.postponedAlerts || []);
 
-  // Dashboard actions persist directly to storage. Keep App's canonical state in
-  // sync as well so the homepage and the next dashboard render use the new data.
+  // App owns local-first persistence so every dashboard action updates the
+  // homepage collection and can report a storage failure instead of losing data.
   const persistPetUpdate = (updatedPet: PetProfile) => {
     if (!updatedPet.id) return;
-    updatePet(updatedPet.id, updatedPet);
     onPetUpdate?.(updatedPet);
   };
 
