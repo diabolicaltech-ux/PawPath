@@ -34,17 +34,26 @@ test('deployment tolerates a missing serverless api directory', () => {
   assert.match(source, /if \(existsSync\(apiDir\)\) files\.push\(\.\.\.getFiles\(apiDir, 'api'\)\)/);
 });
 
-test('no live rescue directory route is shipped or referenced', () => {
-  // The owner-directed experience is a coming-soon tab with no ZIP lookup.
-  // A serverless handler that accepts a ZIP and queries Google Places must not
-  // be present in the repository or referenced by the frontend or deployer.
+test('no Rescue a Dog feature remains shipped or referenced', () => {
+  // Owner directed (2026-08-14) that the Rescue a Pet/Dog page and link be
+  // removed entirely: no page component, no navigation entry, no view wiring,
+  // no ZIP/Places lookup route, and no user-facing references in the client.
   const frontendDir = join(process.cwd(), 'frontend');
+  assert.equal(
+    existsSync(join(frontendDir, 'src', 'components', 'RescuePage.tsx')),
+    false,
+    'frontend/src/components/RescuePage.tsx must be removed'
+  );
   assert.equal(existsSync(join(frontendDir, 'api', 'rescue.js')), false, 'frontend/api/rescue.js must be removed');
   const apiDir = join(frontendDir, 'api');
   const deployed = existsSync(apiDir)
     ? readdirSync(apiDir, { recursive: true }).map((entry) => String(entry))
     : [];
   assert.equal(deployed.some((name) => name.includes('rescue')), false, 'no api handler may reference the rescue listing');
+  // No user-facing rescue page/navigation/view wiring may remain. Breed-content
+  // mentions of "rescue" (e.g. Saint Bernard history) are intentional and are
+  // not matched here.
+  const featurePattern = /\brescue\b|RescuePage|Rescue a Dog|'rescue'|"rescue"/i;
   const grepDirs = [join(frontendDir, 'src')];
   for (const dir of grepDirs) {
     const matches = [];
@@ -53,12 +62,13 @@ test('no live rescue directory route is shipped or referenced', () => {
         const full = join(current, entry.name);
         if (entry.isDirectory()) walk(full);
         else if (/\.(ts|tsx|js|mjs|json)$/.test(entry.name)) {
+          if (entry.name === 'breed_newsletter_data.ts') continue; // breed content, not the Rescue feature
           const text = readFileSync(full, 'utf8');
-          if (/api\/rescue|zip.*google.*places|places.*zip/i.test(text)) matches.push(full);
+          if (featurePattern.test(text)) matches.push(full);
         }
       }
     };
     walk(dir);
-    assert.deepEqual(matches, [], `rescue ZIP lookup references found in ${dir}`);
+    assert.deepEqual(matches, [], `Rescue feature references found in ${dir}`);
   }
 });
