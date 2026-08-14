@@ -2,7 +2,7 @@
 // Deterministic static deployment helper. Build locally first, then upload the
 // generated dist files to the existing PawPath project and explicitly promote
 // the public custom-domain alias.
-import { readFileSync, readdirSync } from 'fs';
+import { existsSync, readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 
 const TOKEN = process.env.VERCEL_TOKEN;
@@ -35,7 +35,9 @@ const files = getFiles(DIST);
 // The canonical generated site and every serverless handler live under
 // frontend/. Place handlers at Vercel's root api/ path in the upload.
 const apiDir = join(FRONTEND, 'api');
-files.push(...getFiles(apiDir, 'api'));
+// Serverless handlers are optional; the directory may not exist (e.g. the
+// rescue listing route was retired). Only upload handlers that are present.
+if (existsSync(apiDir)) files.push(...getFiles(apiDir, 'api'));
 files.push({ file: 'vercel.json', data: readFileSync(join(process.cwd(), 'vercel.json')).toString('base64'), encoding: 'base64' });
 // Vercel resolves serverless dependencies from the upload root, so preserve
 // the frontend runtime manifest at that root rather than under frontend/.
