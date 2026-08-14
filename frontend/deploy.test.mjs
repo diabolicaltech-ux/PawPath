@@ -17,6 +17,18 @@ test('deployment exposes runtime dependencies at Vercel upload root', () => {
   assert.match(source, /installCommand: 'npm ci --ignore-scripts'/);
 });
 
+test('deployment ships the minimal upload vercel.json, not the stale repo-root one', () => {
+  // The repo-root vercel.json (cat-era) sets installCommand "cd frontend && npm ci",
+  // which fails against the flattened deterministic upload (ENOENT). The deployer
+  // must upload the minimal static config instead.
+  assert.match(source, /framework: null/);
+  assert.match(source, /buildCommand: 'true'/);
+  assert.match(source, /outputDirectory: '\.'/);
+  assert.match(source, /rewrites: \[\{ source: '\/guides\/:slug', destination: '\/guides\/:slug\.html' \}\]/);
+  assert.doesNotMatch(source, /readFileSync\(join\(process\.cwd\(\), 'vercel\.json'\)\)/);
+  assert.doesNotMatch(source, /cd frontend && npm ci/);
+});
+
 test('deployment tolerates a missing serverless api directory', () => {
   assert.match(source, /existsSync\(apiDir\)/);
   assert.match(source, /if \(existsSync\(apiDir\)\) files\.push\(\.\.\.getFiles\(apiDir, 'api'\)\)/);

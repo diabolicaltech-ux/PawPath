@@ -38,7 +38,17 @@ const apiDir = join(FRONTEND, 'api');
 // Serverless handlers are optional; the directory may not exist (e.g. the
 // rescue listing route was retired). Only upload handlers that are present.
 if (existsSync(apiDir)) files.push(...getFiles(apiDir, 'api'));
-files.push({ file: 'vercel.json', data: readFileSync(join(process.cwd(), 'vercel.json')).toString('base64'), encoding: 'base64' });
+files.push({ file: 'vercel.json', data: Buffer.from(JSON.stringify({
+  // The repo-root vercel.json still carries cat-era redirects and an
+  // install command that cds into frontend. With rootDirectory null and a
+  // flattened upload, that command cannot resolve (ENOENT). Ship the minimal
+  // config that matches the project's deterministic-upload project settings.
+  framework: null,
+  buildCommand: 'true',
+  outputDirectory: '.',
+  installCommand: 'npm ci --ignore-scripts',
+  rewrites: [{ source: '/guides/:slug', destination: '/guides/:slug.html' }],
+})).toString('base64'), encoding: 'base64' });
 // Vercel resolves serverless dependencies from the upload root, so preserve
 // the frontend runtime manifest at that root rather than under frontend/.
 files.push({ file: 'package.json', data: readFileSync(join(FRONTEND, 'package.json')).toString('base64'), encoding: 'base64' });
