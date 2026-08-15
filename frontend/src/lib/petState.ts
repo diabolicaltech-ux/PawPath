@@ -21,16 +21,28 @@ export function replacePetInCollection(
 }
 
 /**
- * Remote sync is supplemental. Preserve local-only profiles when the remote
- * service is empty, unavailable, or has not received an offline change yet.
+ * Cloud store is authoritative. For matching ids the remote profile wins;
+ * profiles that exist only locally (offline-created or legacy pre-cloud) are
+ * preserved so they can be uploaded by syncUpLocalOnlyPets rather than dropped.
  */
 export function mergeRemotePets(localPets: PetProfile[], remotePets: PetProfile[]): PetProfile[] {
   const remoteById = new Map(remotePets.filter(pet => pet.id).map(pet => [pet.id, pet]));
   const localIds = new Set(localPets.map(pet => pet.id).filter(Boolean));
-  return [
+  const merged: PetProfile[] = [
+    // Local profile first, then upgraded to the remote version when ids match.
     ...localPets.map(pet => pet.id && remoteById.has(pet.id) ? remoteById.get(pet.id)! : pet),
+    // Remote-only profiles are added (id matches are already represented above).
     ...remotePets.filter(pet => !pet.id || !localIds.has(pet.id)),
   ];
+  // Deduplicate by id, keeping the last occurrence (remote version for shared ids).
+  const seen = new Set<string>();
+  const deduped: PetProfile[] = [];
+  for (const pet of merged) {
+    if (pet.id && seen.has(pet.id)) continue;
+    if (pet.id) seen.add(pet.id);
+    deduped.push(pet);
+  }
+  return deduped;
 }
 
 /** Keep the currently open dashboard selection aligned with a saved update. */
