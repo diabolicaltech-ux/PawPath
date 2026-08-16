@@ -6,9 +6,9 @@ const callback = fs.readFileSync(new URL('../api/auth/callback.ts', import.meta.
 const refresh = fs.readFileSync(new URL('../api/auth/refresh.ts', import.meta.url), 'utf8');
 const authLib = fs.readFileSync(new URL('../src/lib/auth.ts', import.meta.url), 'utf8');
 
-test('login requests offline_access so a refresh token is issued', () => {
-  assert.match(login, /offline_access/);
-  assert.match(login, /openid email profile offline_access/);
+test('login requests openid email profile (offline_access dropped: Google rejects it for this client)', () => {
+  assert.match(login, /openid email profile/);
+  assert.doesNotMatch(login, /offline_access/);
 });
 
 test('callback persists the refresh token next to the id token', () => {
