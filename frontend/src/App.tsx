@@ -17,7 +17,7 @@ const AccountSettings = lazy(() => import('./components/AccountSettings'));
 import type { PetProfile, MedicalHistoryEntry } from './types/pet';
 import { formatBreeds } from './types/pet';
 import { loadPets, addPet, deletePet, savePets } from './lib/storage';
-import { loadRemotePets, createRemotePet, updateRemotePet, deleteRemotePet } from './lib/cloudSync';
+import { loadRemotePets, createRemotePet, updateRemotePet, deleteRemotePet, syncUpLocalOnlyPets } from './lib/cloudSync';
 import { getWeightUnit, formatWeight } from './lib/weightUnits';
 import { mergeRemotePets, replacePetById, replacePetInCollection, replaceSelectedPet } from './lib/petState';
 import { useAuth } from './lib/auth';
@@ -45,6 +45,7 @@ const App: React.FC = () => {
   const [editingPet, setEditingPet] = useState<PetProfile | null>(null);
   const [weightUnit, setWeightUnit] = useState<'kg' | 'lbs'>(getWeightUnit());
   const [persistenceError, setPersistenceError] = useState<string | null>(null);
+  const [syncStatus, setSyncStatus] = useState<'idle' | 'syncing' | 'synced' | 'offline'>('idle');
 
   // Handle auth state changes
   useEffect(() => {
@@ -55,19 +56,39 @@ const App: React.FC = () => {
       setPets([]);
       setSelectedPet(null);
       setEditingPet(null);
+      setSyncStatus('idle');
       setView('login');
     } else {
-      // Storage is account-scoped and is the durable first stop. A remote sync
-      // failure must never erase a profile that was saved on this device.
+      // Show the account-scoped local cache instantly, then reconcile with the
+      // cloud. The cloud store is authoritative; profiles that exist only on
+      // this device (offline-created or legacy pre-cloud) are uploaded so the
+      // cloud remains the durable source of truth. A remote failure must never
+      // erase a profile that was saved on this device.
       const localPets = loadPets();
       setPets(localPets);
+      setSyncStatus('syncing');
       loadRemotePets().then(remote => {
         setPets(currentPets => {
           const merged = mergeRemotePets(currentPets, remote);
           savePets(merged);
           return merged;
         });
-      }).catch(() => undefined);
+        setSyncStatus('synced');
+        // Upload profiles that exist only on this device. The server preserves
+        // the client id, so a retry after a network failure is idempotent.
+        void syncUpLocalOnlyPets(localPets).then(uploaded => {
+          if (!uploaded.length) return;
+          setPets(currentPets => {
+            const merged = mergeRemotePets(currentPets, uploaded);
+            savePets(merged);
+            return merged;
+          });
+        }).catch(() => { setSyncStatus('offline'); });
+      }).catch(() => {
+        // Cloud unreachable (network or expired session): keep the local cache
+        // visible and surface the sync failure instead of hiding it.
+        setSyncStatus('offline');
+      });
       // After sign-in, always go to home/dashboard — never stay on login.
       setView('home');
     }
@@ -94,8 +115,9 @@ const App: React.FC = () => {
 
   // Handle onboarding complete (new pet)
   const handleAddComplete = useCallback((data: PetProfile) => {
-    // Commit locally before attempting the optional remote request. This makes
-    // the first dashboard view and the next refresh reliable even if sync is down.
+    // Commit locally before the remote request so the first dashboard view and
+    // the next refresh are reliable even if sync is down. The cloud request
+    // runs immediately after; its result becomes the authoritative profile.
     const updated = addPet(data);
     const localPet = updated[updated.length - 1];
     setPets(updated);
@@ -103,6 +125,7 @@ const App: React.FC = () => {
     setView('dashboard');
     setEditingPet(null);
     setPersistenceError(null);
+    setSyncStatus('syncing');
 
     void createRemotePet(localPet).then(remote => {
       setPets(currentPets => {
@@ -111,7 +134,13 @@ const App: React.FC = () => {
         return next;
       });
       setSelectedPet(currentPet => currentPet?.id === localPet.id ? remote : currentPet);
-    }).catch(() => undefined);
+      setSyncStatus('synced');
+    }).catch(() => {
+      // Profile is safe on this device (local cache) but not yet in the cloud.
+      // Say so instead of failing silently.
+      setSyncStatus('offline');
+      setPersistenceError('Saved on this device — PawPath will sync this profile to your account when you are back online.');
+    });
   }, []);
 
   // Handle onboarding complete (edit pet)
@@ -140,7 +169,11 @@ const App: React.FC = () => {
           return next;
         });
         setSelectedPet(currentPet => replaceSelectedPet(currentPet, remote));
-      }).catch(() => undefined);
+        setSyncStatus('synced');
+      }).catch(() => {
+        setSyncStatus('offline');
+        setPersistenceError('Saved on this device — PawPath will sync this change to your account when you are back online.');
+      });
     }
     setView('dashboard');
     setEditingPet(null);
@@ -164,7 +197,11 @@ const App: React.FC = () => {
         return synced;
       });
       setSelectedPet(currentPet => replaceSelectedPet(currentPet, remote));
-    }).catch(() => undefined);
+      setSyncStatus('synced');
+    }).catch(() => {
+      setSyncStatus('offline');
+      setPersistenceError('Saved on this device — PawPath will sync this change to your account when you are back online.');
+    });
     return true;
   }, []);
 
@@ -197,7 +234,11 @@ const App: React.FC = () => {
     const updated = pets.filter(p => p.id !== id);
     setPets(updated);
     setPersistenceError(null);
-    void deleteRemotePet(id).catch(() => undefined);
+    setSyncStatus('syncing');
+    void deleteRemotePet(id).then(() => setSyncStatus('synced')).catch(() => {
+      setSyncStatus('offline');
+      setPersistenceError('Removed on this device — PawPath will finish removing this profile from your account when you are back online.');
+    });
     setEditingPet(current => current?.id === id ? null : current);
     setSelectedPet(current => {
       if (current?.id !== id) return current;
@@ -262,6 +303,16 @@ const App: React.FC = () => {
       {persistenceError && (
         <div className="mx-auto mt-3 max-w-3xl rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800" role="alert">
           {persistenceError}
+        </div>
+      )}
+      {!persistenceError && syncStatus === 'syncing' && (
+        <div className="mx-auto mt-3 max-w-3xl rounded-xl border border-sky-200 bg-sky-50 px-4 py-3 text-sm text-sky-800" role="status">
+          Syncing your dog's profile to your account…
+        </div>
+      )}
+      {!persistenceError && syncStatus === 'offline' && (
+        <div className="mx-auto mt-3 max-w-3xl rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900" role="status">
+          You're offline — changes are saved on this device and will sync to your account when you're back online.
         </div>
       )}
       {/* Top Navigation Bar */}

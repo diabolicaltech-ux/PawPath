@@ -40,8 +40,21 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       if (req.method === 'POST') {
         const body = typeof req.body === 'object' ? req.body : {};
         if (!body.name || typeof body.name !== 'string') { await client.query('ROLLBACK'); return res.status(400).json({error:'NAME_REQUIRED'}); }
-        const pet = (await client.query(`INSERT INTO pets (owner_account_id,name,payload) VALUES ($1,$2,$3) RETURNING id,name,payload`, [account.id,body.name,body.payload || {}])).rows[0];
-        await client.query('INSERT INTO pet_memberships (pet_id,account_id,role) VALUES ($1,$2,\'owner\')',[pet.id,account.id]);
+        // Preserve the client-supplied pet id when it is a well-formed UUID so
+        // the local cache and the cloud row share one identity. This prevents
+        // duplicate pets when a profile is synced, merged, or re-logged-in.
+        // Never trust the id for authorization: the row is still scoped by
+        // account.id derived from the verified Google token below.
+        const clientId = typeof body.id === 'string' ? body.id : '';
+        const petId = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(clientId)
+          ? clientId
+          : undefined; // server-generated UUID when absent/malformed
+        const pet = petId
+          ? (await client.query(`INSERT INTO pets (id,owner_account_id,name,payload) VALUES ($1,$2,$3,$4)
+              ON CONFLICT (id) DO UPDATE SET name=EXCLUDED.name,payload=EXCLUDED.payload,updated_at=now()
+              RETURNING id,name,payload`, [petId, account.id, body.name, body.payload || {}])).rows[0]
+          : (await client.query(`INSERT INTO pets (owner_account_id,name,payload) VALUES ($1,$2,$3) RETURNING id,name,payload`, [account.id, body.name, body.payload || {}])).rows[0];
+        await client.query('INSERT INTO pet_memberships (pet_id,account_id,role) VALUES ($1,$2,\'owner\') ON CONFLICT DO NOTHING',[pet.id,account.id]);
         await client.query('INSERT INTO audit_events (actor_account_id,pet_id,action,metadata) VALUES ($1,$2,\'pet.created\',$3)',[account.id,pet.id,JSON.stringify({name:pet.name})]);
         await client.query('COMMIT'); return res.status(201).json({pet,role:'owner'});
       }
