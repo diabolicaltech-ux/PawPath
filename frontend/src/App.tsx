@@ -24,6 +24,7 @@ import { getWeightUnit, formatWeight } from './lib/weightUnits';
 import { mergeRemotePets, replacePetById, replacePetInCollection, replaceSelectedPet } from './lib/petState';
 import { useAuth } from './lib/auth';
 import { setAccount } from './lib/access';
+import { legalViewFromHash } from './lib/legalRouting';
 
 // Shared loading fallback for lazy-loaded views
 const ViewLoader = () => (
@@ -113,6 +114,27 @@ const App: React.FC = () => {
         }
       })
       .catch(() => undefined);
+  }, []);
+
+  // Hash-based routing for the legal pages. The Terms/Privacy links are real
+  // anchors (#terms / #privacy) so navigation is browser-native and verifiable
+  // by URL, with support for deep links and browser back/forward. Returning to
+  // an empty/#home hash routes back to the home experience.
+  useEffect(() => {
+    const applyHash = () => {
+      const legalView = legalViewFromHash(window.location.hash);
+      if (legalView) {
+        setView(legalView);
+        return;
+      }
+      const cleaned = window.location.hash.replace(/^#\/?/, '').trim();
+      if (cleaned === '' || cleaned === 'home') {
+        setView('home');
+      }
+    };
+    applyHash();
+    window.addEventListener('hashchange', applyHash);
+    return () => window.removeEventListener('hashchange', applyHash);
   }, []);
 
   // Handle onboarding complete (new pet)
@@ -406,12 +428,12 @@ const App: React.FC = () => {
       )}
       {showPetLimitModal && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4" role="dialog" aria-modal="true"><div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-xl"><h2 className="text-xl font-bold text-dark">Add another dog</h2><p className="mt-2 text-sm text-dark-muted">One-time $2.99, yours forever.</p><div className="mt-6 flex gap-3"><button onClick={() => setShowPetLimitModal(false)} className="flex-1 rounded-xl border border-bd px-4 py-3 text-sm font-semibold text-dark-muted">Not now</button><a href="https://buy.stripe.com/4gM9ASfqzdTo0fYaricjS01" target="_blank" rel="noopener noreferrer" className="flex-1 rounded-xl bg-primary px-4 py-3 text-center text-sm font-semibold text-white">Continue to pay</a></div></div></div>}
 
-      {/* Shared legal footer (signed-in views) */}
+      {/* Shared legal footer (signed-in views): real anchors + hash routing */}
       <footer className="mt-8 border-t border-bd bg-surface px-4 py-6 text-center text-xs text-dark-muted">
         <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-x-3 gap-y-1">
           <span>© {new Date().getFullYear()} PawPath. All rights reserved.</span>
-          <button type="button" onClick={() => setView('terms')} className="text-primary-deeper underline underline-offset-2 hover:text-primary-dark">Terms and Conditions</button>
-          <button type="button" onClick={() => setView('privacy')} className="text-primary-deeper underline underline-offset-2 hover:text-primary-dark">Privacy Policy</button>
+          <a href="#terms" onClick={() => setView('terms')} className="inline-block px-1 text-primary-deeper underline underline-offset-2 hover:text-primary-dark">Terms and Conditions</a>
+          <a href="#privacy" onClick={() => setView('privacy')} className="inline-block px-1 text-primary-deeper underline underline-offset-2 hover:text-primary-dark">Privacy Policy</a>
         </div>
       </footer>
     </div>
