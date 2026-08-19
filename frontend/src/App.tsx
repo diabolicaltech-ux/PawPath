@@ -14,6 +14,8 @@ const Dashboard = lazy(() => import('./components/Dashboard'));
 const LoggedInHomepage = lazy(() => import('./components/LoggedInHomepage'));
 const BreedLibrary = lazy(() => import('./components/BreedLibrary'));
 const AccountSettings = lazy(() => import('./components/AccountSettings'));
+const TermsAndConditions = lazy(() => import('./components/TermsAndConditions'));
+const PrivacyPolicy = lazy(() => import('./components/PrivacyPolicy'));
 import type { PetProfile, MedicalHistoryEntry } from './types/pet';
 import { formatBreeds } from './types/pet';
 import { loadPets, addPet, deletePet, savePets } from './lib/storage';
@@ -33,7 +35,7 @@ const ViewLoader = () => (
   </div>
 );
 
-type View = 'login' | 'home' | 'onboarding' | 'dashboard' | 'breed-library' | 'account';
+type View = 'login' | 'home' | 'onboarding' | 'dashboard' | 'breed-library' | 'account' | 'terms' | 'privacy';
 
 const App: React.FC = () => {
   const { user } = useAuth();
@@ -295,8 +297,20 @@ const App: React.FC = () => {
     );
   }
 
-  // Show public landing page if not signed in
-  if (!isSignedIn) return <PublicLandingPage />;
+  // Signed-out experience: the public landing page, plus the Terms and
+  // Privacy pages reachable from its footer.
+  if (!isSignedIn) {
+    if (view === 'terms' || view === 'privacy') {
+      return (
+        <Suspense fallback={<ViewLoader />}>
+          {view === 'terms'
+            ? <TermsAndConditions onBack={() => setView('home')} />
+            : <PrivacyPolicy onBack={() => setView('home')} />}
+        </Suspense>
+      );
+    }
+    return <PublicLandingPage onShowLegal={(legalView) => setView(legalView)} />;
+  }
 
   return (
     <div className="min-h-screen bg-surface-alt">
@@ -346,6 +360,18 @@ const App: React.FC = () => {
         </Suspense>
       )}
 
+      {/* Terms and Privacy pages (signed-in views, reachable from the app footer) */}
+      {view === 'terms' && (
+        <Suspense fallback={<ViewLoader />}>
+          <TermsAndConditions onBack={() => setView('home')} />
+        </Suspense>
+      )}
+      {view === 'privacy' && (
+        <Suspense fallback={<ViewLoader />}>
+          <PrivacyPolicy onBack={() => setView('home')} />
+        </Suspense>
+      )}
+
       {/* Onboarding View */}
       {view === 'onboarding' && (
         <div className="flex items-center justify-center p-4 min-h-screen">
@@ -379,6 +405,15 @@ const App: React.FC = () => {
         </Suspense>
       )}
       {showPetLimitModal && <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 px-4" role="dialog" aria-modal="true"><div className="w-full max-w-sm rounded-2xl bg-white p-6 shadow-xl"><h2 className="text-xl font-bold text-dark">Add another dog</h2><p className="mt-2 text-sm text-dark-muted">One-time $2.99, yours forever.</p><div className="mt-6 flex gap-3"><button onClick={() => setShowPetLimitModal(false)} className="flex-1 rounded-xl border border-bd px-4 py-3 text-sm font-semibold text-dark-muted">Not now</button><a href="https://buy.stripe.com/4gM9ASfqzdTo0fYaricjS01" target="_blank" rel="noopener noreferrer" className="flex-1 rounded-xl bg-primary px-4 py-3 text-center text-sm font-semibold text-white">Continue to pay</a></div></div></div>}
+
+      {/* Shared legal footer (signed-in views) */}
+      <footer className="mt-8 border-t border-bd bg-surface px-4 py-6 text-center text-xs text-dark-muted">
+        <div className="mx-auto flex max-w-3xl flex-wrap items-center justify-center gap-x-3 gap-y-1">
+          <span>© {new Date().getFullYear()} PawPath. All rights reserved.</span>
+          <button type="button" onClick={() => setView('terms')} className="text-primary-deeper underline underline-offset-2 hover:text-primary-dark">Terms and Conditions</button>
+          <button type="button" onClick={() => setView('privacy')} className="text-primary-deeper underline underline-offset-2 hover:text-primary-dark">Privacy Policy</button>
+        </div>
+      </footer>
     </div>
   );
 };
