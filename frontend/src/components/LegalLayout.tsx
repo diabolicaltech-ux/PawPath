@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface LegalLayoutProps {
-  onBack: () => void;
+  onBack?: () => void;
   title: string;
   subtitle: string;
   updatedDate: string;
@@ -11,21 +11,22 @@ interface LegalLayoutProps {
 /**
  * Shared shell for legal pages (Terms and Conditions, Privacy Policy).
  * Uses PawPath's app-native theme tokens and provides an accessible
- * "Back to home" control. Only the surrounding copy is content-specific.
+ * "Back to home" control. Navigation is browser-native (a real anchor to
+ * "#home", handled by the app's hash routing) with an onBack fallback.
  */
 const LegalLayout: React.FC<LegalLayoutProps> = ({ onBack, title, subtitle, updatedDate, children }) => {
   return (
     <main className="min-h-dvh bg-surface-alt px-6 py-12 sm:px-10 lg:px-16">
       <article className="mx-auto max-w-4xl">
         <header className="mb-10 border-b border-bd pb-8">
-          <button
-            type="button"
-            onClick={onBack}
+          <a
+            href="#home"
+            onClick={() => onBack?.()}
             aria-label="Back to home"
             className="mb-8 inline-flex items-center text-sm font-medium text-primary-deeper underline underline-offset-4 hover:text-primary-dark"
           >
             &larr; Back to home
-          </button>
+          </a>
           <h1 className="text-3xl font-bold tracking-tight text-dark sm:text-4xl">{title}</h1>
           <p className="mt-3 text-base text-dark-muted">{subtitle}</p>
           <p className="mt-1 text-sm text-dark-muted/80">Last Updated: {updatedDate}</p>

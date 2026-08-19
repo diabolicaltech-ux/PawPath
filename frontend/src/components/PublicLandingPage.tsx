@@ -247,9 +247,9 @@ const PublicLandingPage: React.FC<PublicLandingPageProps> = ({ onSignInComplete,
             <p className="mt-2">Guides: <a href="/guides/dog-vaccination-schedule" className="text-primary hover:text-primary-dark underline underline-offset-2">Dog vaccination schedule</a> · <a href="/guides/puppy-weight-chart" className="text-primary hover:text-primary-dark underline underline-offset-2">Puppy weight chart</a></p>
             <p className="mt-2">Questions? <a href={`mailto:${SUPPORT_EMAIL}`} className="text-primary hover:text-primary-dark underline underline-offset-2">Email our support team</a></p>
             <p className="mt-2">
-              <button type="button" onClick={() => onShowLegal?.('terms')} className="text-primary hover:text-primary-dark underline underline-offset-2">Terms and Conditions</button>
+              <a href="#terms" onClick={() => onShowLegal?.('terms')} className="inline-block px-1 text-primary hover:text-primary-dark underline underline-offset-2">Terms and Conditions</a>
               {' '}·{' '}
-              <button type="button" onClick={() => onShowLegal?.('privacy')} className="text-primary hover:text-primary-dark underline underline-offset-2">Privacy Policy</button>
+              <a href="#privacy" onClick={() => onShowLegal?.('privacy')} className="inline-block px-1 text-primary hover:text-primary-dark underline underline-offset-2">Privacy Policy</a>
             </p>
           </div>
         </div>
