@@ -11,9 +11,10 @@ const SUPPORT_EMAIL = 'contactpawpath@gmail.com';
 
 interface PublicLandingPageProps {
   onSignInComplete?: () => void;
+  onShowLegal?: (view: 'terms' | 'privacy') => void;
 }
 
-const PublicLandingPage: React.FC<PublicLandingPageProps> = ({ onSignInComplete }) => {
+const PublicLandingPage: React.FC<PublicLandingPageProps> = ({ onSignInComplete, onShowLegal }) => {
   const [showSignIn, setShowSignIn] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
   const [authMode, setAuthMode] = useState<'sign-in' | 'sign-up'>('sign-in');
@@ -245,6 +246,11 @@ const PublicLandingPage: React.FC<PublicLandingPageProps> = ({ onSignInComplete 
             © {new Date().getFullYear()} PawPath. All rights reserved.
             <p className="mt-2">Guides: <a href="/guides/dog-vaccination-schedule" className="text-primary hover:text-primary-dark underline underline-offset-2">Dog vaccination schedule</a> · <a href="/guides/puppy-weight-chart" className="text-primary hover:text-primary-dark underline underline-offset-2">Puppy weight chart</a></p>
             <p className="mt-2">Questions? <a href={`mailto:${SUPPORT_EMAIL}`} className="text-primary hover:text-primary-dark underline underline-offset-2">Email our support team</a></p>
+            <p className="mt-2">
+              <button type="button" onClick={() => onShowLegal?.('terms')} className="text-primary hover:text-primary-dark underline underline-offset-2">Terms and Conditions</button>
+              {' '}·{' '}
+              <button type="button" onClick={() => onShowLegal?.('privacy')} className="text-primary hover:text-primary-dark underline underline-offset-2">Privacy Policy</button>
+            </p>
           </div>
         </div>
       </footer>
