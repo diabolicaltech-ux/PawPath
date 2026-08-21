@@ -19,6 +19,14 @@
     {
       "source": "/guides/:slug",
       "destination": "/guides/:slug.html"
+    },
+    {
+      "source": "/terms",
+      "destination": "/legal/terms.html"
+    },
+    {
+      "source": "/privacy",
+      "destination": "/legal/privacy.html"
     }
   ]
 }
