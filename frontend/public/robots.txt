@@ -1,4 +1,5 @@
 # PawPath — robots.txt
+# Updated: 2026-08-21
 # Allow full crawling of the production site
 
 User-agent: *

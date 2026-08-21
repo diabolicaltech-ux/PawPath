@@ -5,6 +5,18 @@
   "installCommand": "cd frontend && npm ci",
   "rewrites": [
     {
+      "source": "/breed-health",
+      "destination": "/breed-health/breed-health.html"
+    },
+    {
+      "source": "/breed-health/:slug",
+      "destination": "/breed-health/:slug.html"
+    },
+    {
+      "source": "/tools/:slug",
+      "destination": "/tools/:slug.html"
+    },
+    {
       "source": "/guides/:slug",
       "destination": "/guides/:slug.html"
     }
