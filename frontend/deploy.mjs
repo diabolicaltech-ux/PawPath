@@ -32,6 +32,11 @@ async function api(path, options = {}) {
 }
 
 const files = getFiles(DIST);
+// Keep the flattened upload's routing in sync with the repository config.
+// The deployer must upload a root-level vercel.json because the Vercel project
+// uses rootDirectory=null; otherwise only the guide rewrite would survive.
+const repoVercel = JSON.parse(readFileSync(join(process.cwd(), 'vercel.json'), 'utf8'));
+const rewrites = Array.isArray(repoVercel.rewrites) ? repoVercel.rewrites : [];
 // The canonical generated site and every serverless handler live under
 // frontend/. Place handlers at Vercel's root api/ path in the upload.
 const apiDir = join(FRONTEND, 'api');
@@ -47,7 +52,7 @@ files.push({ file: 'vercel.json', data: Buffer.from(JSON.stringify({
   buildCommand: 'true',
   outputDirectory: '.',
   installCommand: 'npm ci --ignore-scripts',
-  rewrites: [{ source: '/guides/:slug', destination: '/guides/:slug.html' }],
+  rewrites,
 })).toString('base64'), encoding: 'base64' });
 // Vercel resolves serverless dependencies from the upload root, so preserve
 // the frontend runtime manifest at that root rather than under frontend/.
