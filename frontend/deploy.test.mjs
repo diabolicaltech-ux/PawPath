@@ -32,6 +32,20 @@ test('deployment tolerates a missing serverless api directory', () => {
   assert.match(source, /if \(existsSync\(apiDir\)\) files\.push\(\.\.\.getFiles\(apiDir, 'api'\)\)/);
 });
 
+test('deployment falls back to per-file upload when the payload exceeds the inline budget', () => {
+  // Vercel caps a deployment request body at ~10MB. When the base64 payload would
+  // exceed the inline budget, deploy.mjs must use Vercel's per-file upload path
+  // (SHA1 digest -> POST /v2/files with x-now-digest/x-now-size -> create the
+  // deployment referencing those digests) instead of a single oversized body.
+  assert.match(source, /INLINE_BODY_BUDGET\s*=\s*8_000_000/);
+  assert.match(source, /createHash\('sha1'\)/);
+  assert.match(source, /const usePerFile = bodyEstimate > INLINE_BODY_BUDGET/);
+  assert.match(source, /v2\/files\?teamId=/);
+  assert.match(source, /'x-now-digest'/);
+  assert.match(source, /'x-now-size'/);
+  assert.match(source, /missing/);
+});
+
 test('no Rescue a Dog feature remains shipped or referenced', () => {
   // Owner directed (2026-08-14) that the Rescue a Pet/Dog page and link be
   // removed entirely: no page component, no navigation entry, no view wiring,
