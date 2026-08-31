@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { Pool } from 'pg';
-import { verifySessionToken, readSessionCookie } from './_lib/session';
-import { ensureSchema } from './_lib/schema';
+import { verifySessionToken, readSessionCookie } from './_lib/session.js';
+import { ensureSchema } from './_lib/schema.js';
 
 const pool = process.env.DATABASE_URL ? new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false }, max: 2 }) : null;
 

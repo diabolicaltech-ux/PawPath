@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { signSessionToken } from '../_lib/session';
+import { signSessionToken } from '../_lib/session.js';
 
 const SESSION_TTL_SECONDS = 30 * 24 * 60 * 60; // 30 days
 
