@@ -1,7 +1,20 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { Pool } from 'pg';
+import { verifySessionToken, readSessionCookie } from './_lib/session.js';
+import { ensureSchema } from './_lib/schema.js';
+
 const pool = process.env.DATABASE_URL ? new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false }, max: 2 }) : null;
+
 async function identity(req: VercelRequest) {
+  // Prefer the first-party session cookie (HttpOnly, signed with SESSION_SECRET).
+  // It keeps cloud auth alive after the Google ID token expires (~1h), since
+  // Google rejects `offline_access` for this client and issues no refresh token.
+  const sessionSecret = process.env.SESSION_SECRET;
+  if (sessionSecret) {
+    const session = verifySessionToken(readSessionCookie(req.headers.cookie as string | undefined) || '', sessionSecret);
+    if (session) return { sub: session.sub, email: session.email, name: session.name };
+  }
+  // Fall back to Google ID-token verification for the first ~hour after login.
   const token = String(req.headers.authorization || '').replace(/^Bearer\s+/i, '');
   if (!token) throw new Error('AUTH_REQUIRED');
   const r = await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${encodeURIComponent(token)}`);
@@ -11,12 +24,16 @@ async function identity(req: VercelRequest) {
   if (process.env.GOOGLE_CLIENT_ID && u.aud && String(u.aud) !== process.env.GOOGLE_CLIENT_ID) throw new Error('AUTH_INVALID');
   return { sub: String(u.sub), email: String(u.email), name: String(u.name || u.email) };
 }
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (!pool) return res.status(503).json({ error: 'DATABASE_NOT_CONFIGURED' });
   try {
     const user = await identity(req);
     const client = await pool.connect();
     try {
+      // Self-provision the schema on first use (idempotent), so a fresh Neon
+      // database works without a manual migration step.
+      await ensureSchema(client);
       await client.query('BEGIN');
       const account = (await client.query(`INSERT INTO accounts (google_sub,email,display_name) VALUES ($1,$2,$3) ON CONFLICT (google_sub) DO UPDATE SET email=EXCLUDED.email,display_name=EXCLUDED.display_name RETURNING id,google_sub,email,display_name`, [user.sub,user.email,user.name])).rows[0];
       if (req.method === 'GET') {

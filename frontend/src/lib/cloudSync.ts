@@ -25,7 +25,13 @@ export async function ensureFreshIdToken(): Promise<string | null> {
   const user = getCurrentUser();
   if (!user) return null;
   if (!idTokenExpired(user.idToken)) return user.idToken ?? null;
-  if (!user.refreshToken) return null;
+  if (!user.refreshToken) {
+    // Google rejects `offline_access` for this OAuth client, so no refresh
+    // token is issued. Return the (now-expired) ID token anyway so the request
+    // still reaches the server; `/api/collab` authenticates via the HttpOnly
+    // `pawpath_session` cookie set at login instead of the bearer token.
+    return user.idToken ?? null;
+  }
   if (!refreshInFlight) {
     refreshInFlight = (async () => {
       try {

@@ -27,3 +27,19 @@ test('refresh endpoint exchanges a refresh token for a new id token server-side'
 test('client profile carries the refresh token field', () => {
   assert.match(authLib, /refreshToken\?: string/);
 });
+
+test('callback issues a first-party session cookie (offline_access rejected by Google)', () => {
+  // Google rejects offline_access for this client, so no refresh token. The
+  // callback instead signs a server-side session token and sets it as an
+  // HttpOnly cookie so /api/collab can authenticate after the ID token expires.
+  assert.match(callback, /signSessionToken/);
+  assert.match(callback, /pawpath_session=/);
+  assert.match(callback, /HttpOnly; Secure; SameSite=Lax/);
+  assert.match(callback, /SESSION_SECRET/);
+});
+
+test('session token is signed with a server-side secret, never the browser', () => {
+  // The session secret must never reach the client bundle.
+  assert.match(callback, /process\.env\.SESSION_SECRET/);
+  assert.doesNotMatch(callback, /SESSION_SECRET[^=]*=[^=]*['"]/);
+});

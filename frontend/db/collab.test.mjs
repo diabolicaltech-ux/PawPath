@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const sql = fs.readFileSync(new URL('./001_coparent.sql', import.meta.url), 'utf8');
 const handler = fs.readFileSync(new URL('../api/collab.ts', import.meta.url), 'utf8');
+const schemaLib = fs.readFileSync(new URL('../api/_lib/schema.ts', import.meta.url), 'utf8');
 test('coparent schema contains authorization boundaries and audit trail', () => {
   for (const table of ['accounts','pets','pet_memberships','invitations','audit_events']) assert.match(sql, new RegExp(`CREATE TABLE IF NOT EXISTS ${table}`));
   assert.match(sql, /google_sub text NOT NULL UNIQUE/);
@@ -38,4 +39,26 @@ test('POST preserves a well-formed client pet id and rejects malformed ids', () 
 });
 test('collab handler refuses to run without a configured database', () => {
   assert.match(handler, /DATABASE_NOT_CONFIGURED/);
+});
+
+test('collab authenticates via the session cookie before Google tokeninfo', () => {
+  // After the ID token expires (~1h), the HttpOnly session cookie keeps cloud
+  // auth alive; the Google tokeninfo path remains as the fallback.
+  assert.match(handler, /verifySessionToken/);
+  assert.match(handler, /readSessionCookie/);
+  assert.match(handler, /pawpath_session|SESSION_COOKIE|SESSION_SECRET/);
+  assert.match(handler, /tokeninfo\?id_token=/);
+});
+
+test('collab self-provisions the schema on first use', () => {
+  // A fresh Neon database must work without a manual migration step.
+  assert.match(handler, /ensureSchema/);
+});
+
+test('runtime schema is idempotent and mirrors the coparent DDL', () => {
+  for (const table of ['accounts', 'pets', 'pet_memberships', 'audit_events']) {
+    assert.match(schemaLib, new RegExp(`CREATE TABLE IF NOT EXISTS ${table}`));
+  }
+  assert.match(schemaLib, /pet_member_role/);
+  assert.match(schemaLib, /duplicate_object/);
 });
