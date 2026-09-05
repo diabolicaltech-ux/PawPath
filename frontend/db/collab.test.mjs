@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 const sql = fs.readFileSync(new URL('./001_coparent.sql', import.meta.url), 'utf8');
 const handler = fs.readFileSync(new URL('../api/collab.ts', import.meta.url), 'utf8');
+const identityLib = fs.readFileSync(new URL('../api/_lib/identity.ts', import.meta.url), 'utf8');
 const schemaLib = fs.readFileSync(new URL('../api/_lib/schema.ts', import.meta.url), 'utf8');
 test('coparent schema contains authorization boundaries and audit trail', () => {
   for (const table of ['accounts','pets','pet_memberships','invitations','audit_events']) assert.match(sql, new RegExp(`CREATE TABLE IF NOT EXISTS ${table}`));
@@ -14,10 +15,10 @@ test('coparent schema contains authorization boundaries and audit trail', () => 
 test('identity is derived server-side from the verified Google token', () => {
   // Never accept a client-supplied subject: identity comes from Google's
   // tokeninfo response and the aud claim must match GOOGLE_CLIENT_ID.
-  assert.match(handler, /tokeninfo\?id_token=/);
-  assert.match(handler, /u\.sub/);
-  assert.match(handler, /u\.aud/);
-  assert.match(handler, /GOOGLE_CLIENT_ID/);
+  assert.match(identityLib, /tokeninfo\?id_token=/);
+  assert.match(identityLib, /u\.sub/);
+  assert.match(identityLib, /u\.aud/);
+  assert.match(identityLib, /GOOGLE_CLIENT_ID/);
   assert.doesNotMatch(handler, /req\.body\.sub|req\.query\.sub/);
 });
 test('every pet query is scoped to the authenticated account', () => {
@@ -43,11 +44,14 @@ test('collab handler refuses to run without a configured database', () => {
 
 test('collab authenticates via the session cookie before Google tokeninfo', () => {
   // After the ID token expires (~1h), the HttpOnly session cookie keeps cloud
-  // auth alive; the Google tokeninfo path remains as the fallback.
-  assert.match(handler, /verifySessionToken/);
-  assert.match(handler, /readSessionCookie/);
-  assert.match(handler, /pawpath_session|SESSION_COOKIE|SESSION_SECRET/);
-  assert.match(handler, /tokeninfo\?id_token=/);
+  // auth alive; the Google tokeninfo path remains as the fallback. The logic
+  // now lives in the shared identity helper; collab consumes it and enforces
+  // bans server-side.
+  assert.match(handler, /resolveIdentity/);
+  assert.match(identityLib, /verifySessionToken/);
+  assert.match(identityLib, /readSessionCookie/);
+  assert.match(identityLib, /pawpath_session|SESSION_COOKIE|SESSION_SECRET/);
+  assert.match(identityLib, /tokeninfo\?id_token=/);
 });
 
 test('collab self-provisions the schema on first use', () => {

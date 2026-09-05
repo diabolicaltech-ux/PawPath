@@ -25,6 +25,8 @@ import { mergeRemotePets, replacePetById, replacePetInCollection, replaceSelecte
 import { useAuth } from './lib/auth';
 import { setAccount } from './lib/access';
 import { legalViewFromHash } from './lib/legalRouting';
+import { loadMe } from './lib/me';
+const AdminPage = lazy(() => import('./components/AdminPage'));
 
 // Shared loading fallback for lazy-loaded views
 const ViewLoader = () => (
@@ -36,7 +38,9 @@ const ViewLoader = () => (
   </div>
 );
 
-type View = 'login' | 'home' | 'onboarding' | 'dashboard' | 'breed-library' | 'account' | 'terms' | 'privacy';
+type View = 'login' | 'home' | 'onboarding' | 'dashboard' | 'breed-library' | 'account' | 'terms' | 'privacy' | 'admin';
+const ADMIN_PATH = '/admin';
+const isAdminPath = () => typeof window !== 'undefined' && window.location.pathname.replace(/\/+$/, '') === ADMIN_PATH;
 
 const App: React.FC = () => {
   const { user } = useAuth();
@@ -54,6 +58,12 @@ const App: React.FC = () => {
   useEffect(() => {
     setAccount(user?.sub || null);
     if (!isLoaded) return;
+    if (isAdminPath()) {
+      // Owner-only admin route. The server re-checks the identity on every
+      // /api/admin call; a non-owner gets a 404 so the route stays hidden.
+      setView('admin');
+      return;
+    }
     if (!isSignedIn) {
       // Clear in-memory account state on sign-out; signed-out UI never reads pets.
       setPets([]);
@@ -96,6 +106,22 @@ const App: React.FC = () => {
       setView('home');
     }
   }, [isLoaded, isSignedIn, user]);
+  // Hydrate server-side entitlements (admin/Stripe grants) and detect bans on
+  // every sign-in. Admin grants raise the pet limit without a Stripe checkout;
+  // bans are surfaced and, independently, enforced by /api/collab server-side.
+  useEffect(() => {
+    if (!isSignedIn || !user?.sub) return;
+    void loadMe().then((me) => {
+      if (!me) return;
+      if (me.account.banned) {
+        setPersistenceError('This account has been suspended. Please contact support.');
+        setPets([]);
+        setSelectedPet(null);
+        setEditingPet(null);
+      }
+    });
+  }, [isSignedIn, user?.sub]);
+
   // Automatic Stripe verification is additive to the support unlock flow.
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -359,6 +385,12 @@ const App: React.FC = () => {
         user={user}
       />
 
+      {/* Owner-only Admin view (server-enforced on every /api/admin call) */}
+      {view === 'admin' && (
+        <Suspense fallback={<ViewLoader />}>
+          <AdminPage />
+        </Suspense>
+      )}
       {/* Logged-in Homepage View */}
       {view === 'home' && (
         <Suspense fallback={<ViewLoader />}>
