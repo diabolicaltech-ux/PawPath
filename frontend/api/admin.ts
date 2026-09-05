@@ -3,12 +3,7 @@ import type { PoolClient } from 'pg';
 import { Pool } from 'pg';
 import { resolveIdentity } from './_lib/identity.js';
 import { ensureSchema } from './_lib/schema.js';
-
-// The single owner account allowed to use the admin surface. Never send this
-// to the client as a source of truth — it exists only to short-circuit the
-// identity lookup; the authoritative gate is `authorizeAdmin`, which compares
-// the server-derived session/Google email to this exact address.
-const OWNER_EMAIL = 'contactpawpath@gmail.com';
+import { isOwnerEmail } from './_lib/owner.js';
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
@@ -21,7 +16,7 @@ async function authorizeAdmin(req: VercelRequest): Promise<{ sub: string; email:
   // failure as "not an admin" and surface 404, so a non-admin (or a request
   // with no credential at all) cannot distinguish "this endpoint exists".
   const identity = await resolveIdentity(req);
-  if (identity.email.toLowerCase() !== OWNER_EMAIL) return null;
+  if (!isOwnerEmail(identity.email)) return null;
   return { sub: identity.sub, email: identity.email };
 }
 
@@ -89,9 +84,11 @@ async function runAction(
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // The admin surface must not leak its existence: every unauthorized access
-  // — no credential, non-owner credential, missing database — returns 404.
-  if (!pool) return res.status(404).json({ error: 'NOT_FOUND' });
+  // Database is a dependency of every admin action: surface a real outage to
+  // the owner as 503 (not 404) so a misconfigured DATABASE_URL isn't masked as
+  // a permissions failure. Existence is still hidden from everyone else —
+  // only an authenticated owner ever reaches this branch.
+  if (!pool) return res.status(503).json({ error: 'DATABASE_NOT_CONFIGURED' });
   const admin = await authorizeAdmin(req).catch(() => null);
   if (!admin) return res.status(404).json({ error: 'NOT_FOUND' });
 

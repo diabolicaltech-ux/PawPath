@@ -2,6 +2,7 @@ import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { Pool } from 'pg';
 import { resolveIdentity } from './_lib/identity.js';
 import { ensureSchema } from './_lib/schema.js';
+import { isOwnerEmail } from './_lib/owner.js';
 const pool = process.env.DATABASE_URL ? new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false }, max: 2 }) : null;
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (!pool) return res.status(503).json({ error: 'DATABASE_NOT_CONFIGURED' });
@@ -16,8 +17,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       const account = (await client.query(`INSERT INTO accounts (google_sub,email,display_name) VALUES ($1,$2,$3) ON CONFLICT (google_sub) DO UPDATE SET email=EXCLUDED.email,display_name=EXCLUDED.display_name RETURNING id,google_sub,email,display_name,banned_at`, [user.sub,user.email,user.name])).rows[0];
       // Banned accounts are blocked from every data operation. The ban is
       // enforced server-side here (not just hidden in the UI), so a banned
-      // user cannot read, create, or mutate pets via direct API calls.
-      if (account.banned_at) {
+      // user cannot read, create, or mutate pets via direct API calls. The
+      // owner account is exempt so it can never lock itself out of /admin.
+      if (account.banned_at && !isOwnerEmail(user.email)) {
         await client.query('ROLLBACK');
         return res.status(403).json({ error: 'ACCOUNT_BANNED' });
       }
