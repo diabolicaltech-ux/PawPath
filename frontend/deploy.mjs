@@ -88,8 +88,10 @@ async function createDeployment(fileList) {
   const body = JSON.stringify({ name: PROJECT, target: 'production', files: fileList, projectSettings });
   const r = await apiResponse(`/v13/deployments?skipAutoDetectionConfirmation=1`, { method: 'POST', body });
   if (r.status === 200) return { deployment: r.data, missing: [] };
-  const missing = Array.isArray(r.data?.missing) ? r.data.missing : [];
-  if (r.status === 400 && missing.length) return { deployment: null, missing };
+  // Vercel reports missing file digests as `data.error.missing` (the `error`
+  // wrapper is absent on the happy path), so read both shapes defensively.
+  const missing = r.data?.error?.missing ?? r.data?.missing ?? [];
+  if (r.status === 400 && Array.isArray(missing) && missing.length) return { deployment: null, missing };
   throw new Error(`Deployment request failed (${r.status}): ${JSON.stringify(r.data).slice(0, 500)}`);
 }
 
