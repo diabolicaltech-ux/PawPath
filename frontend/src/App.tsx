@@ -25,7 +25,7 @@ import { mergeRemotePets, replacePetById, replacePetInCollection, replaceSelecte
 import { useAuth } from './lib/auth';
 import { setAccount } from './lib/access';
 import { legalViewFromHash } from './lib/legalRouting';
-import { loadMe } from './lib/me';
+import { loadMe, markMessagesRead, type AdminMessage } from './lib/me';
 const AdminPage = lazy(() => import('./components/AdminPage'));
 
 // Shared loading fallback for lazy-loaded views
@@ -53,6 +53,7 @@ const App: React.FC = () => {
   const [weightUnit, setWeightUnit] = useState<'kg' | 'lbs'>(getWeightUnit());
   const [persistenceError, setPersistenceError] = useState<string | null>(null);
   const [syncStatus, setSyncStatus] = useState<'idle' | 'syncing' | 'synced' | 'offline'>('idle');
+  const [adminMessages, setAdminMessages] = useState<AdminMessage[]>([]);
 
   // Handle auth state changes
   useEffect(() => {
@@ -119,6 +120,7 @@ const App: React.FC = () => {
         setSelectedPet(null);
         setEditingPet(null);
       }
+      setAdminMessages((me.messages || []).filter((m) => !m.read_at));
     });
   }, [isSignedIn, user?.sub]);
 
@@ -375,6 +377,25 @@ const App: React.FC = () => {
       {!persistenceError && syncStatus === 'offline' && (
         <div className="mx-auto mt-3 max-w-3xl rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900" role="status">
           You're offline — changes are saved on this device and will sync to your account when you're back online.
+        </div>
+      )}
+      {adminMessages.length > 0 && (
+        <div className="mx-auto mt-3 max-w-3xl space-y-2">
+          {adminMessages.map((message) => (
+            <div key={message.id} className="rounded-xl border border-primary/30 bg-surface px-4 py-3 text-sm text-dark" role="status">
+              <div className="font-semibold text-primary-deeper">{message.subject}</div>
+              <div className="mt-1 whitespace-pre-wrap">{message.body}</div>
+              <button
+                onClick={() => {
+                  setAdminMessages((current) => current.filter((m) => m.id !== message.id));
+                  if (adminMessages.length === 1) void markMessagesRead();
+                }}
+                className="mt-2 rounded-lg border border-bd px-3 py-1.5 text-xs font-semibold text-dark-muted hover:bg-surface-alt"
+              >
+                Dismiss
+              </button>
+            </div>
+          ))}
         </div>
       )}
       {/* Top Navigation Bar */}

@@ -84,21 +84,28 @@ async function runAction(
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // Database is a dependency of every admin action: surface a real outage to
-  // the owner as 503 (not 404) so a misconfigured DATABASE_URL isn't masked as
-  // a permissions failure. Existence is still hidden from everyone else —
-  // only an authenticated owner ever reaches this branch.
-  if (!pool) return res.status(503).json({ error: 'DATABASE_NOT_CONFIGURED' });
+  // Authorize FIRST: every non-owner (or unauthenticated) access returns 404,
+  // regardless of DB state, so the admin surface's existence is never leaked.
+  // Only after the owner is confirmed do we distinguish a real outage (503) so
+  // a misconfigured DATABASE_URL isn't masked as a permissions failure.
   const admin = await authorizeAdmin(req).catch(() => null);
   if (!admin) return res.status(404).json({ error: 'NOT_FOUND' });
+  if (!pool) return res.status(503).json({ error: 'DATABASE_NOT_CONFIGURED' });
 
   const client = await pool.connect();
   try {
     await ensureSchema(client);
 
-    // Resolve the admin's account row so audit events reference a real id.
+    // Resolve (or self-provision) the owner's account row so audit events
+    // reference a real id — a first-ever /admin visit before any collab use
+    // must still succeed rather than 404.
     const adminAccount = (
-      await client.query(`SELECT id FROM accounts WHERE google_sub = $1`, [admin.sub])
+      await client.query(
+        `INSERT INTO accounts (google_sub,email,display_name) VALUES ($1,$2,$3)
+         ON CONFLICT (google_sub) DO UPDATE SET email=EXCLUDED.email, display_name=EXCLUDED.display_name
+         RETURNING id`,
+        [admin.sub, admin.email, admin.email],
+      )
     ).rows[0] as { id: string } | undefined;
     if (!adminAccount) return res.status(404).json({ error: 'NOT_FOUND' });
 

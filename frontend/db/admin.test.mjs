@@ -11,6 +11,8 @@ const schema = fs.readFileSync(new URL('../api/_lib/schema.ts', import.meta.url)
 const sql = fs.readFileSync(new URL('./001_coparent.sql', import.meta.url), 'utf8');
 const access = fs.readFileSync(new URL('../src/lib/access.ts', import.meta.url), 'utf8');
 const adminClient = fs.readFileSync(new URL('../src/lib/admin.ts', import.meta.url), 'utf8');
+const app = fs.readFileSync(new URL('../src/App.tsx', import.meta.url), 'utf8');
+const vercel = JSON.parse(fs.readFileSync(new URL('../../vercel.json', import.meta.url), 'utf8'));
 
 test('admin endpoint gates access on the owner email server-side', () => {
   assert.match(owner, /contactpawpath@gmail\.com/);
@@ -89,4 +91,32 @@ test('server entitlements overlay the pet limit (admin grants, no Stripe)', () =
 
 test('admin client never leaks the owner email into the bundle', () => {
   assert.doesNotMatch(adminClient, /contactpawpath/);
+});
+
+test('vercel.json routes /admin to the SPA and preserves existing rewrites', () => {
+  const sources = (vercel.rewrites || []).map((r) => r.source);
+  assert.ok(sources.includes('/admin'), '/admin rewrite missing');
+  const adminRewrite = vercel.rewrites.find((r) => r.source === '/admin');
+  assert.equal(adminRewrite.destination, '/index.html');
+  // Pre-existing rewrites must survive the change.
+  for (const s of ['/breed-health', '/breed-health/:slug', '/tools/:slug', '/guides/:slug', '/terms', '/privacy']) {
+    assert.ok(sources.includes(s), `missing pre-existing rewrite ${s}`);
+  }
+});
+
+test('admin handler authorizes before the DB/pool check', () => {
+  const authorizeIdx = admin.indexOf('authorizeAdmin(req)');
+  const poolIdx = admin.indexOf('if (!pool)');
+  assert.ok(authorizeIdx !== -1 && poolIdx !== -1);
+  assert.ok(authorizeIdx < poolIdx, 'authorizeAdmin must run before the pool check');
+  // Owner account is upserted so a first-ever /admin visit works.
+  assert.match(admin, /INSERT INTO accounts \(google_sub,email,display_name\)/);
+  assert.match(admin, /ON CONFLICT \(google_sub\) DO UPDATE/);
+});
+
+test('App renders an unread-message banner fed by loadMe and marks read on dismiss', () => {
+  assert.match(app, /adminMessages/);
+  assert.match(app, /markMessagesRead/);
+  assert.match(app, /loadMe/);
+  assert.match(app, /filter\(\(m\) => !m\.read_at\)/);
 });
