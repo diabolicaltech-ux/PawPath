@@ -25,6 +25,8 @@ import { mergeRemotePets, replacePetById, replacePetInCollection, replaceSelecte
 import { useAuth } from './lib/auth';
 import { setAccount } from './lib/access';
 import { legalViewFromHash } from './lib/legalRouting';
+import { loadMe, markMessagesRead, type AdminMessage } from './lib/me';
+const AdminPage = lazy(() => import('./components/AdminPage'));
 
 // Shared loading fallback for lazy-loaded views
 const ViewLoader = () => (
@@ -36,7 +38,9 @@ const ViewLoader = () => (
   </div>
 );
 
-type View = 'login' | 'home' | 'onboarding' | 'dashboard' | 'breed-library' | 'account' | 'terms' | 'privacy';
+type View = 'login' | 'home' | 'onboarding' | 'dashboard' | 'breed-library' | 'account' | 'terms' | 'privacy' | 'admin';
+const ADMIN_PATH = '/admin';
+const isAdminPath = () => typeof window !== 'undefined' && window.location.pathname.replace(/\/+$/, '') === ADMIN_PATH;
 
 const App: React.FC = () => {
   const { user } = useAuth();
@@ -49,11 +53,18 @@ const App: React.FC = () => {
   const [weightUnit, setWeightUnit] = useState<'kg' | 'lbs'>(getWeightUnit());
   const [persistenceError, setPersistenceError] = useState<string | null>(null);
   const [syncStatus, setSyncStatus] = useState<'idle' | 'syncing' | 'synced' | 'offline'>('idle');
+  const [adminMessages, setAdminMessages] = useState<AdminMessage[]>([]);
 
   // Handle auth state changes
   useEffect(() => {
     setAccount(user?.sub || null);
     if (!isLoaded) return;
+    if (isAdminPath()) {
+      // Owner-only admin route. The server re-checks the identity on every
+      // /api/admin call; a non-owner gets a 404 so the route stays hidden.
+      setView('admin');
+      return;
+    }
     if (!isSignedIn) {
       // Clear in-memory account state on sign-out; signed-out UI never reads pets.
       setPets([]);
@@ -96,6 +107,23 @@ const App: React.FC = () => {
       setView('home');
     }
   }, [isLoaded, isSignedIn, user]);
+  // Hydrate server-side entitlements (admin/Stripe grants) and detect bans on
+  // every sign-in. Admin grants raise the pet limit without a Stripe checkout;
+  // bans are surfaced and, independently, enforced by /api/collab server-side.
+  useEffect(() => {
+    if (!isSignedIn || !user?.sub) return;
+    void loadMe().then((me) => {
+      if (!me) return;
+      if (me.account.banned) {
+        setPersistenceError('This account has been suspended. Please contact support.');
+        setPets([]);
+        setSelectedPet(null);
+        setEditingPet(null);
+      }
+      setAdminMessages((me.messages || []).filter((m) => !m.read_at));
+    });
+  }, [isSignedIn, user?.sub]);
+
   // Automatic Stripe verification is additive to the support unlock flow.
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -351,6 +379,25 @@ const App: React.FC = () => {
           You're offline — changes are saved on this device and will sync to your account when you're back online.
         </div>
       )}
+      {adminMessages.length > 0 && (
+        <div className="mx-auto mt-3 max-w-3xl space-y-2">
+          {adminMessages.map((message) => (
+            <div key={message.id} className="rounded-xl border border-primary/30 bg-surface px-4 py-3 text-sm text-dark" role="status">
+              <div className="font-semibold text-primary-deeper">{message.subject}</div>
+              <div className="mt-1 whitespace-pre-wrap">{message.body}</div>
+              <button
+                onClick={() => {
+                  setAdminMessages((current) => current.filter((m) => m.id !== message.id));
+                  if (adminMessages.length === 1) void markMessagesRead();
+                }}
+                className="mt-2 rounded-lg border border-bd px-3 py-1.5 text-xs font-semibold text-dark-muted hover:bg-surface-alt"
+              >
+                Dismiss
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
       {/* Top Navigation Bar */}
       <NavBar
         currentView={view === 'home' ? 'home' : view === 'dashboard' ? 'dashboard' : view === 'breed-library' ? 'breed-library' : view === 'account' ? 'account' : 'home'}
@@ -359,6 +406,12 @@ const App: React.FC = () => {
         user={user}
       />
 
+      {/* Owner-only Admin view (server-enforced on every /api/admin call) */}
+      {view === 'admin' && (
+        <Suspense fallback={<ViewLoader />}>
+          <AdminPage />
+        </Suspense>
+      )}
       {/* Logged-in Homepage View */}
       {view === 'home' && (
         <Suspense fallback={<ViewLoader />}>

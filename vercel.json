@@ -27,6 +27,10 @@
     {
       "source": "/privacy",
       "destination": "/legal/privacy.html"
+    },
+    {
+      "source": "/admin",
+      "destination": "/index.html"
     }
   ]
 }
