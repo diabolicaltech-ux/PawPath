@@ -120,3 +120,16 @@ test('App renders an unread-message banner fed by loadMe and marks read on dismi
   assert.match(app, /loadMe/);
   assert.match(app, /filter\(\(m\) => !m\.read_at\)/);
 });
+
+test('hash routing does not clobber the admin view (empty hash maps to home)', () => {
+  // The hash-routing effect calls applyHash() on mount; an empty hash would
+  // setView('home') and override the admin view the auth effect just set.
+  // The applyHash callback must early-return on the admin path.
+  const applyHash = app.slice(app.indexOf('const applyHash = () =>'));
+  assert.match(applyHash, /if \(isAdminPath\(\)\) \{\s*return;\s*\}/);
+  // The early-return must come before the empty-hash 'home' fallback.
+  assert.ok(
+    applyHash.indexOf('isAdminPath()') < applyHash.indexOf("cleaned === ''"),
+    'admin-path guard must precede the empty-hash home fallback',
+  );
+});
