@@ -150,6 +150,12 @@ const App: React.FC = () => {
   // an empty/#home hash routes back to the home experience.
   useEffect(() => {
     const applyHash = () => {
+      // The /admin route owns its view. Hash routing runs on mount and on every
+      // hashchange, and an empty hash maps to 'home' — which must not clobber an
+      // admin visit (the auth effect sets view to 'admin' for the owner).
+      if (isAdminPath()) {
+        return;
+      }
       const legalView = legalViewFromHash(window.location.hash);
       if (legalView) {
         setView(legalView);
