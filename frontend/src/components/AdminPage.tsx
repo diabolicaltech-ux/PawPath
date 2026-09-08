@@ -12,7 +12,13 @@ import {
 
 type Busy = 'ban' | 'unban' | 'grant-slot' | 'grant-premium' | 'message' | null;
 
-const AdminPage: React.FC = () => {
+interface AdminPageProps {
+  /** Invoked when the server reports the current user is not the owner, so the
+   *  parent can route back to the regular user experience (no error page). */
+  onDenied: () => void;
+}
+
+const AdminPage: React.FC<AdminPageProps> = ({ onDenied }) => {
   const [accounts, setAccounts] = useState<AdminAccount[]>([]);
   const [state, setState] = useState<'loading' | 'denied' | 'error' | 'ready'>('loading');
   const [error, setError] = useState<string | null>(null);
@@ -34,7 +40,11 @@ const AdminPage: React.FC = () => {
       setState('ready');
     } catch (e) {
       if (e instanceof Error && e.message === 'ADMIN_404') {
+        // Not the owner: hand control back to the parent so the visitor lands on
+        // their regular page. The server has already logged + (rate-limited)
+        // emailed the owner about the attempt.
         setState('denied');
+        onDenied();
       } else {
         setError(e instanceof Error ? e.message : 'Unknown error');
         setState('error');
@@ -92,16 +102,10 @@ const AdminPage: React.FC = () => {
   }
 
   if (state === 'denied') {
-    // Render an innocuous "not found" so the route does not reveal its existence.
-    return (
-      <div className="min-h-screen flex items-center justify-center p-8">
-        <div className="text-center">
-          <PawPrint className="w-12 h-12 text-primary mx-auto mb-4" />
-          <h1 className="text-2xl font-bold text-dark">Page not found</h1>
-          <p className="text-dark-muted mt-2">The page you are looking for does not exist.</p>
-        </div>
-      </div>
-    );
+    // The parent re-routes the visitor to their regular page via onDenied().
+    // This branch renders only for the instant before that transition; show
+    // nothing admin-flavored so the surface never reveals its existence.
+    return <div className="p-8 text-dark-muted" aria-hidden="true">Loading…</div>;
   }
 
   if (state === 'error') {

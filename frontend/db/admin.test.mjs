@@ -7,10 +7,12 @@ const me = fs.readFileSync(new URL('../api/me.ts', import.meta.url), 'utf8');
 const collab = fs.readFileSync(new URL('../api/collab.ts', import.meta.url), 'utf8');
 const identity = fs.readFileSync(new URL('../api/_lib/identity.ts', import.meta.url), 'utf8');
 const owner = fs.readFileSync(new URL('../api/_lib/owner.ts', import.meta.url), 'utf8');
+const ownerAlert = fs.readFileSync(new URL('../api/_lib/ownerAlert.ts', import.meta.url), 'utf8');
 const schema = fs.readFileSync(new URL('../api/_lib/schema.ts', import.meta.url), 'utf8');
 const sql = fs.readFileSync(new URL('./001_coparent.sql', import.meta.url), 'utf8');
 const access = fs.readFileSync(new URL('../src/lib/access.ts', import.meta.url), 'utf8');
 const adminClient = fs.readFileSync(new URL('../src/lib/admin.ts', import.meta.url), 'utf8');
+const adminPage = fs.readFileSync(new URL('../src/components/AdminPage.tsx', import.meta.url), 'utf8');
 const app = fs.readFileSync(new URL('../src/App.tsx', import.meta.url), 'utf8');
 const vercel = JSON.parse(fs.readFileSync(new URL('../../vercel.json', import.meta.url), 'utf8'));
 
@@ -30,6 +32,12 @@ test('admin returns 404 (not 403) for unauthorized access, 503 only on real outa
   assert.match(admin, /DATABASE_NOT_CONFIGURED/);
   // The owner-gate runs before any DB connect so a non-owner never gets 503.
   assert.doesNotMatch(admin, /req\.body\.email/);
+  // An authenticated non-owner triggers a server-side audit + rate-limited
+  // owner email (via the shared helper), never a distinct status code.
+  assert.match(admin, /recordDeniedAdminAttempt/);
+  assert.match(ownerAlert, /RESEND_API_KEY/);
+  assert.match(ownerAlert, /admin\.access_denied/);
+  assert.match(ownerAlert, /interval '24 hours'/);
 });
 
 test('admin identity is resolved server-side via the session/Google identity helper', () => {
@@ -132,4 +140,20 @@ test('hash routing does not clobber the admin view (empty hash maps to home)', (
     applyHash.indexOf('isAdminPath()') < applyHash.indexOf("cleaned === ''"),
     'admin-path guard must precede the empty-hash home fallback',
   );
+});
+
+test('non-owner /admin visitor is re-routed to their regular page, no error/blank view', () => {
+  // AdminPage must signal denial to the parent (onDenied) rather than render a
+  // "not found"/404 view.
+  assert.match(adminPage, /onDenied/);
+  assert.doesNotMatch(adminPage, /Page not found/);
+  // The parent, on denial, resets the URL and returns to home (signed in) or
+  // login (signed out) — the regular user experience, never an admin/error view.
+  assert.match(app, /setView\(isSignedIn \? 'home' : 'login'\)/);
+  assert.match(app, /window\.history\.replaceState/);
+});
+
+test('owner email never appears in the frontend client bundle', () => {
+  assert.doesNotMatch(adminClient, /contactpawpath/);
+  assert.doesNotMatch(adminPage, /contactpawpath/);
 });
