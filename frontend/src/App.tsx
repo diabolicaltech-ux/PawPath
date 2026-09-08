@@ -415,7 +415,14 @@ const App: React.FC = () => {
       {/* Owner-only Admin view (server-enforced on every /api/admin call) */}
       {view === 'admin' && (
         <Suspense fallback={<ViewLoader />}>
-          <AdminPage />
+          <AdminPage
+            onDenied={() => {
+              // Not the owner: leave the admin route and return to the regular
+              // user experience (home/dashboard or landing). No error page.
+              window.history.replaceState({}, '', '/');
+              setView(isSignedIn ? 'home' : 'login');
+            }}
+          />
         </Suspense>
       )}
       {/* Logged-in Homepage View */}

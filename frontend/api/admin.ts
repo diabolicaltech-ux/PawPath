@@ -4,20 +4,37 @@ import { Pool } from 'pg';
 import { resolveIdentity } from './_lib/identity.js';
 import { ensureSchema } from './_lib/schema.js';
 import { isOwnerEmail } from './_lib/owner.js';
+import { recordDeniedAdminAttempt } from './_lib/ownerAlert.js';
 
 const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 const pool = process.env.DATABASE_URL
-  ? new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false }, max: 2 })
+  ? new Pool({
+      connectionString: process.env.DATABASE_URL,
+      ssl: { rejectUnauthorized: false },
+      max: 2,
+      // Bound how long a denied-visitor audit write may block the 404 if the DB
+      // is unreachable; the helper swallows the error and we still return 404.
+      connectionTimeoutMillis: 3000,
+    })
   : null;
 
-async function authorizeAdmin(req: VercelRequest): Promise<{ sub: string; email: string } | null> {
+async function authorizeAdmin(req: VercelRequest): Promise<{ sub: string; email: string; name: string } | null> {
   // resolveIdentity throws AUTH_REQUIRED/AUTH_INVALID on failure; we treat any
   // failure as "not an admin" and surface 404, so a non-admin (or a request
   // with no credential at all) cannot distinguish "this endpoint exists".
   const identity = await resolveIdentity(req);
-  if (!isOwnerEmail(identity.email)) return null;
-  return { sub: identity.sub, email: identity.email };
+  if (!isOwnerEmail(identity.email)) {
+    // Authenticated but not the owner: record the attempt (audit + rate-limited
+    // owner email) before returning 404. The audit write is awaited so the
+    // durable "always log every attempt" guarantee survives a serverless freeze;
+    // the email itself is fire-and-forget inside the helper and never delays us.
+    if (pool) {
+      await recordDeniedAdminAttempt(pool, identity, req.headers as Record<string, unknown>).catch(() => {});
+    }
+    return null;
+  }
+  return { sub: identity.sub, email: identity.email, name: identity.name };
 }
 
 interface ActionResult {
@@ -90,6 +107,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   // a misconfigured DATABASE_URL isn't masked as a permissions failure.
   const admin = await authorizeAdmin(req).catch(() => null);
   if (!admin) return res.status(404).json({ error: 'NOT_FOUND' });
+  // Owner confirmed; a missing DB is a real outage (503), never a permissions mask.
   if (!pool) return res.status(503).json({ error: 'DATABASE_NOT_CONFIGURED' });
 
   const client = await pool.connect();
