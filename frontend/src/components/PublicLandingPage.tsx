@@ -42,7 +42,7 @@ const PublicLandingPage: React.FC<PublicLandingPageProps> = ({ onSignInComplete,
               <span className="text-white/80 text-sm font-medium">Breed-specific health tracking for every dog</span>
             </div>
             <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold text-white tracking-tight leading-tight mb-6">
-              Your Pet's Health,<br />
+              Your Dog's Health,<br />
               <span className="text-amber-300">Personalized for Life</span>
             </h1>
             <p className="text-xl text-white/70 max-w-2xl mx-auto mb-8 leading-relaxed">
@@ -74,7 +74,7 @@ const PublicLandingPage: React.FC<PublicLandingPageProps> = ({ onSignInComplete,
                 <Scale className="w-5 h-5 text-amber-300" />
               </div>
               <h3 className="text-white font-bold text-sm mb-1">Precision Nutrition</h3>
-              <p className="text-white/60 text-xs leading-relaxed">Daily calorie targets based on your pet's species, weight, age, activity, and body condition.</p>
+              <p className="text-white/60 text-xs leading-relaxed">Daily calorie targets based on your dog's weight, age, activity, and body condition.</p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-5 ring-1 ring-white/20">
               <div className="w-10 h-10 bg-amber-400/20 rounded-xl flex items-center justify-center mb-3">
@@ -100,7 +100,7 @@ const PublicLandingPage: React.FC<PublicLandingPageProps> = ({ onSignInComplete,
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold text-dark mb-4">Why PawPath?</h2>
             <p className="text-lg text-dark-muted max-w-2xl mx-auto">
-              Most pet health apps are generic. PawPath is built on clinical data with breed-specific intelligence for every recognized breed.
+              Most dog health apps are generic. PawPath is built on clinical data with breed-specific intelligence for every recognized breed.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -186,7 +186,7 @@ const PublicLandingPage: React.FC<PublicLandingPageProps> = ({ onSignInComplete,
       <section className="py-20 px-6 bg-white">
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-dark mb-4">Pet Health Tips</h2>
+            <h2 className="text-3xl sm:text-4xl font-bold text-dark mb-4">Dog Health Tips</h2>
             <p className="text-lg text-dark-muted max-w-2xl mx-auto">
               Evidence-based guidance for keeping your dog healthy at every life stage.
             </p>
@@ -214,10 +214,10 @@ const PublicLandingPage: React.FC<PublicLandingPageProps> = ({ onSignInComplete,
       <section className="py-20 px-6 bg-gradient-to-br from-primary via-primary-dark to-primary">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Ready to Give Your Pet Personalized Care?
+            Ready to Give Your Dog Personalized Care?
           </h2>
           <p className="text-lg text-white/70 mb-8 max-w-xl mx-auto">
-            Join PawPath and start tracking your pet's health with breed-specific insights, nutrition planning, and medical history — all in one place.
+            Join PawPath and start tracking your dog's health with breed-specific insights, nutrition planning, and medical history — all in one place.
           </p>
           <button
             onClick={() => { setShowSignUp(true); setAuthMode('sign-up'); }}
@@ -295,7 +295,7 @@ const PublicLandingPage: React.FC<PublicLandingPageProps> = ({ onSignInComplete,
                 <Sparkles className="w-7 h-7 text-amber-600" />
               </div>
               <h2 className="text-xl font-bold text-dark">Create Your Account</h2>
-              <p className="text-sm text-dark-muted">Start tracking your pet's health</p>
+              <p className="text-sm text-dark-muted">Start tracking your dog's health</p>
             </div>
             <SignUp />
             <div className="mt-4 text-center border-t-bd border-bd pt-4">
