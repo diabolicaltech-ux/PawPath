@@ -14,6 +14,8 @@ export type Species = typeof Species[keyof typeof Species];
 export interface MetabolicInput {
   species: Species;
   weightKg: number;
+  /** Ideal/target body weight used to base weight-loss MER on (NRC practice). */
+  idealWeightKg?: number;
   isNeutered: boolean;
   activityLevel: 'low' | 'normal' | 'high' | 'working';
   workingDogMultiplier?: number; // 2.0 - 5.0 §1.3
@@ -84,6 +86,10 @@ export function getMultiplier(input: MetabolicInput): number {
     if (activityLevel === 'high') return 2.0;
     return isNeutered ? 1.6 : 1.8;
   }
+
+  // Unreachable for PawPath's canine-only model; kept so the function always
+  // returns a number for the type checker.
+  return 1.6;
 }
 
 
@@ -91,7 +97,12 @@ export function getMultiplier(input: MetabolicInput): number {
  * Calculates Maintenance Energy Requirement (MER/DER)
  */
 export function calculateMER(input: MetabolicInput): number {
-  const rer = calculateRER(input.weightKg, input.species);
+  // Weight-loss MER is based on ideal/target weight (NRC practice), not the
+  // current weight, so an overweight dog is not overfed by its own excess mass.
+  const rerWeight = input.isWeightLossTarget && input.idealWeightKg && input.idealWeightKg > 0
+    ? input.idealWeightKg
+    : input.weightKg;
+  const rer = calculateRER(rerWeight, input.species);
   let multiplier = getMultiplier(input);
   
   let mer = rer * multiplier;
