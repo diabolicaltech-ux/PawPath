@@ -155,9 +155,15 @@ export function evaluateAlerts(pet: Pet): Alert[] {
 
   // 1. Breed Predisposition Alerts (Level 1) & 5. Missed Screenings (Level 3)
   risks.forEach(risk => {
-    const hasScreening = pet.clinicalEvents.some(event => 
-      event.eventType === 'screening' && event.details.condition === risk.condition
-    );
+    const hasScreening = pet.clinicalEvents.some(event => {
+      if (event.eventType !== 'screening') return false;
+      const details = event.details || {};
+      const norm = (value: unknown) => String(value ?? '').toLowerCase().trim();
+      // A screening clears the missed-screening alert whether it was recorded by
+      // condition name or by the recommended screening procedure.
+      return norm(details.condition) === norm(risk.condition) ||
+        norm(details.screeningType) === norm(risk.screeningRecommendation);
+    });
 
     if (!hasScreening) {
       individualRiskCount++;

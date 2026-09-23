@@ -467,6 +467,26 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
     .map(name => BREEDS.find(b => b.name === name))
     .filter((b): b is NonNullable<typeof b> => b !== undefined);
 
+  // Wire the pet's actually-logged records into the engine calls so alerts and
+  // milestones reflect the user's real history instead of always-empty placeholders.
+  const clinicalEvents = (pet.completedScreenings || []).map(s => ({
+    date: new Date(),
+    eventType: 'screening',
+    details: { condition: s.screeningType, screeningType: s.screeningType },
+  }));
+
+  const vaccinationRecords = (pet.vaccinations || [])
+    .filter(v => v.status === 'recorded' && v.dateAdministered)
+    .map(v => ({
+      vaccineName: v.vaccineName,
+      dateAdministered: new Date(v.dateAdministered as string),
+      isCore: v.isCore,
+    }));
+
+  const screeningRecords = (pet.completedScreenings || []).map(s => ({
+    screeningType: s.screeningType,
+  }));
+
   const activeAlerts = evaluateAlerts({
     id: 'temp',
     name: pet.name,
@@ -475,10 +495,10 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
     breed: selectedBreed as any,
     breeds: allBreedObjs.length > 0 ? allBreedObjs as any : undefined,
     healthLogs: [{ date: new Date(), weightKg: currentWeight, bcsScore: pet.bcs }],
-    clinicalEvents: []
+    clinicalEvents,
   });
 
-  const vaxAlerts = checkVaccinationStatus(pet.species, []);
+  const vaxAlerts = checkVaccinationStatus(pet.species, vaccinationRecords);
 
   // Filter alerts based on dismissed/hidden/postponed status
   const filteredAlerts = activeAlerts.filter(a => shouldShowAlert(a.condition));
@@ -502,8 +522,8 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
       onsetAgeMonths: r.onsetAgeMonths,
       screeningRecommendation: r.screeningRecommendation || r.screening || '',
     })),
-    existingVaccinations: [],
-    existingScreenings: [],
+    existingVaccinations: vaccinationRecords,
+    existingScreenings: screeningRecords,
   });
 
   // Filter milestones based on status

@@ -12,8 +12,7 @@ export enum CanineLifeStage {
   JUNIOR = 'Junior',
   ADULT = 'Adult',
   MATURE_ADULT = 'Mature Adult',
-  SENIOR = 'Senior',
-  END_OF_LIFE = 'End-of-Life'
+  SENIOR = 'Senior'
 }
 
 
@@ -36,7 +35,9 @@ export function getCanineLifeStage(ageYears: number, weightKg: number): CanineLi
   else if (weightKg <= 40) seniorAge = 8;
   else seniorAge = 6;
 
-  if (ageYears >= seniorAge + 2) return CanineLifeStage.END_OF_LIFE;
+  // No deterministic "End-of-Life" stage: dogs past senior age remain "Senior".
+  // Advanced-senior care is surfaced through gentle language elsewhere, never as
+  // an automatic life-stage label.
   if (ageYears >= seniorAge) return CanineLifeStage.SENIOR;
   if (ageYears >= 7) return CanineLifeStage.MATURE_ADULT;
   
@@ -192,10 +193,6 @@ export function generateMilestones(input: MilestoneInput): Milestone[] {
       { id: 'senior-wellness', name: 'Senior Wellness Exam', description: 'Comprehensive senior health assessment with bloodwork and urinalysis.' },
       { id: 'senior-dental', name: 'Senior Dental Cleaning', description: 'Dental cleaning with senior-safe anesthesia protocol.' },
       { id: 'joint-health', name: 'Joint Health Assessment', description: 'Evaluate for arthritis and mobility issues.' },
-    ],
-    'End-of-Life': [
-      { id: 'palliative-care', name: 'Comfort & Quality-of-Life Consultation', description: 'Discuss comfort, quality of life, and supportive-care options with your veterinarian.' },
-      { id: 'hospice-planning', name: 'Advanced Senior Care Planning', description: 'Discuss comfort-focused care and supportive options with your veterinarian as your pet’s needs change.' },
     ],
 
 
