@@ -735,14 +735,8 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy at spay/neuter"
-        },
-        {
-          "condition": "Dilated Cardiomyopathy",
-          "onsetAgeMonths": 24,
-          "severity": 4,
-          "screening": "Annual echocardiogram"
         },
         {
           "condition": "Osteosarcoma",
@@ -844,55 +838,6 @@ export const BREEDS: BreedData[] = [
     }
   },
   {
-    "name": "Argentinian Dogo",
-    "species": "canine",
-    "ideal_weight_min_kg": 36,
-    "ideal_weight_max_kg": 45,
-    "life_expectancy": 10,
-    "senior_classification_age": 8,
-    "alert_rules": {
-      "predispositions": [
-        {
-          "condition": "Hip Dysplasia",
-          "onsetAgeMonths": 12,
-          "severity": 2,
-          "screening": "OFA scoring"
-        },
-        {
-          "condition": "Elbow Dysplasia",
-          "onsetAgeMonths": 12,
-          "severity": 2,
-          "screening": "OFA scoring"
-        },
-        {
-          "condition": "Gastric Dilatation-Volvulus",
-          "onsetAgeMonths": 12,
-          "severity": 4,
-          "screening": "Prophylactic gastropexy"
-        },
-        {
-          "condition": "Dilated Cardiomyopathy",
-          "onsetAgeMonths": 36,
-          "severity": 3,
-          "screening": "Annual echocardiogram"
-        },
-        {
-          "condition": "Osteosarcoma",
-          "onsetAgeMonths": 48,
-          "severity": 3,
-          "screening": "Lameness evaluation"
-        },
-        {
-          "condition": "Hypothyroidism",
-          "onsetAgeMonths": 36,
-          "severity": 2,
-          "screening": "T4/TSH"
-        }
-      ],
-      "contraindications": []
-    }
-  },
-  {
     "name": "Australian Cattle Dog",
     "species": "canine",
     "ideal_weight_min_kg": 16,
@@ -924,12 +869,6 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 0,
           "severity": 2,
           "screening": "BAER testing"
-        },
-        {
-          "condition": "MDR1 Drug Sensitivity",
-          "onsetAgeMonths": 0,
-          "severity": 4,
-          "screening": "MDR1 genetic test"
         }
       ],
       "contraindications": []
@@ -984,7 +923,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "MDR1 Drug Sensitivity",
           "onsetAgeMonths": 0,
-          "severity": 4,
+          "severity": 3,
           "screening": "MDR1 genetic test"
         },
         {
@@ -1128,7 +1067,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy"
         },
         {
@@ -1543,12 +1482,6 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 24,
           "severity": 2,
           "screening": "Neurological evaluation"
-        },
-        {
-          "condition": "MDR1 Drug Sensitivity",
-          "onsetAgeMonths": 0,
-          "severity": 4,
-          "screening": "MDR1 genetic test"
         }
       ],
       "contraindications": [
@@ -1951,7 +1884,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy"
         },
         {
@@ -2007,7 +1940,7 @@ export const BREEDS: BreedData[] = [
     "ideal_weight_min_kg": 30,
     "ideal_weight_max_kg": 50,
     "life_expectancy": 8,
-    "senior_classification_age": 8,
+    "senior_classification_age": 6,
     "alert_rules": {
       "predispositions": [
         {
@@ -2019,14 +1952,8 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy at spay/neuter"
-        },
-        {
-          "condition": "Dilated Cardiomyopathy",
-          "onsetAgeMonths": 24,
-          "severity": 4,
-          "screening": "Annual echocardiogram"
         },
         {
           "condition": "Osteosarcoma",
@@ -2039,6 +1966,12 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 36,
           "severity": 2,
           "screening": "Weight management; orthopedic exam"
+        },
+        {
+          "condition": "Histiocytic Sarcoma",
+          "onsetAgeMonths": 60,
+          "severity": 3,
+          "screening": "Veterinary exam of any new lump; diagnostic imaging as advised"
         }
       ],
       "contraindications": [
@@ -2206,7 +2139,7 @@ export const BREEDS: BreedData[] = [
     "species": "canine",
     "ideal_weight_min_kg": 36,
     "ideal_weight_max_kg": 54,
-    "life_expectancy": 11,
+    "life_expectancy": 10,
     "senior_classification_age": 8,
     "alert_rules": {
       "predispositions": [
@@ -2360,7 +2293,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Gastropexy"
         },
         {
@@ -2411,61 +2344,6 @@ export const BREEDS: BreedData[] = [
     }
   },
   {
-    "name": "Bordeaux Dogue",
-    "species": "canine",
-    "ideal_weight_min_kg": 45,
-    "ideal_weight_max_kg": 55,
-    "life_expectancy": 9,
-    "senior_classification_age": 6,
-    "alert_rules": {
-      "predispositions": [
-        {
-          "condition": "Hip Dysplasia",
-          "onsetAgeMonths": 12,
-          "severity": 2,
-          "screening": "OFA scoring"
-        },
-        {
-          "condition": "Elbow Dysplasia",
-          "onsetAgeMonths": 12,
-          "severity": 2,
-          "screening": "OFA scoring"
-        },
-        {
-          "condition": "Gastric Dilatation-Volvulus",
-          "onsetAgeMonths": 12,
-          "severity": 4,
-          "screening": "Prophylactic gastropexy"
-        },
-        {
-          "condition": "Dilated Cardiomyopathy",
-          "onsetAgeMonths": 36,
-          "severity": 3,
-          "screening": "Annual echocardiogram"
-        },
-        {
-          "condition": "Osteosarcoma",
-          "onsetAgeMonths": 48,
-          "severity": 3,
-          "screening": "Lameness evaluation"
-        },
-        {
-          "condition": "Hypothyroidism",
-          "onsetAgeMonths": 36,
-          "severity": 2,
-          "screening": "T4/TSH"
-        },
-        {
-          "condition": "Respiratory Issues",
-          "onsetAgeMonths": 6,
-          "severity": 3,
-          "screening": "BOAS evaluation"
-        }
-      ],
-      "contraindications": []
-    }
-  },
-  {
     "name": "Border Collie",
     "species": "canine",
     "ideal_weight_min_kg": 14,
@@ -2489,7 +2367,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "MDR1 Drug Sensitivity",
           "onsetAgeMonths": 0,
-          "severity": 4,
+          "severity": 3,
           "screening": "MDR1 genetic test"
         }
       ],
@@ -2626,8 +2504,20 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Brachycephalic Airway Syndrome",
           "onsetAgeMonths": 6,
-          "severity": 4,
+          "severity": 3,
           "screening": "BOAS grading by veterinarian"
+        },
+        {
+          "condition": "Juvenile Hereditary Cataracts",
+          "onsetAgeMonths": 6,
+          "severity": 2,
+          "screening": "Ophthalmic exam; DNA test available"
+        },
+        {
+          "condition": "Corneal Ulceration",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Ophthalmic exam if squinting or eye-rubbing"
         }
       ],
       "contraindications": [
@@ -2679,14 +2569,8 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Arrhythmogenic Right Ventricular Cardiomyopathy (ARVC / Boxer Cardiomyopathy)",
           "onsetAgeMonths": 36,
-          "severity": 4,
+          "severity": 3,
           "screening": "Annual 24-hour Holter monitor and echocardiogram"
-        },
-        {
-          "condition": "Dilated Cardiomyopathy (DCM)",
-          "onsetAgeMonths": 36,
-          "severity": 4,
-          "screening": "Annual echocardiogram and cardiac biomarker (nt-proBNP) testing"
         }
       ],
       "contraindications": [
@@ -3126,7 +3010,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy"
         },
         {
@@ -3205,86 +3089,6 @@ export const BREEDS: BreedData[] = [
     }
   },
   {
-    "name": "Bull Terrier (Miniature)",
-    "species": "canine",
-    "ideal_weight_min_kg": 11,
-    "ideal_weight_max_kg": 16,
-    "life_expectancy": 13,
-    "senior_classification_age": 11,
-    "alert_rules": {
-      "predispositions": [
-        {
-          "condition": "Patellar Luxation",
-          "onsetAgeMonths": 12,
-          "severity": 2,
-          "screening": "Orthopedic exam"
-        },
-        {
-          "condition": "Dental Disease",
-          "onsetAgeMonths": 12,
-          "severity": 2,
-          "screening": "Annual dental prophylaxis"
-        },
-        {
-          "condition": "Tracheal Collapse",
-          "onsetAgeMonths": 36,
-          "severity": 2,
-          "screening": "Cervical radiographs; use harness"
-        },
-        {
-          "condition": "Allergies",
-          "onsetAgeMonths": 12,
-          "severity": 2,
-          "screening": "Allergy testing"
-        }
-      ],
-      "contraindications": []
-    }
-  },
-  {
-    "name": "Bull Terrier (Standard)",
-    "species": "canine",
-    "ideal_weight_min_kg": 20,
-    "ideal_weight_max_kg": 36,
-    "life_expectancy": 13,
-    "senior_classification_age": 10,
-    "alert_rules": {
-      "predispositions": [
-        {
-          "condition": "Hip Dysplasia",
-          "onsetAgeMonths": 18,
-          "severity": 2,
-          "screening": "OFA hip scoring"
-        },
-        {
-          "condition": "Elbow Dysplasia",
-          "onsetAgeMonths": 18,
-          "severity": 2,
-          "screening": "OFA elbow evaluation"
-        },
-        {
-          "condition": "Gastric Dilatation-Volvulus",
-          "onsetAgeMonths": 36,
-          "severity": 3,
-          "screening": "Prophylactic gastropexy discussion"
-        },
-        {
-          "condition": "Osteosarcoma",
-          "onsetAgeMonths": 60,
-          "severity": 3,
-          "screening": "Annual lameness evaluation"
-        },
-        {
-          "condition": "Hypothyroidism",
-          "onsetAgeMonths": 36,
-          "severity": 2,
-          "screening": "T4/TSH"
-        }
-      ],
-      "contraindications": []
-    }
-  },
-  {
     "name": "Bulldog",
     "species": "canine",
     "ideal_weight_min_kg": 18,
@@ -3296,7 +3100,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Brachycephalic Airway Syndrome",
           "onsetAgeMonths": 6,
-          "severity": 4,
+          "severity": 3,
           "screening": "BOAS grading"
         },
         {
@@ -3308,7 +3112,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Dystocia",
           "onsetAgeMonths": 18,
-          "severity": 4,
+          "severity": 3,
           "screening": "C-section planning"
         },
         {
@@ -3354,14 +3158,8 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy at spay/neuter"
-        },
-        {
-          "condition": "Dilated Cardiomyopathy",
-          "onsetAgeMonths": 24,
-          "severity": 4,
-          "screening": "Annual echocardiogram"
         },
         {
           "condition": "Osteosarcoma",
@@ -3441,12 +3239,6 @@ export const BREEDS: BreedData[] = [
           "screening": "OFA scoring"
         },
         {
-          "condition": "Gastric Dilatation-Volvulus",
-          "onsetAgeMonths": 12,
-          "severity": 4,
-          "screening": "Prophylactic gastropexy"
-        },
-        {
           "condition": "Dilated Cardiomyopathy",
           "onsetAgeMonths": 36,
           "severity": 3,
@@ -3486,13 +3278,13 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy at spay/neuter"
         },
         {
           "condition": "Dilated Cardiomyopathy",
           "onsetAgeMonths": 24,
-          "severity": 4,
+          "severity": 3,
           "screening": "Annual echocardiogram"
         },
         {
@@ -3567,7 +3359,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "MDR1 Drug Sensitivity",
           "onsetAgeMonths": 0,
-          "severity": 4,
+          "severity": 3,
           "screening": "MDR1 genetic test"
         }
       ],
@@ -3678,7 +3470,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy"
         },
         {
@@ -3727,7 +3519,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus (GDV / Bloat)",
           "onsetAgeMonths": 24,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy discussion; feed multiple small meals"
         }
       ],
@@ -3772,6 +3564,18 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 12,
           "severity": 3,
           "screening": "Brachycephalic breed screening"
+        },
+        {
+          "condition": "Mitral Valve Disease",
+          "onsetAgeMonths": 60,
+          "severity": 3,
+          "screening": "Annual cardiac auscultation from age 5-6; echocardiogram if murmur detected"
+        },
+        {
+          "condition": "Syringomyelia",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Veterinary neurologic exam; MRI if scratching at neck or ears or pain signs"
         }
       ],
       "contraindications": []
@@ -3795,7 +3599,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus (GDV / Bloat)",
           "onsetAgeMonths": 24,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy discussion; feed multiple small meals"
         }
       ],
@@ -3810,51 +3614,7 @@ export const BREEDS: BreedData[] = [
     "life_expectancy": 13,
     "senior_classification_age": 11,
     "alert_rules": {
-      "predispositions": [
-        {
-          "condition": "Scottie Cramp",
-          "onsetAgeMonths": 6,
-          "severity": 1,
-          "screening": "Genetic testing"
-        }
-      ],
-      "contraindications": []
-    }
-  },
-  {
-    "name": "Charnigue Hound",
-    "species": "canine",
-    "ideal_weight_min_kg": 18,
-    "ideal_weight_max_kg": 27,
-    "life_expectancy": 13,
-    "senior_classification_age": 10,
-    "alert_rules": {
-      "predispositions": [
-        {
-          "condition": "Hip Dysplasia",
-          "onsetAgeMonths": 18,
-          "severity": 2,
-          "screening": "OFA hip scoring"
-        },
-        {
-          "condition": "Obesity",
-          "onsetAgeMonths": 24,
-          "severity": 2,
-          "screening": "BCS monitoring"
-        },
-        {
-          "condition": "Hypothyroidism",
-          "onsetAgeMonths": 36,
-          "severity": 2,
-          "screening": "T4/TSH"
-        },
-        {
-          "condition": "Anesthesia Sensitivity",
-          "onsetAgeMonths": 0,
-          "severity": 2,
-          "screening": "Use propofol; pre-anesthetic screening"
-        }
-      ],
+      "predispositions": [],
       "contraindications": []
     }
   },
@@ -3921,80 +3681,12 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 3,
           "severity": 3,
           "screening": "Blood glucose monitoring in puppies"
-        }
-      ],
-      "contraindications": []
-    }
-  },
-  {
-    "name": "Chihuahua (Long Coat)",
-    "species": "canine",
-    "ideal_weight_min_kg": 1.5,
-    "ideal_weight_max_kg": 3,
-    "life_expectancy": 14,
-    "senior_classification_age": 12,
-    "alert_rules": {
-      "predispositions": [
-        {
-          "condition": "Patellar Luxation",
-          "onsetAgeMonths": 12,
-          "severity": 2,
-          "screening": "Orthopedic exam"
-        },
-        {
-          "condition": "Dental Disease",
-          "onsetAgeMonths": 12,
-          "severity": 2,
-          "screening": "Annual dental prophylaxis"
         },
         {
           "condition": "Obesity",
           "onsetAgeMonths": 24,
           "severity": 2,
           "screening": "BCS monitoring"
-        },
-        {
-          "condition": "Hypoglycemia",
-          "onsetAgeMonths": 3,
-          "severity": 3,
-          "screening": "Blood glucose monitoring in puppies"
-        }
-      ],
-      "contraindications": []
-    }
-  },
-  {
-    "name": "Chihuahua (Smooth Coat)",
-    "species": "canine",
-    "ideal_weight_min_kg": 1.5,
-    "ideal_weight_max_kg": 3,
-    "life_expectancy": 14,
-    "senior_classification_age": 12,
-    "alert_rules": {
-      "predispositions": [
-        {
-          "condition": "Patellar Luxation",
-          "onsetAgeMonths": 12,
-          "severity": 2,
-          "screening": "Orthopedic exam"
-        },
-        {
-          "condition": "Dental Disease",
-          "onsetAgeMonths": 12,
-          "severity": 2,
-          "screening": "Annual dental prophylaxis"
-        },
-        {
-          "condition": "Obesity",
-          "onsetAgeMonths": 24,
-          "severity": 2,
-          "screening": "BCS monitoring"
-        },
-        {
-          "condition": "Hypoglycemia",
-          "onsetAgeMonths": 3,
-          "severity": 3,
-          "screening": "Blood glucose monitoring in puppies"
         }
       ],
       "contraindications": []
@@ -4080,7 +3772,7 @@ export const BREEDS: BreedData[] = [
     "ideal_weight_min_kg": 18,
     "ideal_weight_max_kg": 25,
     "life_expectancy": 10,
-    "senior_classification_age": 10,
+    "senior_classification_age": 8,
     "alert_rules": {
       "predispositions": [
         {
@@ -4099,7 +3791,7 @@ export const BREEDS: BreedData[] = [
           "condition": "Shar-Pei Fever",
           "onsetAgeMonths": 12,
           "severity": 3,
-          "screening": "Colchicine therapy; monitoring"
+          "screening": "Monitor for recurrent fever episodes; urinalysis for proteinuria (amyloidosis risk)"
         },
         {
           "condition": "Skin Fold Dermatitis",
@@ -4117,7 +3809,7 @@ export const BREEDS: BreedData[] = [
           "condition": "Entropion",
           "onsetAgeMonths": 6,
           "severity": 3,
-          "screening": "Surgical correction"
+          "screening": "Ophthalmic exam; surgical correction if severe"
         }
       ],
       "contraindications": []
@@ -4217,7 +3909,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy"
         },
         {
@@ -4336,6 +4028,18 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 24,
           "severity": 2,
           "screening": "BCS monitoring"
+        },
+        {
+          "condition": "Otitis Externa",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "Regular ear checks; veterinary exam if head-shaking or odor"
+        },
+        {
+          "condition": "Progressive Retinal Atrophy",
+          "onsetAgeMonths": 60,
+          "severity": 2,
+          "screening": "Annual ophthalmic exam (OFA-CAER); prcd-PRA DNA test"
         }
       ],
       "contraindications": []
@@ -4371,7 +4075,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "MDR1 Drug Sensitivity",
           "onsetAgeMonths": 0,
-          "severity": 4,
+          "severity": 3,
           "screening": "MDR1 genetic test"
         }
       ],
@@ -4540,7 +4244,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy"
         },
         {
@@ -4677,6 +4381,12 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 24,
           "severity": 2,
           "screening": "BCS monitoring"
+        },
+        {
+          "condition": "Intervertebral Disc Disease",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Spinal radiographs; avoid jumping"
         }
       ],
       "contraindications": []
@@ -4708,6 +4418,12 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 24,
           "severity": 2,
           "screening": "BCS monitoring"
+        },
+        {
+          "condition": "Intervertebral Disc Disease",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Spinal radiographs; avoid jumping"
         }
       ],
       "contraindications": []
@@ -4739,6 +4455,12 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 24,
           "severity": 2,
           "screening": "BCS monitoring"
+        },
+        {
+          "condition": "Intervertebral Disc Disease",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Spinal radiographs; avoid jumping"
         }
       ],
       "contraindications": []
@@ -4776,6 +4498,12 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 3,
           "severity": 3,
           "screening": "Blood glucose monitoring in puppies"
+        },
+        {
+          "condition": "Intervertebral Disc Disease",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Spinal radiographs; avoid jumping"
         }
       ],
       "contraindications": []
@@ -4813,6 +4541,12 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 3,
           "severity": 3,
           "screening": "Blood glucose monitoring in puppies"
+        },
+        {
+          "condition": "Intervertebral Disc Disease",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Spinal radiographs; avoid jumping"
         }
       ],
       "contraindications": []
@@ -4850,6 +4584,12 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 3,
           "severity": 3,
           "screening": "Blood glucose monitoring in puppies"
+        },
+        {
+          "condition": "Intervertebral Disc Disease",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Spinal radiographs; avoid jumping"
         }
       ],
       "contraindications": []
@@ -5152,49 +4892,6 @@ export const BREEDS: BreedData[] = [
     }
   },
   {
-    "name": "Dog Argentino",
-    "species": "canine",
-    "ideal_weight_min_kg": 36,
-    "ideal_weight_max_kg": 45,
-    "life_expectancy": 10,
-    "senior_classification_age": 8,
-    "alert_rules": {
-      "predispositions": [
-        {
-          "condition": "Hip Dysplasia",
-          "onsetAgeMonths": 18,
-          "severity": 2,
-          "screening": "OFA hip scoring"
-        },
-        {
-          "condition": "Elbow Dysplasia",
-          "onsetAgeMonths": 18,
-          "severity": 2,
-          "screening": "OFA elbow evaluation"
-        },
-        {
-          "condition": "Gastric Dilatation-Volvulus",
-          "onsetAgeMonths": 36,
-          "severity": 3,
-          "screening": "Prophylactic gastropexy discussion"
-        },
-        {
-          "condition": "Obesity",
-          "onsetAgeMonths": 24,
-          "severity": 2,
-          "screening": "BCS monitoring"
-        },
-        {
-          "condition": "Osteosarcoma",
-          "onsetAgeMonths": 60,
-          "severity": 3,
-          "screening": "Annual lameness evaluation"
-        }
-      ],
-      "contraindications": []
-    }
-  },
-  {
     "name": "Dogo Argentino",
     "species": "canine",
     "ideal_weight_min_kg": 36,
@@ -5220,6 +4917,36 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 0,
           "severity": 2,
           "screening": "BAER testing"
+        },
+        {
+          "condition": "Elbow Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA elbow evaluation"
+        },
+        {
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
+        {
+          "condition": "Osteosarcoma",
+          "onsetAgeMonths": 60,
+          "severity": 3,
+          "screening": "Annual lameness evaluation"
+        },
+        {
+          "condition": "Dilated Cardiomyopathy",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Annual echocardiogram"
+        },
+        {
+          "condition": "Hypothyroidism",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "T4/TSH"
         }
       ],
       "contraindications": []
@@ -5249,7 +4976,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy"
         },
         {
@@ -5298,7 +5025,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Gastropexy"
         },
         {
@@ -5318,6 +5045,24 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 6,
           "severity": 2,
           "screening": "BOAS evaluation"
+        },
+        {
+          "condition": "Elbow Dysplasia",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "OFA scoring"
+        },
+        {
+          "condition": "Osteosarcoma",
+          "onsetAgeMonths": 48,
+          "severity": 3,
+          "screening": "Lameness evaluation"
+        },
+        {
+          "condition": "Hypothyroidism",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "T4/TSH"
         }
       ],
       "contraindications": [
@@ -5635,43 +5380,12 @@ export const BREEDS: BreedData[] = [
     }
   },
   {
-    "name": "English Toy (King Charles)",
-    "species": "canine",
-    "ideal_weight_min_kg": 4,
-    "ideal_weight_max_kg": 7,
-    "life_expectancy": 11,
-    "senior_classification_age": 11,
-    "alert_rules": {
-      "predispositions": [
-        {
-          "condition": "Patellar Luxation",
-          "onsetAgeMonths": 12,
-          "severity": 2,
-          "screening": "Orthopedic exam"
-        },
-        {
-          "condition": "Dental Disease",
-          "onsetAgeMonths": 12,
-          "severity": 2,
-          "screening": "Annual dental prophylaxis"
-        },
-        {
-          "condition": "Tracheal Collapse",
-          "onsetAgeMonths": 36,
-          "severity": 2,
-          "screening": "Cervical radiographs; use harness"
-        }
-      ],
-      "contraindications": []
-    }
-  },
-  {
     "name": "English Toy Spaniel",
     "species": "canine",
     "ideal_weight_min_kg": 4,
     "ideal_weight_max_kg": 6,
     "life_expectancy": 12,
-    "senior_classification_age": 12,
+    "senior_classification_age": 9,
     "alert_rules": {
       "predispositions": [
         {
@@ -5703,6 +5417,18 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 6,
           "severity": 2,
           "screening": "BOAS evaluation"
+        },
+        {
+          "condition": "Obesity",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "BCS monitoring"
+        },
+        {
+          "condition": "Mitral Valve Disease",
+          "onsetAgeMonths": 60,
+          "severity": 3,
+          "screening": "Annual cardiac auscultation; echocardiogram if murmur detected"
         }
       ],
       "contraindications": [
@@ -5916,7 +5642,7 @@ export const BREEDS: BreedData[] = [
     "ideal_weight_min_kg": 25,
     "ideal_weight_max_kg": 36,
     "life_expectancy": 10,
-    "senior_classification_age": 10,
+    "senior_classification_age": 8,
     "alert_rules": {
       "predispositions": [
         {
@@ -5938,7 +5664,7 @@ export const BREEDS: BreedData[] = [
           "screening": "Annual CBC/chem"
         },
         {
-          "condition": "Gastric Dilatation-Volvulus (GDV)",
+          "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 36,
           "severity": 3,
           "screening": "Prophylactic gastropexy discussion"
@@ -5952,8 +5678,8 @@ export const BREEDS: BreedData[] = [
     "species": "canine",
     "ideal_weight_min_kg": 8,
     "ideal_weight_max_kg": 14,
-    "life_expectancy": 11,
-    "senior_classification_age": 11,
+    "life_expectancy": 10,
+    "senior_classification_age": 8,
     "alert_rules": {
       "predispositions": [
         {
@@ -5977,8 +5703,38 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Brachycephalic Airway Syndrome",
           "onsetAgeMonths": 6,
-          "severity": 4,
+          "severity": 3,
           "screening": "BOAS grading by veterinarian"
+        },
+        {
+          "condition": "Intervertebral Disc Disease",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Spinal radiographs; avoid jumping"
+        },
+        {
+          "condition": "Skin Fold Dermatitis",
+          "onsetAgeMonths": 12,
+          "severity": 1,
+          "screening": "Keep skin folds clean and dry; veterinary advice if inflamed"
+        },
+        {
+          "condition": "Corneal Ulceration",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Ophthalmic exam if squinting or eye-rubbing"
+        },
+        {
+          "condition": "Otitis Externa",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "Regular ear checks; veterinary exam if head-shaking"
+        },
+        {
+          "condition": "Hereditary Cataracts",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "Annual ophthalmic exam (OFA-CAER)"
         }
       ],
       "contraindications": [
@@ -6020,49 +5776,6 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 6,
           "severity": 1,
           "screening": "Weekly ear cleaning"
-        }
-      ],
-      "contraindications": []
-    }
-  },
-  {
-    "name": "Galgah (Persian Greyhound)",
-    "species": "canine",
-    "ideal_weight_min_kg": 18,
-    "ideal_weight_max_kg": 30,
-    "life_expectancy": 13,
-    "senior_classification_age": 10,
-    "alert_rules": {
-      "predispositions": [
-        {
-          "condition": "Hip Dysplasia",
-          "onsetAgeMonths": 18,
-          "severity": 2,
-          "screening": "OFA hip scoring"
-        },
-        {
-          "condition": "Elbow Dysplasia",
-          "onsetAgeMonths": 18,
-          "severity": 2,
-          "screening": "OFA elbow evaluation"
-        },
-        {
-          "condition": "Gastric Dilatation-Volvulus",
-          "onsetAgeMonths": 36,
-          "severity": 3,
-          "screening": "Prophylactic gastropexy discussion"
-        },
-        {
-          "condition": "Osteosarcoma",
-          "onsetAgeMonths": 60,
-          "severity": 3,
-          "screening": "Annual lameness evaluation"
-        },
-        {
-          "condition": "Hypothyroidism",
-          "onsetAgeMonths": 36,
-          "severity": 2,
-          "screening": "T4/TSH"
         }
       ],
       "contraindications": []
@@ -6180,9 +5893,30 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 36,
           "severity": 2,
           "screening": "T4/TSH"
+        },
+        {
+          "condition": "Degenerative Myelopathy",
+          "onsetAgeMonths": 72,
+          "severity": 3,
+          "screening": "DNA test for SOD-1 mutation"
+        },
+        {
+          "condition": "MDR1 Drug Sensitivity",
+          "onsetAgeMonths": 0,
+          "severity": 2,
+          "screening": "MDR1 genetic DNA test"
+        },
+        {
+          "condition": "Exocrine Pancreatic Insufficiency",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "TLI blood test if symptoms"
         }
       ],
-      "contraindications": []
+      "contraindications": [
+        "Avoid elevated feeding (bloat risk); avoid strenuous exercise 1hr before/after meals",
+        "MDR1 drug sensitivity (low frequency in this breed): avoid high-dose ivermectin and loperamide unless genetically cleared."
+      ]
     }
   },
   {
@@ -6365,6 +6099,36 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 12,
           "severity": 1,
           "screening": "Genetic test"
+        },
+        {
+          "condition": "Hemangiosarcoma",
+          "onsetAgeMonths": 72,
+          "severity": 3,
+          "screening": "Prompt veterinary assessment of unexplained weakness, pale gums, or abdominal swelling"
+        },
+        {
+          "condition": "Lymphoma",
+          "onsetAgeMonths": 72,
+          "severity": 3,
+          "screening": "Veterinary exam of any persistently swollen lymph nodes"
+        },
+        {
+          "condition": "Progressive Retinal Atrophy",
+          "onsetAgeMonths": 72,
+          "severity": 2,
+          "screening": "Annual ophthalmic exam (OFA-CAER); GR-PRA1/2 DNA tests"
+        },
+        {
+          "condition": "Subvalvular Aortic Stenosis",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Cardiac auscultation; echocardiogram if murmur"
+        },
+        {
+          "condition": "Ichthyosis",
+          "onsetAgeMonths": 6,
+          "severity": 1,
+          "screening": "Skin exam; DNA test available"
         }
       ],
       "contraindications": []
@@ -6462,7 +6226,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy"
         },
         {
@@ -6511,7 +6275,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy"
         },
         {
@@ -6560,14 +6324,8 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy at spay/neuter"
-        },
-        {
-          "condition": "Dilated Cardiomyopathy",
-          "onsetAgeMonths": 24,
-          "severity": 4,
-          "screening": "Annual echocardiogram"
         },
         {
           "condition": "Osteosarcoma",
@@ -6606,14 +6364,8 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy at spay/neuter"
-        },
-        {
-          "condition": "Dilated Cardiomyopathy",
-          "onsetAgeMonths": 24,
-          "severity": 4,
-          "screening": "Annual echocardiogram"
         },
         {
           "condition": "Osteosarcoma",
@@ -6654,12 +6406,6 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 12,
           "severity": 2,
           "screening": "OFA scoring"
-        },
-        {
-          "condition": "Gastric Dilatation-Volvulus",
-          "onsetAgeMonths": 12,
-          "severity": 4,
-          "screening": "Prophylactic gastropexy"
         },
         {
           "condition": "Dilated Cardiomyopathy",
@@ -6962,55 +6708,6 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 36,
           "severity": 2,
           "screening": "T4/TSH"
-        }
-      ],
-      "contraindications": []
-    }
-  },
-  {
-    "name": "Holland Shepherd Dog",
-    "species": "canine",
-    "ideal_weight_min_kg": 23,
-    "ideal_weight_max_kg": 30,
-    "life_expectancy": 13,
-    "senior_classification_age": 8,
-    "alert_rules": {
-      "predispositions": [
-        {
-          "condition": "Hip Dysplasia",
-          "onsetAgeMonths": 18,
-          "severity": 2,
-          "screening": "OFA hip scoring"
-        },
-        {
-          "condition": "Elbow Dysplasia",
-          "onsetAgeMonths": 18,
-          "severity": 2,
-          "screening": "OFA elbow evaluation"
-        },
-        {
-          "condition": "Gastric Dilatation-Volvulus",
-          "onsetAgeMonths": 36,
-          "severity": 3,
-          "screening": "Prophylactic gastropexy discussion"
-        },
-        {
-          "condition": "Osteosarcoma",
-          "onsetAgeMonths": 60,
-          "severity": 3,
-          "screening": "Annual lameness evaluation"
-        },
-        {
-          "condition": "Hypothyroidism",
-          "onsetAgeMonths": 36,
-          "severity": 2,
-          "screening": "T4/TSH"
-        },
-        {
-          "condition": "Exercise-Induced Collapse",
-          "onsetAgeMonths": 12,
-          "severity": 1,
-          "screening": "Genetic test"
         }
       ],
       "contraindications": []
@@ -7361,13 +7058,13 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy at spay/neuter"
         },
         {
           "condition": "Dilated Cardiomyopathy",
           "onsetAgeMonths": 24,
-          "severity": 4,
+          "severity": 3,
           "screening": "Annual echocardiogram"
         },
         {
@@ -7744,7 +7441,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy"
         },
         {
@@ -7863,37 +7560,6 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 18,
           "severity": 2,
           "screening": "OFA scoring"
-        }
-      ],
-      "contraindications": []
-    }
-  },
-  {
-    "name": "King Charles Spaniel",
-    "species": "canine",
-    "ideal_weight_min_kg": 4,
-    "ideal_weight_max_kg": 7,
-    "life_expectancy": 11,
-    "senior_classification_age": 11,
-    "alert_rules": {
-      "predispositions": [
-        {
-          "condition": "Patellar Luxation",
-          "onsetAgeMonths": 12,
-          "severity": 2,
-          "screening": "Orthopedic exam"
-        },
-        {
-          "condition": "Dental Disease",
-          "onsetAgeMonths": 12,
-          "severity": 2,
-          "screening": "Annual dental prophylaxis"
-        },
-        {
-          "condition": "Obesity",
-          "onsetAgeMonths": 24,
-          "severity": 2,
-          "screening": "BCS monitoring"
         }
       ],
       "contraindications": []
@@ -8263,7 +7929,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Gastropexy"
         },
         {
@@ -8337,14 +8003,8 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy at spay/neuter"
-        },
-        {
-          "condition": "Dilated Cardiomyopathy",
-          "onsetAgeMonths": 24,
-          "severity": 4,
-          "screening": "Annual echocardiogram"
         },
         {
           "condition": "Osteosarcoma",
@@ -8357,6 +8017,12 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 36,
           "severity": 2,
           "screening": "Weight management; orthopedic exam"
+        },
+        {
+          "condition": "Leonberger Polyneuropathy",
+          "onsetAgeMonths": 24,
+          "severity": 3,
+          "screening": "LPN1/LPPN3 DNA test; veterinary neurologic exam for gait changes"
         }
       ],
       "contraindications": [
@@ -8748,14 +8414,8 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy at spay/neuter"
-        },
-        {
-          "condition": "Dilated Cardiomyopathy",
-          "onsetAgeMonths": 24,
-          "severity": 4,
-          "screening": "Annual echocardiogram"
         },
         {
           "condition": "Osteosarcoma",
@@ -8806,7 +8466,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "MDR1 Drug Sensitivity",
           "onsetAgeMonths": 0,
-          "severity": 4,
+          "severity": 3,
           "screening": "MDR1 genetic test"
         }
       ],
@@ -8835,6 +8495,24 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 12,
           "severity": 2,
           "screening": "Orthopedic exam"
+        },
+        {
+          "condition": "Dental Disease",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Annual dental prophylaxis"
+        },
+        {
+          "condition": "Tracheal Collapse",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "Cervical radiographs; use harness"
+        },
+        {
+          "condition": "Allergies",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Allergy testing"
         }
       ],
       "contraindications": []
@@ -8909,6 +8587,48 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 24,
           "severity": 2,
           "screening": "BCS monitoring"
+        },
+        {
+          "condition": "Hyperlipidemia",
+          "onsetAgeMonths": 48,
+          "severity": 2,
+          "screening": "Annual fasting blood panel (triglycerides/cholesterol)"
+        },
+        {
+          "condition": "Pancreatitis",
+          "onsetAgeMonths": 60,
+          "severity": 2,
+          "screening": "Veterinary exam if persistent vomiting or abdominal pain; low-fat diet as advised"
+        },
+        {
+          "condition": "Urolithiasis",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "Annual urinalysis; encourage water intake"
+        },
+        {
+          "condition": "Schnauzer Comedone Syndrome",
+          "onsetAgeMonths": 24,
+          "severity": 1,
+          "screening": "Skin exam during grooming"
+        },
+        {
+          "condition": "Diabetes Mellitus",
+          "onsetAgeMonths": 72,
+          "severity": 2,
+          "screening": "Watch for increased thirst/urination; blood glucose test if suspected"
+        },
+        {
+          "condition": "Tracheal Collapse",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "Cervical radiographs; use harness"
+        },
+        {
+          "condition": "Allergies",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Allergy testing"
         }
       ],
       "contraindications": []
@@ -8938,7 +8658,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy"
         },
         {
@@ -9049,14 +8769,8 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy at spay/neuter"
-        },
-        {
-          "condition": "Dilated Cardiomyopathy",
-          "onsetAgeMonths": 24,
-          "severity": 4,
-          "screening": "Annual echocardiogram"
         },
         {
           "condition": "Osteosarcoma",
@@ -9106,13 +8820,13 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy at spay/neuter"
         },
         {
           "condition": "Dilated Cardiomyopathy",
           "onsetAgeMonths": 24,
-          "severity": 4,
+          "severity": 3,
           "screening": "Annual echocardiogram"
         },
         {
@@ -9126,6 +8840,30 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 36,
           "severity": 2,
           "screening": "Weight management; orthopedic exam"
+        },
+        {
+          "condition": "Subvalvular Aortic Stenosis",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Cardiac auscultation; echocardiogram if murmur"
+        },
+        {
+          "condition": "Cystinuria",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "Urinalysis; cystinuria DNA test available"
+        },
+        {
+          "condition": "Ectropion",
+          "onsetAgeMonths": 12,
+          "severity": 1,
+          "screening": "Ophthalmic exam"
+        },
+        {
+          "condition": "Entropion",
+          "onsetAgeMonths": 12,
+          "severity": 1,
+          "screening": "Ophthalmic exam"
         }
       ],
       "contraindications": [
@@ -9359,12 +9097,6 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 36,
           "severity": 2,
           "screening": "T4/TSH"
-        },
-        {
-          "condition": "MDR1 Drug Sensitivity",
-          "onsetAgeMonths": 0,
-          "severity": 4,
-          "screening": "MDR1 genetic test"
         }
       ],
       "contraindications": []
@@ -9406,7 +9138,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "MDR1 Drug Sensitivity",
           "onsetAgeMonths": 0,
-          "severity": 4,
+          "severity": 3,
           "screening": "MDR1 genetic test"
         }
       ],
@@ -9648,6 +9380,18 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 36,
           "severity": 3,
           "screening": "Strict spinal care; weight management; ramps"
+        },
+        {
+          "condition": "Degenerative Myelopathy",
+          "onsetAgeMonths": 96,
+          "severity": 3,
+          "screening": "SOD-1 DNA test"
+        },
+        {
+          "condition": "Progressive Retinal Atrophy",
+          "onsetAgeMonths": 60,
+          "severity": 2,
+          "screening": "Annual ophthalmic exam (OFA-CAER); prcd-PRA DNA test"
         }
       ],
       "contraindications": []
@@ -9714,7 +9458,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy"
         },
         {
@@ -10185,12 +9929,6 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 24,
           "severity": 2,
           "screening": "Neurological evaluation"
-        },
-        {
-          "condition": "MDR1 Drug Sensitivity",
-          "onsetAgeMonths": 0,
-          "severity": 4,
-          "screening": "MDR1 genetic test"
         }
       ],
       "contraindications": []
@@ -10345,55 +10083,6 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 3,
           "severity": 3,
           "screening": "Blood glucose monitoring in puppies"
-        }
-      ],
-      "contraindications": []
-    }
-  },
-  {
-    "name": "Portugese Water Dog",
-    "species": "canine",
-    "ideal_weight_min_kg": 20,
-    "ideal_weight_max_kg": 30,
-    "life_expectancy": 12,
-    "senior_classification_age": 8,
-    "alert_rules": {
-      "predispositions": [
-        {
-          "condition": "Hip Dysplasia",
-          "onsetAgeMonths": 18,
-          "severity": 2,
-          "screening": "OFA hip scoring"
-        },
-        {
-          "condition": "Elbow Dysplasia",
-          "onsetAgeMonths": 18,
-          "severity": 2,
-          "screening": "OFA elbow evaluation"
-        },
-        {
-          "condition": "Gastric Dilatation-Volvulus",
-          "onsetAgeMonths": 36,
-          "severity": 3,
-          "screening": "Prophylactic gastropexy discussion"
-        },
-        {
-          "condition": "Osteosarcoma",
-          "onsetAgeMonths": 60,
-          "severity": 3,
-          "screening": "Annual lameness evaluation"
-        },
-        {
-          "condition": "Hypothyroidism",
-          "onsetAgeMonths": 36,
-          "severity": 2,
-          "screening": "T4/TSH"
-        },
-        {
-          "condition": "Exercise-Induced Collapse",
-          "onsetAgeMonths": 12,
-          "severity": 1,
-          "screening": "Genetic test"
         }
       ],
       "contraindications": []
@@ -10598,6 +10287,24 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 36,
           "severity": 2,
           "screening": "CERF exam"
+        },
+        {
+          "condition": "Elbow Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA elbow evaluation"
+        },
+        {
+          "condition": "Osteosarcoma",
+          "onsetAgeMonths": 60,
+          "severity": 3,
+          "screening": "Annual lameness evaluation"
+        },
+        {
+          "condition": "Hypothyroidism",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "T4/TSH"
         }
       ],
       "contraindications": []
@@ -10657,8 +10364,8 @@ export const BREEDS: BreedData[] = [
     "species": "canine",
     "ideal_weight_min_kg": 6,
     "ideal_weight_max_kg": 8,
-    "life_expectancy": 13,
-    "senior_classification_age": 12,
+    "life_expectancy": 12,
+    "senior_classification_age": 9,
     "alert_rules": {
       "predispositions": [
         {
@@ -10688,8 +10395,20 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Brachycephalic Airway Syndrome",
           "onsetAgeMonths": 6,
-          "severity": 4,
+          "severity": 3,
           "screening": "BOAS grading by veterinarian"
+        },
+        {
+          "condition": "Corneal Ulceration",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "Ophthalmic exam if squinting or eye-rubbing; monitor for pigmentary keratitis"
+        },
+        {
+          "condition": "Hemivertebrae",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "Spinal radiographs if hind-end weakness or ataxia"
         }
       ],
       "contraindications": [
@@ -10725,12 +10444,6 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 24,
           "severity": 2,
           "screening": "Neurological evaluation"
-        },
-        {
-          "condition": "MDR1 Drug Sensitivity",
-          "onsetAgeMonths": 0,
-          "severity": 4,
-          "screening": "MDR1 genetic test"
         }
       ],
       "contraindications": []
@@ -10797,7 +10510,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "MDR1 Drug Sensitivity",
           "onsetAgeMonths": 0,
-          "severity": 4,
+          "severity": 3,
           "screening": "MDR1 genetic test"
         }
       ],
@@ -10927,8 +10640,8 @@ export const BREEDS: BreedData[] = [
     "species": "canine",
     "ideal_weight_min_kg": 35,
     "ideal_weight_max_kg": 60,
-    "life_expectancy": 10,
-    "senior_classification_age": 8,
+    "life_expectancy": 9,
+    "senior_classification_age": 7,
     "alert_rules": {
       "predispositions": [
         {
@@ -10946,7 +10659,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy"
         },
         {
@@ -10966,6 +10679,12 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 36,
           "severity": 2,
           "screening": "T4/TSH"
+        },
+        {
+          "condition": "Subvalvular Aortic Stenosis",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Cardiac auscultation; echocardiogram if murmur"
         }
       ],
       "contraindications": []
@@ -11063,7 +10782,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy"
         },
         {
@@ -11106,14 +10825,8 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy at spay/neuter"
-        },
-        {
-          "condition": "Dilated Cardiomyopathy",
-          "onsetAgeMonths": 24,
-          "severity": 4,
-          "screening": "Annual echocardiogram"
         },
         {
           "condition": "Osteosarcoma",
@@ -11338,43 +11051,6 @@ export const BREEDS: BreedData[] = [
     }
   },
   {
-    "name": "Schnauzer (Miniature)",
-    "species": "canine",
-    "ideal_weight_min_kg": 5,
-    "ideal_weight_max_kg": 9,
-    "life_expectancy": 14,
-    "senior_classification_age": 11,
-    "alert_rules": {
-      "predispositions": [
-        {
-          "condition": "Patellar Luxation",
-          "onsetAgeMonths": 12,
-          "severity": 2,
-          "screening": "Orthopedic exam"
-        },
-        {
-          "condition": "Dental Disease",
-          "onsetAgeMonths": 12,
-          "severity": 2,
-          "screening": "Annual dental prophylaxis"
-        },
-        {
-          "condition": "Tracheal Collapse",
-          "onsetAgeMonths": 36,
-          "severity": 2,
-          "screening": "Cervical radiographs; use harness"
-        },
-        {
-          "condition": "Allergies",
-          "onsetAgeMonths": 12,
-          "severity": 2,
-          "screening": "Allergy testing"
-        }
-      ],
-      "contraindications": []
-    }
-  },
-  {
     "name": "Schnauzer (Standard)",
     "species": "canine",
     "ideal_weight_min_kg": 14,
@@ -11497,14 +11173,8 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy at spay/neuter"
-        },
-        {
-          "condition": "Dilated Cardiomyopathy",
-          "onsetAgeMonths": 24,
-          "severity": 4,
-          "screening": "Annual echocardiogram"
         },
         {
           "condition": "Osteosarcoma",
@@ -11551,6 +11221,30 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 24,
           "severity": 2,
           "screening": "BCS monitoring"
+        },
+        {
+          "condition": "Scottie Cramp",
+          "onsetAgeMonths": 6,
+          "severity": 1,
+          "screening": "Veterinary evaluation of episodic stiffness after exercise or excitement"
+        },
+        {
+          "condition": "Von Willebrand Disease",
+          "onsetAgeMonths": 0,
+          "severity": 2,
+          "screening": "vWD DNA/blood screening before major procedures"
+        },
+        {
+          "condition": "Transitional Cell Carcinoma",
+          "onsetAgeMonths": 84,
+          "severity": 3,
+          "screening": "Urinalysis if blood in urine or straining; prompt veterinary exam"
+        },
+        {
+          "condition": "Cushing's Disease",
+          "onsetAgeMonths": 96,
+          "severity": 2,
+          "screening": "Veterinary exam for increased thirst and urination; blood tests if suspected"
         }
       ],
       "contraindications": []
@@ -11716,7 +11410,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "MDR1 Drug Sensitivity",
           "onsetAgeMonths": 0,
-          "severity": 4,
+          "severity": 3,
           "screening": "MDR1 genetic DNA test"
         },
         {
@@ -11724,6 +11418,18 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 3,
           "severity": 2,
           "screening": "Ophthalmic screening"
+        },
+        {
+          "condition": "Degenerative Myelopathy",
+          "onsetAgeMonths": 96,
+          "severity": 3,
+          "screening": "SOD-1 DNA test"
+        },
+        {
+          "condition": "Dermatomyositis",
+          "onsetAgeMonths": 6,
+          "severity": 2,
+          "screening": "Veterinary skin exam; note family history"
         }
       ],
       "contraindications": [
@@ -11810,8 +11516,26 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Brachycephalic Airway Syndrome",
           "onsetAgeMonths": 6,
-          "severity": 4,
+          "severity": 3,
           "screening": "BOAS grading by veterinarian"
+        },
+        {
+          "condition": "Corneal Ulceration",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Ophthalmic exam if squinting or eye-rubbing"
+        },
+        {
+          "condition": "Keratoconjunctivitis Sicca",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "Ophthalmic exam; tear test if redness or discharge"
+        },
+        {
+          "condition": "Intervertebral Disc Disease",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Spinal radiographs; avoid jumping"
         }
       ],
       "contraindications": [
@@ -11872,6 +11596,30 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 24,
           "severity": 2,
           "screening": "BCS monitoring"
+        },
+        {
+          "condition": "Hereditary Cataracts",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "Annual ophthalmic exam (OFA-CAER)"
+        },
+        {
+          "condition": "Corneal Dystrophy",
+          "onsetAgeMonths": 24,
+          "severity": 1,
+          "screening": "Ophthalmic exam"
+        },
+        {
+          "condition": "Glaucoma",
+          "onsetAgeMonths": 48,
+          "severity": 2,
+          "screening": "Ophthalmic exam; eye-pressure check if redness or pain"
+        },
+        {
+          "condition": "Zinc-Responsive Dermatosis",
+          "onsetAgeMonths": 24,
+          "severity": 1,
+          "screening": "Skin exam; veterinary-guided zinc supplementation trial"
         }
       ],
       "contraindications": []
@@ -12151,6 +11899,18 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 36,
           "severity": 2,
           "screening": "T4/TSH"
+        },
+        {
+          "condition": "Protein-Losing Enteropathy",
+          "onsetAgeMonths": 48,
+          "severity": 2,
+          "screening": "Annual urinalysis including UPC ratio; veterinary exam if diarrhea or weight loss"
+        },
+        {
+          "condition": "Protein-Losing Nephropathy",
+          "onsetAgeMonths": 48,
+          "severity": 2,
+          "screening": "Annual urinalysis including UPC ratio; veterinary exam if increased thirst or weight loss"
         }
       ],
       "contraindications": []
@@ -12180,7 +11940,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy"
         },
         {
@@ -12266,7 +12026,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy"
         },
         {
@@ -12329,49 +12089,6 @@ export const BREEDS: BreedData[] = [
     }
   },
   {
-    "name": "Spino",
-    "species": "canine",
-    "ideal_weight_min_kg": 28,
-    "ideal_weight_max_kg": 37,
-    "life_expectancy": 12,
-    "senior_classification_age": 8,
-    "alert_rules": {
-      "predispositions": [
-        {
-          "condition": "Hip Dysplasia",
-          "onsetAgeMonths": 18,
-          "severity": 2,
-          "screening": "OFA hip scoring"
-        },
-        {
-          "condition": "Elbow Dysplasia",
-          "onsetAgeMonths": 18,
-          "severity": 2,
-          "screening": "OFA elbow evaluation"
-        },
-        {
-          "condition": "Gastric Dilatation-Volvulus",
-          "onsetAgeMonths": 36,
-          "severity": 3,
-          "screening": "Prophylactic gastropexy discussion"
-        },
-        {
-          "condition": "Osteosarcoma",
-          "onsetAgeMonths": 60,
-          "severity": 3,
-          "screening": "Annual lameness evaluation"
-        },
-        {
-          "condition": "Hypothyroidism",
-          "onsetAgeMonths": 36,
-          "severity": 2,
-          "screening": "T4/TSH"
-        }
-      ],
-      "contraindications": []
-    }
-  },
-  {
     "name": "Spinone Italiano",
     "species": "canine",
     "ideal_weight_min_kg": 28,
@@ -12397,37 +12114,12 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 36,
           "severity": 3,
           "screening": "Gastropexy"
-        }
-      ],
-      "contraindications": []
-    }
-  },
-  {
-    "name": "Spotting Hound",
-    "species": "canine",
-    "ideal_weight_min_kg": 18,
-    "ideal_weight_max_kg": 30,
-    "life_expectancy": 12,
-    "senior_classification_age": 10,
-    "alert_rules": {
-      "predispositions": [
-        {
-          "condition": "Hip Dysplasia",
-          "onsetAgeMonths": 18,
-          "severity": 2,
-          "screening": "OFA hip scoring"
         },
         {
           "condition": "Elbow Dysplasia",
           "onsetAgeMonths": 18,
           "severity": 2,
           "screening": "OFA elbow evaluation"
-        },
-        {
-          "condition": "Gastric Dilatation-Volvulus",
-          "onsetAgeMonths": 36,
-          "severity": 3,
-          "screening": "Prophylactic gastropexy discussion"
         },
         {
           "condition": "Osteosarcoma",
@@ -12477,6 +12169,18 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 12,
           "severity": 2,
           "screening": "Orthopedic exam"
+        },
+        {
+          "condition": "L-2-Hydroxyglutaric Aciduria",
+          "onsetAgeMonths": 24,
+          "severity": 3,
+          "screening": "L-2-HGA DNA test; veterinary neurologic exam if seizures"
+        },
+        {
+          "condition": "Distichiasis",
+          "onsetAgeMonths": 12,
+          "severity": 1,
+          "screening": "Ophthalmic exam"
         }
       ],
       "contraindications": []
@@ -12822,14 +12526,8 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy at spay/neuter"
-        },
-        {
-          "condition": "Dilated Cardiomyopathy",
-          "onsetAgeMonths": 24,
-          "severity": 4,
-          "screening": "Annual echocardiogram"
         },
         {
           "condition": "Osteosarcoma",
@@ -12910,37 +12608,6 @@ export const BREEDS: BreedData[] = [
     }
   },
   {
-    "name": "Tolling Retriever",
-    "species": "canine",
-    "ideal_weight_min_kg": 16,
-    "ideal_weight_max_kg": 23,
-    "life_expectancy": 13,
-    "senior_classification_age": 10,
-    "alert_rules": {
-      "predispositions": [
-        {
-          "condition": "Hip Dysplasia",
-          "onsetAgeMonths": 18,
-          "severity": 2,
-          "screening": "OFA hip scoring"
-        },
-        {
-          "condition": "Obesity",
-          "onsetAgeMonths": 24,
-          "severity": 2,
-          "screening": "BCS monitoring"
-        },
-        {
-          "condition": "Hypothyroidism",
-          "onsetAgeMonths": 36,
-          "severity": 2,
-          "screening": "T4/TSH"
-        }
-      ],
-      "contraindications": []
-    }
-  },
-  {
     "name": "Tosa",
     "species": "canine",
     "ideal_weight_min_kg": 40,
@@ -12964,7 +12631,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy"
         },
         {
@@ -13232,6 +12899,36 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 36,
           "severity": 3,
           "screening": "Prophylactic gastropexy discussion"
+        },
+        {
+          "condition": "Lymphoma",
+          "onsetAgeMonths": 72,
+          "severity": 3,
+          "screening": "Veterinary exam of any persistently swollen lymph nodes"
+        },
+        {
+          "condition": "Hemangiosarcoma",
+          "onsetAgeMonths": 72,
+          "severity": 3,
+          "screening": "Prompt veterinary assessment of unexplained weakness or abdominal swelling"
+        },
+        {
+          "condition": "Epilepsy",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "Veterinary neurologic exam if seizures"
+        },
+        {
+          "condition": "Atopic Dermatitis",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "Veterinary skin exam; manage itching early"
+        },
+        {
+          "condition": "Hypothyroidism",
+          "onsetAgeMonths": 48,
+          "severity": 2,
+          "screening": "T4/TSH blood test"
         }
       ],
       "contraindications": []
@@ -13269,49 +12966,6 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 3,
           "severity": 3,
           "screening": "Blood glucose monitoring in puppies"
-        }
-      ],
-      "contraindications": []
-    }
-  },
-  {
-    "name": "Walloon Shepherd Dog",
-    "species": "canine",
-    "ideal_weight_min_kg": 20,
-    "ideal_weight_max_kg": 32,
-    "life_expectancy": 13,
-    "senior_classification_age": 8,
-    "alert_rules": {
-      "predispositions": [
-        {
-          "condition": "Hip Dysplasia",
-          "onsetAgeMonths": 18,
-          "severity": 2,
-          "screening": "OFA hip scoring"
-        },
-        {
-          "condition": "Elbow Dysplasia",
-          "onsetAgeMonths": 18,
-          "severity": 2,
-          "screening": "OFA elbow evaluation"
-        },
-        {
-          "condition": "Gastric Dilatation-Volvulus",
-          "onsetAgeMonths": 36,
-          "severity": 3,
-          "screening": "Prophylactic gastropexy discussion"
-        },
-        {
-          "condition": "Osteosarcoma",
-          "onsetAgeMonths": 60,
-          "severity": 3,
-          "screening": "Annual lameness evaluation"
-        },
-        {
-          "condition": "Hypothyroidism",
-          "onsetAgeMonths": 36,
-          "severity": 2,
-          "screening": "T4/TSH"
         }
       ],
       "contraindications": []
@@ -13427,8 +13081,8 @@ export const BREEDS: BreedData[] = [
     "species": "canine",
     "ideal_weight_min_kg": 6,
     "ideal_weight_max_kg": 9,
-    "life_expectancy": 14,
-    "senior_classification_age": 11,
+    "life_expectancy": 13,
+    "senior_classification_age": 10,
     "alert_rules": {
       "predispositions": [
         {
@@ -13460,6 +13114,18 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 96,
           "severity": 2,
           "screening": "Thoracic radiographs"
+        },
+        {
+          "condition": "Atopic Dermatitis",
+          "onsetAgeMonths": 24,
+          "severity": 2,
+          "screening": "Veterinary skin exam; manage itching early"
+        },
+        {
+          "condition": "Legg-Calve-Perthes Disease",
+          "onsetAgeMonths": 12,
+          "severity": 2,
+          "screening": "Orthopedic exam; radiographs if hind-limb lameness"
         }
       ],
       "contraindications": []
@@ -13852,95 +13518,6 @@ export const BREEDS: BreedData[] = [
     }
   },
   {
-    "name": "Zaupal Hound",
-    "species": "canine",
-    "ideal_weight_min_kg": 18,
-    "ideal_weight_max_kg": 28,
-    "life_expectancy": 12,
-    "senior_classification_age": 10,
-    "alert_rules": {
-      "predispositions": [
-        {
-          "condition": "Hip Dysplasia",
-          "onsetAgeMonths": 18,
-          "severity": 2,
-          "screening": "OFA hip scoring"
-        },
-        {
-          "condition": "Obesity",
-          "onsetAgeMonths": 24,
-          "severity": 2,
-          "screening": "BCS monitoring"
-        },
-        {
-          "condition": "Hypothyroidism",
-          "onsetAgeMonths": 36,
-          "severity": 2,
-          "screening": "T4/TSH"
-        },
-        {
-          "condition": "Ear Infections",
-          "onsetAgeMonths": 6,
-          "severity": 1,
-          "screening": "Weekly ear cleaning"
-        }
-      ],
-      "contraindications": []
-    }
-  },
-  {
-    "name": "German Shepherd",
-    "species": "canine",
-    "ideal_weight_min_kg": 30,
-    "ideal_weight_max_kg": 40,
-    "life_expectancy": 11,
-    "senior_classification_age": 8,
-    "alert_rules": {
-      "predispositions": [
-        {
-          "condition": "Hip Dysplasia",
-          "onsetAgeMonths": 18,
-          "severity": 2,
-          "screening": "OFA hip scoring"
-        },
-        {
-          "condition": "Elbow Dysplasia",
-          "onsetAgeMonths": 18,
-          "severity": 2,
-          "screening": "OFA elbow evaluation"
-        },
-        {
-          "condition": "Degenerative Myelopathy",
-          "onsetAgeMonths": 72,
-          "severity": 3,
-          "screening": "DNA test for SOD-1 mutation"
-        },
-        {
-          "condition": "Gastric Dilatation-Volvulus",
-          "onsetAgeMonths": 36,
-          "severity": 3,
-          "screening": "Prophylactic gastropexy discussion"
-        },
-        {
-          "condition": "MDR1 Drug Sensitivity",
-          "onsetAgeMonths": 0,
-          "severity": 3,
-          "screening": "MDR1 genetic DNA test"
-        },
-        {
-          "condition": "Exocrine Pancreatic Insufficiency",
-          "onsetAgeMonths": 12,
-          "severity": 2,
-          "screening": "TLI blood test if symptoms"
-        }
-      ],
-      "contraindications": [
-        "Avoid elevated feeding (bloat risk); avoid strenuous exercise 1hr before/after meals",
-        "MDR1 mutation risk: Carry up to 10% carrier frequency. Avoid high-dose ivermectin/loperamide unless genetically cleared."
-      ]
-    }
-  },
-  {
     "name": "Doberman Pinscher",
     "species": "canine",
     "ideal_weight_min_kg": 30,
@@ -13964,7 +13541,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Gastric Dilatation-Volvulus",
           "onsetAgeMonths": 12,
-          "severity": 4,
+          "severity": 3,
           "screening": "Prophylactic gastropexy"
         },
         {
@@ -13976,7 +13553,7 @@ export const BREEDS: BreedData[] = [
         {
           "condition": "Dilated Cardiomyopathy",
           "onsetAgeMonths": 36,
-          "severity": 4,
+          "severity": 3,
           "screening": "Annual echocardiogram + Holter monitoring"
         },
         {
@@ -14035,6 +13612,36 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 36,
           "severity": 2,
           "screening": "Annual urinalysis + BUN/Creatinine"
+        },
+        {
+          "condition": "Hip Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA hip scoring"
+        },
+        {
+          "condition": "Elbow Dysplasia",
+          "onsetAgeMonths": 18,
+          "severity": 2,
+          "screening": "OFA elbow evaluation"
+        },
+        {
+          "condition": "Gastric Dilatation-Volvulus",
+          "onsetAgeMonths": 36,
+          "severity": 3,
+          "screening": "Prophylactic gastropexy discussion"
+        },
+        {
+          "condition": "Osteosarcoma",
+          "onsetAgeMonths": 60,
+          "severity": 3,
+          "screening": "Annual lameness evaluation"
+        },
+        {
+          "condition": "Hypothyroidism",
+          "onsetAgeMonths": 36,
+          "severity": 2,
+          "screening": "T4/TSH"
         }
       ]
     }
