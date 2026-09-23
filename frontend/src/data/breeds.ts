@@ -6301,6 +6301,12 @@ export const BREEDS: BreedData[] = [
           "onsetAgeMonths": 6,
           "severity": 2,
           "screening": "Radiographs during growth"
+        },
+        {
+          "condition": "Cervical Vertebral Instability",
+          "onsetAgeMonths": 24,
+          "severity": 3,
+          "screening": "Neurological exam; MRI if ataxia"
         }
       ],
       "contraindications": []
