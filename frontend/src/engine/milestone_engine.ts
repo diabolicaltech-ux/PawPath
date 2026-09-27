@@ -12,8 +12,7 @@ export enum CanineLifeStage {
   JUNIOR = 'Junior',
   ADULT = 'Adult',
   MATURE_ADULT = 'Mature Adult',
-  SENIOR = 'Senior',
-  END_OF_LIFE = 'End-of-Life'
+  SENIOR = 'Senior'
 }
 
 
@@ -36,7 +35,9 @@ export function getCanineLifeStage(ageYears: number, weightKg: number): CanineLi
   else if (weightKg <= 40) seniorAge = 8;
   else seniorAge = 6;
 
-  if (ageYears >= seniorAge + 2) return CanineLifeStage.END_OF_LIFE;
+  // No deterministic "End-of-Life" stage: dogs past senior age remain "Senior".
+  // Advanced-senior care is surfaced through gentle language elsewhere, never as
+  // an automatic life-stage label.
   if (ageYears >= seniorAge) return CanineLifeStage.SENIOR;
   if (ageYears >= 7) return CanineLifeStage.MATURE_ADULT;
   
@@ -63,14 +64,28 @@ export interface VaccinationRecord {
 }
 
 /**
- * Checks for missed vaccination windows
+ * Checks for missed vaccination windows.
+ *
+ * Only emits alarm copy when grounded in logged records: an empty record list
+ * returns a single neutral note (never "MISSING CORE VACCINE"), and a generic
+ * "Core vaccines" record (from onboarding) covers both core vaccines.
  */
 export function checkVaccinationStatus(species: Species, records: VaccinationRecord[]): string[] {
+  if (!records || records.length === 0) {
+    return ['No vaccination records yet — add them to track boosters.'];
+  }
+
+  const hasCoreVaccinesRecord = records.some(r =>
+    r.vaccineName.toLowerCase().replace(/[^a-z]/g, '') === 'corevaccines'
+  );
+  if (hasCoreVaccinesRecord) {
+    return [];
+  }
+
   const alerts: string[] = [];
   const now = new Date();
   
   // Rulebook §2.3: Flag if core-vaccine window missed by >6 months
-  // This is a simplified check for the demo
   const coreVaccines = ['DHPP', 'Rabies'];
   
   coreVaccines.forEach(vaxName => {
@@ -126,14 +141,19 @@ export function generateMilestones(input: MilestoneInput): Milestone[] {
   // 1. Core vaccine milestones
   const coreVaccines = ['DHPP', 'Rabies'];
   const existingVaxNames = (input.existingVaccinations || []).map(v => v.vaccineName);
+  const hasCoreVaccinesRecord = existingVaxNames.some(n =>
+    n.toLowerCase().replace(/[^a-z]/g, '') === 'corevaccines'
+  );
   
   coreVaccines.forEach(vaxName => {
-    if (!existingVaxNames.includes(vaxName)) {
+    if (!existingVaxNames.includes(vaxName) && !hasCoreVaccinesRecord) {
       milestones.push({
         id: `vax-core-${vaxName}`,
         name: `${vaxName} Vaccine`,
         type: 'Vaccine',
-        due: ageMonths < 6 ? 'Now (puppy series)' : ageMonths < 18 ? 'Due soon' : 'Overdue',
+        // Keep schedule info; with no record, label it neutrally ("Not recorded")
+        // instead of the false "Overdue" claim.
+        due: ageMonths < 6 ? 'Now (puppy series)' : ageMonths < 18 ? 'Due soon' : 'Not recorded',
         description: `${vaxName} core vaccination. Essential for canine health.`,
       });
     }
@@ -192,10 +212,6 @@ export function generateMilestones(input: MilestoneInput): Milestone[] {
       { id: 'senior-wellness', name: 'Senior Wellness Exam', description: 'Comprehensive senior health assessment with bloodwork and urinalysis.' },
       { id: 'senior-dental', name: 'Senior Dental Cleaning', description: 'Dental cleaning with senior-safe anesthesia protocol.' },
       { id: 'joint-health', name: 'Joint Health Assessment', description: 'Evaluate for arthritis and mobility issues.' },
-    ],
-    'End-of-Life': [
-      { id: 'palliative-care', name: 'Comfort & Quality-of-Life Consultation', description: 'Discuss comfort, quality of life, and supportive-care options with your veterinarian.' },
-      { id: 'hospice-planning', name: 'Advanced Senior Care Planning', description: 'Discuss comfort-focused care and supportive options with your veterinarian as your pet’s needs change.' },
     ],
 
 

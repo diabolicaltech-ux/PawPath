@@ -28,7 +28,7 @@ import {
   EyeOff,
   Clock
 } from 'lucide-react';
-import { calculateMER } from '../engine/metabolic_engine';
+import { calculateMER, estimateIdealWeightKg } from '../engine/metabolic_engine';
 import { getLifeStage, checkVaccinationStatus, generateMilestones } from '../engine/milestone_engine';
 import type { Milestone } from '../engine/milestone_engine';
 import { evaluateAlerts } from '../engine/alert_engine';
@@ -415,14 +415,28 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
   };
 
   // Real calculations
+  // Ideal-weight estimate = mean of each listed breed's ideal-weight range
+  // midpoint (an estimate, not a clinical target). Used as the RER base when the
+  // dog is a weight-loss target (BCS >= 7, i.e. overweight/obese).
+  const idealWeightBreeds = (pet.breeds && pet.breeds.length > 0
+    ? pet.breeds.map(bs => bs.breed)
+    : (pet.breed ? [pet.breed] : []))
+    .map(name => BREEDS.find(b => b.name === name))
+    .filter((b): b is NonNullable<typeof b> => b !== undefined);
+
+  const idealWeightKg = estimateIdealWeightKg(idealWeightBreeds);
+  const isWeightLossTarget = (pet.bcs ?? 0) >= 7;
+
   const mer = calculateMER({
     species: pet.species,
     weightKg: currentWeight,
+    idealWeightKg,
     isNeutered: pet.isNeutered,
     activityLevel: pet.activityLevel,
     workingDogMultiplier: pet.workingDogMultiplier,
     lifeStage: 'adult',
-    bcsScore: pet.bcs
+    bcsScore: pet.bcs,
+    isWeightLossTarget,
   });
 
   const lifeStage = getLifeStage({
@@ -467,6 +481,26 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
     .map(name => BREEDS.find(b => b.name === name))
     .filter((b): b is NonNullable<typeof b> => b !== undefined);
 
+  // Wire the pet's actually-logged records into the engine calls so alerts and
+  // milestones reflect the user's real history instead of always-empty placeholders.
+  const clinicalEvents = (pet.completedScreenings || []).map(s => ({
+    date: new Date(),
+    eventType: 'screening',
+    details: { condition: s.screeningType, screeningType: s.screeningType },
+  }));
+
+  const vaccinationRecords = (pet.vaccinations || [])
+    .filter(v => v.status === 'recorded' && v.dateAdministered)
+    .map(v => ({
+      vaccineName: v.vaccineName,
+      dateAdministered: new Date(v.dateAdministered as string),
+      isCore: v.isCore,
+    }));
+
+  const screeningRecords = (pet.completedScreenings || []).map(s => ({
+    screeningType: s.screeningType,
+  }));
+
   const activeAlerts = evaluateAlerts({
     id: 'temp',
     name: pet.name,
@@ -475,10 +509,10 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
     breed: selectedBreed as any,
     breeds: allBreedObjs.length > 0 ? allBreedObjs as any : undefined,
     healthLogs: [{ date: new Date(), weightKg: currentWeight, bcsScore: pet.bcs }],
-    clinicalEvents: []
+    clinicalEvents,
   });
 
-  const vaxAlerts = checkVaccinationStatus(pet.species, []);
+  const vaxAlerts = checkVaccinationStatus(pet.species, vaccinationRecords);
 
   // Filter alerts based on dismissed/hidden/postponed status
   const filteredAlerts = activeAlerts.filter(a => shouldShowAlert(a.condition));
@@ -502,8 +536,8 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
       onsetAgeMonths: r.onsetAgeMonths,
       screeningRecommendation: r.screeningRecommendation || r.screening || '',
     })),
-    existingVaccinations: [],
-    existingScreenings: [],
+    existingVaccinations: vaccinationRecords,
+    existingScreenings: screeningRecords,
   });
 
   // Filter milestones based on status
@@ -1580,6 +1614,12 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
                   <span className="text-xs text-dark-muted">Body Condition</span>
                   <span className="text-xs font-medium text-dark">{pet.bcs} / 9</span>
                 </div>
+                {isWeightLossTarget && idealWeightKg != null && (
+                  <div className="flex justify-between py-1.5 px-3 bg-surface-alt rounded-lg">
+                    <span className="text-xs text-dark-muted">Ideal weight (breed-range estimate)</span>
+                    <span className="text-xs font-medium text-dark">{formatWeightWithUnit(idealWeightKg, unit)}</span>
+                  </div>
+                )}
                 <div className="flex justify-between py-1.5 px-3 bg-primary-light rounded-lg border border-primary-light">
                   <span className="text-xs font-bold text-primary-dark">RER × Multiplier</span>
                   <span className="text-xs font-bold text-primary-dark">{Math.round(mer)} kcal/day</span>

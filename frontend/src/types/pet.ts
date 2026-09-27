@@ -56,6 +56,25 @@ export function formatBreeds(breeds?: BreedSelection[]): string {
   return breeds.map(b => b.breed).join(' / ');
 }
 
+/**
+ * Toggle a generic "Core vaccines" record (the onboarding "Core Vaccines
+ * Up-to-Date?" switch). Adds the record when absent, removes it when present.
+ * `dateAdministered` is the onboarding date (approximate). Returns a new array.
+ */
+export function toggleCoreVaccinesRecord(
+  vaccinations: VaccinationRecord[],
+  dateAdministered: string,
+): VaccinationRecord[] {
+  const existing = vaccinations.some(v => v.vaccineName === 'Core vaccines');
+  if (existing) {
+    return vaccinations.filter(v => v.vaccineName !== 'Core vaccines');
+  }
+  return [
+    ...vaccinations,
+    { vaccineName: 'Core vaccines', isCore: true, status: 'recorded', dateAdministered },
+  ];
+}
+
 export interface PetProfile {
   /** Unique identifier for multi-pet support */
   id?: string;
