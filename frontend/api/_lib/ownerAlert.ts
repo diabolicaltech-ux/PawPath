@@ -5,7 +5,9 @@ import { ensureSchema } from './schema.js';
 // admin surface. Two jobs relative to the 404 the caller returns:
 //   1. ALWAYS record the attempt in audit_events (the durable record).
 //   2. Email the owner, rate-limited to once per user per 24h, so a curious
-//      user cannot flood the owner's inbox.
+//      user cannot flood the owner's inbox. The rate-limit marker is written
+//      only AFTER a send actually succeeds, so a dropped send is retried on the
+//      next attempt instead of silencing the owner for 24h.
 //
 // It never throws: the caller returns 404 regardless of DB or email health.
 // Emails are disabled until RESEND_API_KEY is set in the Vercel environment; the
@@ -128,13 +130,19 @@ export async function recordDeniedAdminAttempt(
       [account.id],
     );
     if (recent.rowCount === 0) {
+      // Send BEFORE recording the cooldown marker. The marker's only job is to
+      // suppress duplicates, so writing it first meant one dropped send (Resend
+      // error, timeout, misconfiguration) bought the visitor a silent 24h — the
+      // alert the owner relies on would be skipped and never retried. Sending
+      // first means a failed send leaves no marker, so the next attempt tries
+      // again. The send is bounded (3s abort inside sendAlertEmail) and this
+      // helper never throws, so the caller still returns its 404 promptly.
+      const sent = await sendEmail(meta);
+      if (!sent) return; // no notification went out: leave the cooldown open
       await client.query(
         `INSERT INTO audit_events (actor_account_id, action, metadata) VALUES ($1, $2, $3)`,
         [account.id, 'admin.access_denied_email', JSON.stringify({ ip: meta.ip, user_agent: meta.user_agent })],
       );
-      // Fire-and-forget in production: a slow/missing email API must never delay
-      // the 404. Tests inject a synchronous spy so the send is observable.
-      void sendEmail(meta);
     }
   } catch {
     /* best effort — never fail the 404 */

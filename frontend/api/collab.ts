@@ -3,12 +3,19 @@ import { Pool } from 'pg';
 import { resolveIdentity } from './_lib/identity.js';
 import { ensureSchema } from './_lib/schema.js';
 import { isOwnerEmail } from './_lib/owner.js';
-const pool = process.env.DATABASE_URL ? new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false }, max: 2 }) : null;
-export default async function handler(req: VercelRequest, res: VercelResponse) {
-  if (!pool) return res.status(503).json({ error: 'DATABASE_NOT_CONFIGURED' });
+const pool: Pool | null = process.env.DATABASE_URL ? new Pool({ connectionString: process.env.DATABASE_URL, ssl: { rejectUnauthorized: false }, max: 2 }) : null;
+
+/**
+ * The collab handler, with its database injectable so the ownership rules can be
+ * exercised against a real engine in-process (see `db/collab-ownership.test.ts`).
+ * Production reaches this through the default export below, always wired to the
+ * pooled connection, so the injectable parameter is never client-reachable.
+ */
+export async function handleCollab(req: VercelRequest, res: VercelResponse, db: Pool | null = pool) {
+  if (!db) return res.status(503).json({ error: 'DATABASE_NOT_CONFIGURED' });
   try {
     const user = await resolveIdentity(req);
-    const client = await pool.connect();
+    const client = await db.connect();
     try {
       // Self-provision the schema on first use (idempotent), so a fresh Neon
       // database works without a manual migration step.
@@ -56,8 +63,21 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         const pet = petId
           ? (await client.query(`INSERT INTO pets (id,owner_account_id,name,payload) VALUES ($1,$2,$3,$4)
               ON CONFLICT (id) DO UPDATE SET name=EXCLUDED.name,payload=EXCLUDED.payload,updated_at=now()
+              WHERE pets.owner_account_id = EXCLUDED.owner_account_id
               RETURNING id,name,payload`, [petId, account.id, body.name, body.payload || {}])).rows[0]
           : (await client.query(`INSERT INTO pets (owner_account_id,name,payload) VALUES ($1,$2,$3) RETURNING id,name,payload`, [account.id, body.name, body.payload || {}])).rows[0];
+        if (!pet) {
+          // The ownership predicate above makes DO UPDATE a no-op when the
+          // conflicting row belongs to a different account, so no row comes
+          // back. Without that predicate, naming someone else's pet id here
+          // overwrote their record and then handed the caller an 'owner'
+          // membership on it — a cross-account write and read escalation.
+          // Refuse without touching the row and without creating a membership.
+          // 404 rather than 403, matching the scoped PUT/DELETE paths, so the
+          // response cannot be used to probe whether an id exists elsewhere.
+          await client.query('ROLLBACK');
+          return res.status(404).json({error:'PET_NOT_FOUND'});
+        }
         await client.query('INSERT INTO pet_memberships (pet_id,account_id,role) VALUES ($1,$2,\'owner\') ON CONFLICT DO NOTHING',[pet.id,account.id]);
         await client.query('INSERT INTO audit_events (actor_account_id,pet_id,action,metadata) VALUES ($1,$2,\'pet.created\',$3)',[account.id,pet.id,JSON.stringify({name:pet.name})]);
         await client.query('COMMIT'); return res.status(201).json({pet,role:'owner'});
@@ -65,4 +85,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       await client.query('ROLLBACK'); return res.status(405).json({error:'METHOD_NOT_ALLOWED'});
     } finally { client.release(); }
   } catch (e) { const code = e instanceof Error && e.message==='AUTH_REQUIRED' ? 401 : e instanceof Error && e.message==='AUTH_INVALID' ? 403 : 500; return res.status(code).json({error: e instanceof Error ? e.message : 'INTERNAL_ERROR'}); }
+}
+
+export default function handler(req: VercelRequest, res: VercelResponse) {
+  return handleCollab(req, res);
 }
