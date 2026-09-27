@@ -129,3 +129,17 @@ export function calculateMER(input: MetabolicInput): number {
 
   return mer;
 }
+
+/**
+ * Estimate an ideal body weight as the mean of each breed's ideal-weight range
+ * midpoint. For mixed-breed profiles, pass every listed breed and the result is
+ * the average across breeds. Returns undefined when no ranges are available.
+ * This is an estimate (breed-range midpoint), not a clinical target.
+ */
+export function estimateIdealWeightKg(
+  breeds: { ideal_weight_min_kg: number; ideal_weight_max_kg: number }[],
+): number | undefined {
+  if (!breeds || breeds.length === 0) return undefined;
+  const midpoints = breeds.map(b => (b.ideal_weight_min_kg + b.ideal_weight_max_kg) / 2);
+  return midpoints.reduce((sum, m) => sum + m, 0) / midpoints.length;
+}

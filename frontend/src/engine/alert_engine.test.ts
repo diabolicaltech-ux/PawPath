@@ -20,21 +20,26 @@ const basePet = () => ({
       contraindications: [],
     },
   },
-  // Old enough to be well past onset+6 months → would fire "Missed Screening" if unscreened.
+  // Old enough to be well past onset+6 months → the "past window" branch.
   dateOfBirth: new Date('2015-01-01'),
   healthLogs: [],
   clinicalEvents: [] as { date: Date; eventType: string; details: any }[],
 });
 
 describe('evaluateAlerts screening grounding', () => {
-  test('fires a missed-screening alert when no matching screening event exists', () => {
+  test('reframes past-window screening as a recommendation, not a missed-screening alarm', () => {
     const alerts = evaluateAlerts(basePet());
-    expect(
-      alerts.some(a => a.label === 'Missed Screening' && a.condition === 'Hip Dysplasia'),
-    ).toBe(true);
+    // No "Missed Screening" alarm copy anywhere.
+    expect(alerts.some(a => a.label === 'Missed Screening')).toBe(false);
+    // A non-alarmist recommendation is present instead (ADVISORY, not WARNING).
+    const rec = alerts.find(a => a.condition === 'Hip Dysplasia');
+    expect(rec).toBeDefined();
+    expect(rec!.severity).toBe(AlertSeverity.ADVISORY);
+    expect(rec!.label).toBe('Screening Recommended');
+    expect(rec!.message).not.toMatch(/missed|immediate|Very Important/i);
   });
 
-  test('clears the missed-screening alert when a matching screening event exists', () => {
+  test('clears the screening recommendation when a matching screening event exists', () => {
     const pet = basePet();
     pet.clinicalEvents = [
       {
@@ -44,8 +49,6 @@ describe('evaluateAlerts screening grounding', () => {
       },
     ];
     const alerts = evaluateAlerts(pet);
-    expect(
-      alerts.some(a => a.label === 'Missed Screening' && a.condition === 'Hip Dysplasia'),
-    ).toBe(false);
+    expect(alerts.some(a => a.condition === 'Hip Dysplasia')).toBe(false);
   });
 });

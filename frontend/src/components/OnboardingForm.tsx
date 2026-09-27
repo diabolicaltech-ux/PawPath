@@ -6,6 +6,7 @@ import { Scale, ChevronRight, ChevronLeft,
 import { calculateMER, Species } from '../engine/metabolic_engine';
 import { getLifeStage } from '../engine/milestone_engine';
 import { evaluateAlerts } from '../engine/alert_engine';
+import { toggleCoreVaccinesRecord } from '../types/pet';
 import type { PetProfile, MedicalHistoryEntry } from '../types/pet';
 import type { BreedData } from '../data/breeds';
 import { BREEDS } from '../data/breeds';
@@ -773,10 +774,13 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({ onComplete, initialData
                   <span className="text-sm font-medium">Core Vaccines Up-to-Date?</span>
                 </div>
                 <button
-                  onClick={() => setPetData({ ...petData, hasRecentBloodwork: !petData.hasRecentBloodwork })}
-                  className={`w-12 h-6 rounded-full relative transition-all ${petData.hasRecentBloodwork ? 'bg-blue-600' : 'bg-bd-light'}`}
+                  onClick={() => setPetData({
+                    ...petData,
+                    vaccinations: toggleCoreVaccinesRecord(petData.vaccinations, new Date().toISOString().split('T')[0]),
+                  })}
+                  className={`w-12 h-6 rounded-full relative transition-all ${petData.vaccinations.some(v => v.vaccineName === 'Core vaccines') ? 'bg-blue-600' : 'bg-bd-light'}`}
                 >
-                  <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${petData.hasRecentBloodwork ? 'right-1' : 'left-1'}`} />
+                  <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-all ${petData.vaccinations.some(v => v.vaccineName === 'Core vaccines') ? 'right-1' : 'left-1'}`} />
                 </button>
               </div>
               <div className="grid grid-cols-1 gap-2">

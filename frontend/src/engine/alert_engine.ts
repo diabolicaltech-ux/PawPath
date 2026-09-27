@@ -175,11 +175,12 @@ export function evaluateAlerts(pet: Pet): Alert[] {
           condition: risk.condition
         });
       } else if (ageInMonths >= risk.onsetAgeMonths + 6) {
-        // 5. Missed Screening Alert (§3.3 #5)
+        // Past the typical onset window with no screening recorded. Reframe as a
+        // recommendation (age/breed-grounded) rather than a "missed" alarm.
         alerts.push({
-          severity: AlertSeverity.WARNING,
-          label: 'Missed Screening',
-          message: `Very Important: Missed screening window for ${risk.condition} (${risk.breedName}). Immediate veterinary consultation recommended.`,
+          severity: AlertSeverity.ADVISORY,
+          label: 'Screening Recommended',
+          message: `${risk.breedName}s are predisposed to ${risk.condition}. ${risk.screeningRecommendation || 'Screening'} is recommended — ask your veterinarian about timing.`,
           condition: risk.condition
         });
       } else {

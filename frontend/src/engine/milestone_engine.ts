@@ -64,14 +64,28 @@ export interface VaccinationRecord {
 }
 
 /**
- * Checks for missed vaccination windows
+ * Checks for missed vaccination windows.
+ *
+ * Only emits alarm copy when grounded in logged records: an empty record list
+ * returns a single neutral note (never "MISSING CORE VACCINE"), and a generic
+ * "Core vaccines" record (from onboarding) covers both core vaccines.
  */
 export function checkVaccinationStatus(species: Species, records: VaccinationRecord[]): string[] {
+  if (!records || records.length === 0) {
+    return ['No vaccination records yet — add them to track boosters.'];
+  }
+
+  const hasCoreVaccinesRecord = records.some(r =>
+    r.vaccineName.toLowerCase().replace(/[^a-z]/g, '') === 'corevaccines'
+  );
+  if (hasCoreVaccinesRecord) {
+    return [];
+  }
+
   const alerts: string[] = [];
   const now = new Date();
   
   // Rulebook §2.3: Flag if core-vaccine window missed by >6 months
-  // This is a simplified check for the demo
   const coreVaccines = ['DHPP', 'Rabies'];
   
   coreVaccines.forEach(vaxName => {
@@ -127,14 +141,19 @@ export function generateMilestones(input: MilestoneInput): Milestone[] {
   // 1. Core vaccine milestones
   const coreVaccines = ['DHPP', 'Rabies'];
   const existingVaxNames = (input.existingVaccinations || []).map(v => v.vaccineName);
+  const hasCoreVaccinesRecord = existingVaxNames.some(n =>
+    n.toLowerCase().replace(/[^a-z]/g, '') === 'corevaccines'
+  );
   
   coreVaccines.forEach(vaxName => {
-    if (!existingVaxNames.includes(vaxName)) {
+    if (!existingVaxNames.includes(vaxName) && !hasCoreVaccinesRecord) {
       milestones.push({
         id: `vax-core-${vaxName}`,
         name: `${vaxName} Vaccine`,
         type: 'Vaccine',
-        due: ageMonths < 6 ? 'Now (puppy series)' : ageMonths < 18 ? 'Due soon' : 'Overdue',
+        // Keep schedule info; with no record, label it neutrally ("Not recorded")
+        // instead of the false "Overdue" claim.
+        due: ageMonths < 6 ? 'Now (puppy series)' : ageMonths < 18 ? 'Due soon' : 'Not recorded',
         description: `${vaxName} core vaccination. Essential for canine health.`,
       });
     }
