@@ -68,7 +68,7 @@ const LoggedInHomepage: React.FC<LoggedInHomepageProps> = ({
           </div>
           <div className="flex items-center gap-3">
             <button onClick={onAddPet} className="bg-primary text-white px-5 py-3 rounded-xl font-medium hover:bg-primary-dark transition-all flex items-center gap-2 shadow-lg">
-              <Plus className="w-5 h-5" /> Add Pet
+              <Plus className="w-5 h-5" /> Add Dog
             </button>
           </div>
         </div>
@@ -160,20 +160,20 @@ const LoggedInHomepage: React.FC<LoggedInHomepageProps> = ({
             >
               <div className="text-center">
                 <Plus className="w-8 h-8 text-dark-muted mx-auto mb-2" />
-                <p className="text-sm font-medium text-dark-muted">Add Another Pet</p>
+                <p className="text-sm font-medium text-dark-muted">Add Another Dog</p>
               </div>
             </button>
           </div>
         ) : (
           <div className="text-center py-16 bg-white rounded-3xl border border-bd mb-8">
             <PawPrint className="w-16 h-16 text-bd-light mx-auto mb-4" />
-            <h2 className="text-xl font-bold text-dark-muted mb-2">No pets yet</h2>
-            <p className="text-dark-muted mb-6">Add your first pet to get started with PawPath</p>
+            <h2 className="text-xl font-bold text-dark-muted mb-2">No dogs yet</h2>
+            <p className="text-dark-muted mb-6">Add your first dog to get started with PawPath</p>
             <button
               onClick={onAddPet}
               className="bg-primary text-white px-6 py-3 rounded-xl font-medium hover:bg-primary-dark transition-all inline-flex items-center gap-2"
             >
-              <Plus className="w-5 h-5" /> Add Your First Pet
+              <Plus className="w-5 h-5" /> Add Your First Dog
             </button>
           </div>
         )}
@@ -211,14 +211,14 @@ const LoggedInHomepage: React.FC<LoggedInHomepageProps> = ({
                 <Scale className="w-4 h-4" />
                 <span className="text-xs font-bold uppercase">Weight</span>
               </div>
-              <p className="text-sm text-dark-muted">Log your pet's weight weekly to track trends. Unexplained changes of more than 5% warrant a vet visit.</p>
+              <p className="text-sm text-dark-muted">Log your dog's weight weekly to track trends. Unexplained changes of more than 5% warrant a vet visit.</p>
             </div>
             <div className="bg-white/80 rounded-xl p-4 border border-primary-light/50">
               <div className="flex items-center gap-2 text-accent-green mb-2">
                 <Activity className="w-4 h-4" />
                 <span className="text-xs font-bold uppercase">Activity</span>
               </div>
-              <p className="text-sm text-dark-muted">Follow the exercise plan on your pet's dashboard. Adjust intensity based on breed, age, and weather.</p>
+              <p className="text-sm text-dark-muted">Follow the exercise plan on your dog's dashboard. Adjust intensity based on breed, age, and weather.</p>
             </div>
             <div className="bg-white/80 rounded-xl p-4 border border-primary-light/50">
               <div className="flex items-center gap-2 text-amber-600 mb-2">

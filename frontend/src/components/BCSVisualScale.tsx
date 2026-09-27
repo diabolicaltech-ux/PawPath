@@ -241,8 +241,8 @@ const BCSVisualScale: React.FC<BCSVisualScaleProps> = ({ bcs, onChange, species,
   return (
     <div className="space-y-6">
       <div className="text-center">
-        <h2 className="text-2xl font-bold text-dark">What shape is your pet in?</h2>
-        <p className="text-dark-muted mt-2">A simple way to check if your pet is underweight, ideal, or overweight (1-9 scale used by veterinarians).</p>
+        <h2 className="text-2xl font-bold text-dark">What shape is your dog in?</h2>
+        <p className="text-dark-muted mt-2">A simple way to check if your dog is underweight, ideal, or overweight (1-9 scale used by veterinarians).</p>
       </div>
       
       <div className="space-y-4">
