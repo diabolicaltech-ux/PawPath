@@ -38,6 +38,12 @@ const files = getFiles(DIST);
 // uses rootDirectory=null; otherwise only the guide rewrite would survive.
 const repoVercel = JSON.parse(readFileSync(join(process.cwd(), 'vercel.json'), 'utf8'));
 const rewrites = Array.isArray(repoVercel.rewrites) ? repoVercel.rewrites : [];
+// Retired cat-era URLs (e.g. /breed-health/maine-coon) must 308-redirect to
+// their dogs-only replacements instead of raw-404ing. The redirect list lives
+// in frontend/vercel.json; the flattened upload must carry it so the redirects
+// run before the rewrites (beta-readiness audit finding 3, 2026-09-25).
+const frontendVercel = JSON.parse(readFileSync(join(FRONTEND, 'vercel.json'), 'utf8'));
+const redirects = Array.isArray(frontendVercel.redirects) ? frontendVercel.redirects : [];
 // The canonical generated site and every serverless handler live under
 // frontend/. Place handlers at Vercel's root api/ path in the upload.
 const apiDir = join(FRONTEND, 'api');
@@ -45,16 +51,19 @@ const apiDir = join(FRONTEND, 'api');
 // rescue listing route was retired). Only upload handlers that are present.
 if (existsSync(apiDir)) files.push(...getFiles(apiDir, 'api'));
 files.push({ file: 'vercel.json', data: Buffer.from(JSON.stringify({
-  // The repo-root vercel.json still carries cat-era redirects and an
-  // install command that cds into frontend. With rootDirectory null and a
-  // flattened upload, that command cannot resolve (ENOENT). Ship the minimal
-  // config that matches the project's deterministic-upload project settings.
+  // The repo-root vercel.json carries an install command that cds into
+  // frontend. With rootDirectory null and a flattened upload, that command
+  // cannot resolve (ENOENT). Ship the minimal config that matches the
+  // project's deterministic-upload project settings, plus the repository's
+  // retired-URL redirects so old bookmarks and search results keep resolving.
   framework: null,
   buildCommand: 'true',
   outputDirectory: '.',
   installCommand: 'npm ci --ignore-scripts',
   rewrites,
+  redirects,
 })).toString('base64'), encoding: 'base64' });
+console.log(`Shipping vercel.json with ${rewrites.length} rewrites and ${redirects.length} redirects`);
 // Vercel resolves serverless dependencies from the upload root, so preserve
 // the frontend runtime manifest at that root rather than under frontend/.
 files.push({ file: 'package.json', data: readFileSync(join(FRONTEND, 'package.json')).toString('base64'), encoding: 'base64' });

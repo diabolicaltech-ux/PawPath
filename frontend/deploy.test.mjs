@@ -27,6 +27,30 @@ test('deployment uploads repository rewrites in the flattened root vercel.json',
   assert.doesNotMatch(source, /rewrites: \[\{ source: '\/guides\/:slug'/);
   assert.doesNotMatch(source, /cd frontend && npm ci/);
 });
+
+test('deployment ships the retired-URL 308 redirects in the flattened root vercel.json', () => {
+  // Beta-readiness audit finding 3 (2026-09-25): the deployer used to ship a
+  // synthetic vercel.json with rewrites only, so the retired cat-era 301
+  // redirects in frontend/vercel.json never reached production and every
+  // retired URL (e.g. /breed-health/maine-coon) returned a raw 404. The
+  // flattened config must carry the redirect list so Vercel applies the
+  // redirects before the rewrites.
+  assert.match(source, /const frontendVercel = JSON\.parse\(readFileSync\(join\(FRONTEND, 'vercel\.json'\), 'utf8'\)\)/);
+  assert.match(source, /const redirects = Array\.isArray\(frontendVercel\.redirects\)/);
+  assert.match(source, /redirects,/);
+  // The data itself: frontend/vercel.json must keep the retired-URL list,
+  // including the highest-traffic retired cat URLs, mapping to dogs-only
+  // pages with a permanent (308) status.
+  const feVercel = JSON.parse(readFileSync(new URL('./vercel.json', import.meta.url), 'utf8'));
+  const redirectSources = (feVercel.redirects || []).map((r) => r.source);
+  assert.ok(redirectSources.length >= 20, `frontend/vercel.json must keep the retired-URL redirect list (found ${redirectSources.length})`);
+  for (const retired of ['/breed-health/maine-coon', '/breed-health/persian', '/guides/cat-vaccination-schedule']) {
+    assert.ok(redirectSources.includes(retired), `frontend/vercel.json is missing the redirect for ${retired}`);
+  }
+  const catGuide = feVercel.redirects.find((r) => r.source === '/guides/cat-vaccination-schedule');
+  assert.equal(catGuide.destination, '/guides/dog-vaccination-schedule');
+  assert.equal(catGuide.permanent, true);
+});
 test('deployment tolerates a missing serverless api directory', () => {
   assert.match(source, /existsSync\(apiDir\)/);
   assert.match(source, /if \(existsSync\(apiDir\)\) files\.push\(\.\.\.getFiles\(apiDir, 'api'\)\)/);
