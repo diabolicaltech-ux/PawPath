@@ -16,7 +16,7 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack }) => {
     <LegalLayout
       onBack={onBack}
       title="PRIVACY POLICY"
-      subtitle="PawPath (pawpath.quest) — Digital Pet Health &amp; Wellness Management Platform"
+      subtitle="PawPath (pawpath.quest) — Digital Dog Health &amp; Wellness Management Platform"
       updatedDate="August 19, 2026"
     >
       <section>
@@ -40,9 +40,9 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack }) => {
             </p>
           </div>
           <div>
-            <SubHeading>2.2 Pet Profiles and Health Information</SubHeading>
+            <SubHeading>2.2 Dog Profiles and Health Information</SubHeading>
             <p className="mt-2">
-              We collect the information you choose to enter about your pets, such as species, breed, age,
+              We collect the information you choose to enter about your dogs, such as species, breed, age,
               weight, lifestyle, nutrition, medical history, routines, milestones, notes, and other health and
               wellness records. This information is used to provide the Service to you and is intended to remain
               associated with your PawPath account.
@@ -80,7 +80,7 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack }) => {
         <p className="mt-3">We may use information to:</p>
         <ul className="mt-3 list-disc space-y-2 pl-6">
           <li>Provide, personalize, and maintain the Service.</li>
-          <li>Save and display your pet profiles and health records across your account sessions.</li>
+          <li>Save and display your dog profiles and health records across your account sessions.</li>
           <li>Authenticate users and protect accounts from unauthorized access.</li>
           <li>Process purchases and maintain transaction records.</li>
           <li>Respond to support requests and communicate about the Service.</li>

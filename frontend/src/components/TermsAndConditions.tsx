@@ -16,13 +16,13 @@ const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({ onBack }) => {
     <LegalLayout
       onBack={onBack}
       title="TERMS AND CONDITIONS OF SERVICE"
-      subtitle="PawPath (pawpath.quest) — Digital Pet Health &amp; Wellness Management Platform"
+      subtitle="PawPath (pawpath.quest) — Digital Dog Health &amp; Wellness Management Platform"
       updatedDate="August 17, 2026"
     >
       <section className="rounded-xl border border-amber-200 bg-amber-50 p-5">
         <h2 className="text-base font-bold uppercase tracking-wide text-amber-900">Medical Disclaimer &amp; Emergency Notice</h2>
         <p className="mt-2">
-          PawPath provides digital tools and educational tracking resources for pet owners. PawPath IS NOT a
+          PawPath provides digital tools and educational tracking resources for dog owners. PawPath IS NOT a
           veterinary practice, medical provider, or emergency service, and does not provide veterinary medical
           advice, diagnosis, or treatment.
         </p>
@@ -41,9 +41,9 @@ const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({ onBack }) => {
       <section>
         <SectionHeading>2. Description of Platform &amp; Services</SectionHeading>
         <p className="mt-3">
-          PawPath provides pet owners with interactive digital software tools to organize pet health records,
-          track daily routines, log dietary habits, monitor body condition scores (BCS), and manage pet care
-          schedules across their pet&apos;s lifecycle.
+          PawPath provides dog owners with interactive digital software tools to organize dog health records,
+          track daily routines, log dietary habits, monitor body condition scores (BCS), and manage dog care
+          schedules across their dog&apos;s lifecycle.
         </p>
       </section>
 
@@ -64,13 +64,13 @@ const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({ onBack }) => {
             <p className="mt-2">
               Use of PawPath does not create a veterinarian-client-patient relationship (VCPR). You should always
               consult with a licensed veterinarian for specific medical concerns, dietary changes, health
-              diagnoses, or medication management regarding your pet.
+              diagnoses, or medication management regarding your dog.
             </p>
           </div>
           <div>
             <SubHeading>3.3 Emergency Situations</SubHeading>
             <p className="mt-2">
-              If your pet is experiencing a medical emergency, trauma, acute illness, or sudden severe behavioral
+              If your dog is experiencing a medical emergency, trauma, acute illness, or sudden severe behavioral
               change, immediately contact your local emergency veterinary clinic or veterinarian. Do not rely on
               PawPath for urgent medical situations.
             </p>
@@ -87,7 +87,7 @@ const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({ onBack }) => {
           </li>
           <li>
             <strong>Accurate Information:</strong> You are responsible for providing accurate and truthful
-            information regarding your pets (including species, breed, age, weight, and lifestyle details).
+            information regarding your dogs (including species, breed, age, weight, and lifestyle details).
           </li>
           <li>
             <strong>Account Security:</strong> You are responsible for maintaining the confidentiality of your
@@ -102,14 +102,14 @@ const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({ onBack }) => {
           The Service, including its software, user interfaces, branding, text, graphics, illustrations, breed
           databases, and layout, is owned by PawPath and protected by copyright, trademark, and intellectual
           property laws. PawPath grants you a personal, non-exclusive, non-transferable, revocable license to
-          access and use the platform for personal, non-commercial pet management purposes.
+          access and use the platform for personal, non-commercial dog management purposes.
         </p>
       </section>
 
       <section>
-        <SectionHeading>6. User-Generated Content &amp; Pet Profiles</SectionHeading>
+        <SectionHeading>6. User-Generated Content &amp; Dog Profiles</SectionHeading>
         <p className="mt-3">
-          You retain ownership of any notes, photos, or pet profile data you upload to the platform. By uploading
+          You retain ownership of any notes, photos, or dog profile data you upload to the platform. By uploading
           content, you grant PawPath a non-exclusive, worldwide, royalty-free license to store, process, and
           display that content solely as necessary to provide and improve the Service to you.
         </p>
@@ -132,7 +132,7 @@ const TermsAndConditions: React.FC<TermsAndConditionsProps> = ({ onBack }) => {
           TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, PAWPATH, ITS OFFICERS, DIRECTORS, EMPLOYEES, AND
           AFFILIATES SHALL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE
           DAMAGES, OR ANY LOSS OF PROFITS OR DATA, ARISING OUT OF OR RELATING TO YOUR USE OF OR INABILITY TO USE
-          THE SERVICE, INCLUDING ANY HEALTH DECISIONS MADE FOR YOUR PET BASED ON PLATFORM INFORMATION.
+          THE SERVICE, INCLUDING ANY HEALTH DECISIONS MADE FOR YOUR DOG BASED ON PLATFORM INFORMATION.
         </p>
       </section>
 
