@@ -91,6 +91,32 @@ test('repeat attempt within 24h: audit row still accrues but the alert email is 
   assert.equal(markers.length, 0, 'no duplicate rate-limit marker');
 });
 
+test('a failed alert send leaves the 24h cooldown open, so the next attempt retries', async () => {
+  // F4 (beta-readiness audit 2): the cooldown marker used to be written before
+  // the send and the send was fire-and-forget, so ONE dropped send (Resend
+  // error, timeout, misconfiguration) silenced the owner for 24h with no retry.
+  const { pool, state } = makePool({ emailMarkerCount: 0 });
+  const attempted: Array<Record<string, unknown>> = [];
+  const failing = async (meta: Record<string, unknown>) => {
+    attempted.push(meta);
+    await new Promise((resolve) => setTimeout(resolve, 5)); // outlast the caller
+    return false; // e.g. Resend 4xx/5xx or a 3s abort
+  };
+
+  await recordDeniedAdminAttempt(pool as never, IDENTITY, HEADERS, failing as never);
+
+  // The durable "every attempt is logged" row is unaffected.
+  const denied = state.auditRows.filter((r) => r.action === 'admin.access_denied');
+  assert.equal(denied.length, 1, 'the attempt is still audited durably');
+  assert.equal(attempted.length, 1, 'the send was actually attempted');
+
+  // No cooldown marker: the owner must not be silenced by a send that never
+  // arrived. The next attempt therefore tries again.
+  const markers = state.auditRows.filter((r) => r.action === 'admin.access_denied_email');
+  assert.equal(markers.length, 0, 'a dropped send must not create the 24h marker');
+  assert.equal(state.released, true, 'pool client released on the early return');
+});
+
 test('alert recipient is configurable via ADMIN_ALERT_EMAIL and falls back to the owner address', async () => {
   const { buildAlertEmail, alertRecipient } = await import('../api/_lib/ownerAlert.ts');
   const saved = process.env.ADMIN_ALERT_EMAIL;

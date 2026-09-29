@@ -27,8 +27,10 @@ async function authorizeAdmin(req: VercelRequest): Promise<{ sub: string; email:
   if (!isOwnerEmail(identity.email)) {
     // Authenticated but not the owner: record the attempt (audit + rate-limited
     // owner email) before returning 404. The audit write is awaited so the
-    // durable "always log every attempt" guarantee survives a serverless freeze;
-    // the email itself is fire-and-forget inside the helper and never delays us.
+    // durable "always log every attempt" guarantee survives a serverless freeze.
+    // The alert send is awaited inside the helper as well, but bounded to 3s; a
+    // failed send deliberately leaves the 24h cooldown open so the next attempt
+    // retries rather than the visitor getting silent cover.
     if (pool) {
       await recordDeniedAdminAttempt(pool, identity, req.headers as Record<string, unknown>).catch(() => {});
     }

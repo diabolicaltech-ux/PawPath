@@ -38,6 +38,31 @@ test('POST preserves a well-formed client pet id and rejects malformed ids', () 
   assert.match(handler, /ON CONFLICT DO NOTHING/);
   assert.match(handler, /INSERT INTO pets \(owner_account_id,name,payload\) VALUES \(\$1,\$2,\$3\)/);
 });
+
+test('POST cannot upsert a pet owned by another account (F1 regression guard)', () => {
+  // The conflict path accepts a client-supplied id, so WITHOUT an ownership
+  // predicate in the DO UPDATE clause any account could overwrite another
+  // account's pet and then be granted an 'owner' membership on it. The predicate
+  // is what makes Postgres skip the update; the guard below is what stops the
+  // handler granting membership when no row came back. Removing either re-opens
+  // the cross-account write (proven end-to-end in db/collab-ownership.test.ts).
+  assert.match(
+    handler,
+    /ON CONFLICT \(id\) DO UPDATE SET name=EXCLUDED\.name,payload=EXCLUDED\.payload,updated_at=now\(\)\s+WHERE pets\.owner_account_id = EXCLUDED\.owner_account_id/,
+    'the ON CONFLICT DO UPDATE branch must be scoped to the pet\'s real owner',
+  );
+  assert.match(
+    handler,
+    /if \(!pet\) \{[\s\S]*?res\.status\(404\)\.json\(\{error:'PET_NOT_FOUND'\}\)/,
+    'a conflict the predicate refused must be answered 404, not silently accepted',
+  );
+  // Membership must never be granted before ownership was confirmed: the
+  // refusal guard has to precede the membership insert.
+  const guardIdx = handler.indexOf('if (!pet) {');
+  const grantIdx = handler.indexOf('INSERT INTO pet_memberships');
+  assert.ok(guardIdx !== -1 && grantIdx !== -1, 'expected both the guard and the membership grant');
+  assert.ok(guardIdx < grantIdx, 'the ownership guard must run before the membership grant');
+});
 test('collab handler refuses to run without a configured database', () => {
   assert.match(handler, /DATABASE_NOT_CONFIGURED/);
 });
