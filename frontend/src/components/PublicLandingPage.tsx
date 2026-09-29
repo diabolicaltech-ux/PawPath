@@ -74,7 +74,7 @@ const PublicLandingPage: React.FC<PublicLandingPageProps> = ({ onSignInComplete,
                 <Scale className="w-5 h-5 text-amber-300" />
               </div>
               <h3 className="text-white font-bold text-sm mb-1">Precision Nutrition</h3>
-              <p className="text-white/60 text-xs leading-relaxed">Daily calorie targets based on your dog's species, weight, age, activity, and body condition.</p>
+              <p className="text-white/60 text-xs leading-relaxed">Daily calorie targets based on your dog's weight, age, activity, and body condition.</p>
             </div>
             <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-5 ring-1 ring-white/20">
               <div className="w-10 h-10 bg-amber-400/20 rounded-xl flex items-center justify-center mb-3">

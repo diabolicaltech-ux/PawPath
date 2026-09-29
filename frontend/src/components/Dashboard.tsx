@@ -28,7 +28,7 @@ import {
   EyeOff,
   Clock
 } from 'lucide-react';
-import { calculateMER } from '../engine/metabolic_engine';
+import { calculateMER, estimateIdealWeightKg } from '../engine/metabolic_engine';
 import { getLifeStage, checkVaccinationStatus, generateMilestones } from '../engine/milestone_engine';
 import type { Milestone } from '../engine/milestone_engine';
 import { evaluateAlerts } from '../engine/alert_engine';
@@ -89,6 +89,10 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
   // Photo upload ref
   const photoInputRef = useRef<HTMLInputElement>(null);
 
+  // Vet visit form ref — used to scroll the form into view when it is opened
+  // from the "Add Vet Visit" prompt near the bottom of the page.
+  const vetVisitFormRef = useRef<HTMLDivElement>(null);
+
   // Alert management state
   const [alertActionFeedback, setAlertActionFeedback] = useState<string | null>(null);
   const [postponeAlert, setPostponeAlert] = useState<{ condition: string; index: number; isVax: boolean } | null>(null);
@@ -122,6 +126,15 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
     setHiddenAlerts(pet.hiddenAlerts || []);
     setPostponedAlerts(pet.postponedAlerts || []);
   }, [pet.id, pet.dismissedAlerts, pet.hiddenAlerts, pet.postponedAlerts]);
+
+  // When the vet visit form opens, bring it into view. The bottom "Add Vet
+  // Visit" prompt renders the form near the top of the page, so without this the
+  // user sees no visible change after clicking.
+  useEffect(() => {
+    if (showVetVisit && vetVisitFormRef.current) {
+      vetVisitFormRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }, [showVetVisit]);
 
   const isAlertDismissed = (condition?: string) => {
     if (!condition) return false;
@@ -402,14 +415,28 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
   };
 
   // Real calculations
+  // Ideal-weight estimate = mean of each listed breed's ideal-weight range
+  // midpoint (an estimate, not a clinical target). Used as the RER base when the
+  // dog is a weight-loss target (BCS >= 7, i.e. overweight/obese).
+  const idealWeightBreeds = (pet.breeds && pet.breeds.length > 0
+    ? pet.breeds.map(bs => bs.breed)
+    : (pet.breed ? [pet.breed] : []))
+    .map(name => BREEDS.find(b => b.name === name))
+    .filter((b): b is NonNullable<typeof b> => b !== undefined);
+
+  const idealWeightKg = estimateIdealWeightKg(idealWeightBreeds);
+  const isWeightLossTarget = (pet.bcs ?? 0) >= 7;
+
   const mer = calculateMER({
     species: pet.species,
     weightKg: currentWeight,
+    idealWeightKg,
     isNeutered: pet.isNeutered,
     activityLevel: pet.activityLevel,
     workingDogMultiplier: pet.workingDogMultiplier,
     lifeStage: 'adult',
-    bcsScore: pet.bcs
+    bcsScore: pet.bcs,
+    isWeightLossTarget,
   });
 
   const lifeStage = getLifeStage({
@@ -454,6 +481,26 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
     .map(name => BREEDS.find(b => b.name === name))
     .filter((b): b is NonNullable<typeof b> => b !== undefined);
 
+  // Wire the pet's actually-logged records into the engine calls so alerts and
+  // milestones reflect the user's real history instead of always-empty placeholders.
+  const clinicalEvents = (pet.completedScreenings || []).map(s => ({
+    date: new Date(),
+    eventType: 'screening',
+    details: { condition: s.screeningType, screeningType: s.screeningType },
+  }));
+
+  const vaccinationRecords = (pet.vaccinations || [])
+    .filter(v => v.status === 'recorded' && v.dateAdministered)
+    .map(v => ({
+      vaccineName: v.vaccineName,
+      dateAdministered: new Date(v.dateAdministered as string),
+      isCore: v.isCore,
+    }));
+
+  const screeningRecords = (pet.completedScreenings || []).map(s => ({
+    screeningType: s.screeningType,
+  }));
+
   const activeAlerts = evaluateAlerts({
     id: 'temp',
     name: pet.name,
@@ -462,10 +509,10 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
     breed: selectedBreed as any,
     breeds: allBreedObjs.length > 0 ? allBreedObjs as any : undefined,
     healthLogs: [{ date: new Date(), weightKg: currentWeight, bcsScore: pet.bcs }],
-    clinicalEvents: []
+    clinicalEvents,
   });
 
-  const vaxAlerts = checkVaccinationStatus(pet.species, []);
+  const vaxAlerts = checkVaccinationStatus(pet.species, vaccinationRecords);
 
   // Filter alerts based on dismissed/hidden/postponed status
   const filteredAlerts = activeAlerts.filter(a => shouldShowAlert(a.condition));
@@ -489,8 +536,8 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
       onsetAgeMonths: r.onsetAgeMonths,
       screeningRecommendation: r.screeningRecommendation || r.screening || '',
     })),
-    existingVaccinations: [],
-    existingScreenings: [],
+    existingVaccinations: vaccinationRecords,
+    existingScreenings: screeningRecords,
   });
 
   // Filter milestones based on status
@@ -703,6 +750,7 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
         {/* Action Buttons */}
         <div className="flex gap-3">
           <button
+            type="button"
             onClick={() => setShowVetVisit(true)}
             className="flex-1 bg-white p-4 rounded-2xl shadow-sm border border-bd hover:border-blue-200 transition-all flex items-center gap-3"
           >
@@ -730,7 +778,7 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
 
         {/* Vet Visit Form Modal */}
         {showVetVisit && (
-          <div className="bg-white p-6 rounded-3xl shadow-sm border border-bd">
+          <div ref={vetVisitFormRef} className="bg-white p-6 rounded-3xl shadow-sm border border-bd scroll-mt-24">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-bold text-dark flex items-center gap-2">
                 <Stethoscope className="text-primary-dark w-5 h-5" /> Record Vet Visit
@@ -914,8 +962,9 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
                 <TrendingUp className="text-primary w-5 h-5" /> Weight History
               </h2>
               <button
+                type="button"
                 onClick={() => setShowLogWeight(true)}
-                className="w-full bg-primary text-white py-2.5 rounded-xl text-sm font-medium hover:bg-primary-dark transition-all flex items-center justify-center gap-2 shadow-sm"
+                className="shrink-0 px-4 bg-primary text-white py-2.5 rounded-xl text-sm font-medium hover:bg-primary-dark transition-all flex items-center justify-center gap-2 shadow-sm"
               >
                 <Plus className="w-4 h-4" /> Log New Weight
               </button>
@@ -1209,6 +1258,7 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
             </div>
           </div>
           <button
+            type="button"
             onClick={() => setShowVetVisit(true)}
             className="bg-blue-600 text-white px-4 py-2 rounded-xl text-xs font-medium hover:bg-blue-700 transition-all shrink-0"
           >
@@ -1564,6 +1614,12 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
                   <span className="text-xs text-dark-muted">Body Condition</span>
                   <span className="text-xs font-medium text-dark">{pet.bcs} / 9</span>
                 </div>
+                {isWeightLossTarget && idealWeightKg != null && (
+                  <div className="flex justify-between py-1.5 px-3 bg-surface-alt rounded-lg">
+                    <span className="text-xs text-dark-muted">Ideal weight (breed-range estimate)</span>
+                    <span className="text-xs font-medium text-dark">{formatWeightWithUnit(idealWeightKg, unit)}</span>
+                  </div>
+                )}
                 <div className="flex justify-between py-1.5 px-3 bg-primary-light rounded-lg border border-primary-light">
                   <span className="text-xs font-bold text-primary-dark">RER × Multiplier</span>
                   <span className="text-xs font-bold text-primary-dark">{Math.round(mer)} kcal/day</span>
