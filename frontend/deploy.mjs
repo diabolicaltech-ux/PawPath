@@ -38,6 +38,12 @@ const files = getFiles(DIST);
 // uses rootDirectory=null; otherwise only the guide rewrite would survive.
 const repoVercel = JSON.parse(readFileSync(join(process.cwd(), 'vercel.json'), 'utf8'));
 const rewrites = Array.isArray(repoVercel.rewrites) ? repoVercel.rewrites : [];
+// The security headers (CSP report-only, nosniff, X-Frame-Options, COOP, ...)
+// live in the repo-root vercel.json too. The flattened upload must carry them:
+// without this passthrough production serves platform-default headers only and
+// collects no CSP reports, no matter what the repository config says
+// (beta-readiness audit check 6).
+const headers = Array.isArray(repoVercel.headers) ? repoVercel.headers : [];
 // Retired cat-era URLs (e.g. /breed-health/maine-coon) must 308-redirect to
 // their dogs-only replacements instead of raw-404ing. The redirect list lives
 // in frontend/vercel.json; the flattened upload must carry it so the redirects
@@ -55,15 +61,19 @@ files.push({ file: 'vercel.json', data: Buffer.from(JSON.stringify({
   // frontend. With rootDirectory null and a flattened upload, that command
   // cannot resolve (ENOENT). Ship the minimal config that matches the
   // project's deterministic-upload project settings, plus the repository's
-  // retired-URL redirects so old bookmarks and search results keep resolving.
+  // security headers and retired-URL redirects so the edge behaviour survives
+  // the flattening. Headers come from the repo root and redirects from
+  // frontend/vercel.json — assert both passthroughs in deploy.test.mjs /
+  // security-headers.test.mjs before moving either list.
   framework: null,
   buildCommand: 'true',
   outputDirectory: '.',
   installCommand: 'npm ci --ignore-scripts',
   rewrites,
   redirects,
+  headers,
 })).toString('base64'), encoding: 'base64' });
-console.log(`Shipping vercel.json with ${rewrites.length} rewrites and ${redirects.length} redirects`);
+console.log(`Shipping vercel.json with ${rewrites.length} rewrites, ${redirects.length} redirects and ${headers.length} header blocks`);
 // Vercel resolves serverless dependencies from the upload root, so preserve
 // the frontend runtime manifest at that root rather than under frontend/.
 files.push({ file: 'package.json', data: readFileSync(join(FRONTEND, 'package.json')).toString('base64'), encoding: 'base64' });

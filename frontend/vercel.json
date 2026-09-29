@@ -28,6 +28,11 @@
   ],
   "redirects": [
     {
+      "source": "/admin/",
+      "destination": "/admin",
+      "permanent": true
+    },
+    {
       "source": "/breed-health/maine-coon",
       "destination": "/breed-health",
       "permanent": true

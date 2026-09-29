@@ -4,9 +4,15 @@ import fs from 'node:fs';
 
 // Behavioral guard for the security headers shipped by the production config.
 //
-// Why the repo-root vercel.json: the canonical deployer ships the ROOT config,
-// not frontend/vercel.json — a header added to the frontend copy never reaches
-// pawpath.quest. These assertions are on the file the deploy actually reads.
+// Where production actually reads from: the canonical deployer
+// (frontend/deploy.mjs) does NOT upload either repository config verbatim. It
+// writes a SYNTHETIC root vercel.json for the flattened upload, assembling it
+// from repo-root `rewrites` + `headers` and frontend/vercel.json's `redirects`.
+// Anything outside those passthroughs is dead config: it looks shipped in the
+// repository and never reaches the edge. So this guard asserts (a) the header
+// DATA in the repo-root vercel.json, (b) that deploy.mjs really passes it
+// through, and (c) the redirect list on frontend/vercel.json, the copy the
+// deployer reads for redirects (PR #38).
 //
 // The beta-readiness audit (check 6) found the live site serving HSTS only:
 // CSP, X-Content-Type-Options, X-Frame-Options/frame-ancestors, Referrer-Policy,
@@ -25,6 +31,18 @@ import fs from 'node:fs';
 //      inventory nobody has produced, so it is left alone rather than guessed.
 
 const config = JSON.parse(fs.readFileSync(new URL('../../vercel.json', import.meta.url), 'utf8'));
+// The redirect list ships from the frontend copy; the header list from the root.
+const shippedRedirects = JSON.parse(fs.readFileSync(new URL('../vercel.json', import.meta.url), 'utf8')).redirects || [];
+const deploySource = fs.readFileSync(new URL('../deploy.mjs', import.meta.url), 'utf8');
+
+// Rebuild the synthetic vercel.json the deployer uploads, from the same two
+// files and the same keys, so the assertions below run against the shape
+// production receives rather than against a repository file.
+const shippedConfig = {
+  rewrites: Array.isArray(config.rewrites) ? config.rewrites : [],
+  headers: Array.isArray(config.headers) ? config.headers : [],
+  redirects: shippedRedirects,
+};
 
 /** Header values that apply to a given request path, per the config. */
 function headersFor(path) {
@@ -35,6 +53,42 @@ function headersFor(path) {
   }
   return out;
 }
+
+test('the deployer ships these headers in the flattened production vercel.json', () => {
+  // Source assertions petrify the passthrough: delete either line in deploy.mjs
+  // and this fails. Without them the headers below are unreachable — which is
+  // exactly what shipped before this guard: a config that looked hardened in the
+  // repository and served HSTS only at the edge.
+  assert.match(deploySource, /const headers = Array\.isArray\(repoVercel\.headers\)/);
+  assert.match(deploySource, /repoVercel\.headers/);
+  assert.match(deploySource, /^\s*headers,$/m, 'the synthetic config object must include headers,');
+  assert.match(deploySource, /Shipping vercel\.json with .*header blocks/, 'the deployer log must report the header count');
+
+  // And the shipped object, rebuilt the way deploy.mjs builds it, must carry the
+  // header block and the hardcoded settings the flattened upload needs.
+  assert.ok(shippedConfig.headers.length >= 1, 'the flattened vercel.json must carry the security header block');
+  assert.match(deploySource, /framework: null/);
+  assert.match(deploySource, /buildCommand: 'true'/);
+  assert.match(deploySource, /outputDirectory: '\.'/);
+  assert.match(deploySource, /installCommand: 'npm ci --ignore-scripts'/);
+  const shippedKeys = shippedConfig.headers.flatMap((block) => (block.headers || []).map((h) => h.key.toLowerCase()));
+  for (const key of [
+    'x-content-type-options',
+    'x-frame-options',
+    'referrer-policy',
+    'permissions-policy',
+    'cross-origin-opener-policy',
+    'content-security-policy-report-only',
+  ]) {
+    assert.ok(shippedKeys.includes(key), `the shipped vercel.json is missing the ${key} header`);
+  }
+  // A header on a narrower source than /(.*) would silently exempt most of the
+  // site, so the shipped block must stay site-wide.
+  assert.ok(
+    shippedConfig.headers.some((block) => block.source === '/(.*)'),
+    'the shipped header block must cover every path',
+  );
+});
 
 test('security headers cover both / and /api/* with the expected values', () => {
   const expected = {
@@ -96,15 +150,27 @@ test('/admin/ is redirected to /admin so it cannot fall through to a platform 40
   // Verified live before the fix: `/admin` → 200 landing page, but `/admin/`
   // → a bare platform 404 page (NOT_FOUND), which reads as a broken product to
   // anyone who types the trailing slash.
-  const redirect = (config.redirects || []).find((r) => r.source === '/admin/');
-  assert.ok(redirect, 'a /admin/ redirect is required');
+  //
+  // This redirect ships from frontend/vercel.json, not the repo root: the
+  // deployer reads the redirect list from the frontend copy (PR #38) and the
+  // repo-root config's redirects never reach the edge. Asserting the source of
+  // the passthrough keeps the entry from drifting into dead config again.
+  assert.match(deploySource, /const redirects = Array\.isArray\(frontendVercel\.redirects\)/);
+  const redirect = shippedConfig.redirects.find((r) => r.source === '/admin/');
+  assert.ok(redirect, 'a shipped /admin/ redirect is required');
   assert.equal(redirect.destination, '/admin');
   assert.equal(redirect.permanent, true, 'expect a 308 permanent redirect');
   // Redirects must not have displaced the SPA rewrite they hand off to.
   assert.ok(
-    (config.rewrites || []).some((r) => r.source === '/admin' && r.destination === '/index.html'),
+    shippedConfig.rewrites.some((r) => r.source === '/admin' && r.destination === '/index.html'),
     'the /admin -> /index.html rewrite must survive',
   );
+  // No redirect may exist only in the repo-root config: that file's redirects
+  // are never uploaded, so such an entry is a false assurance, not a fix.
+  const shippedSources = shippedConfig.redirects.map((r) => r.source);
+  for (const r of config.redirects || []) {
+    assert.ok(shippedSources.includes(r.source), `repo-root redirect ${r.source} is never shipped — move it to frontend/vercel.json`);
+  }
 });
 
 test('the pre-existing rewrites and build settings survive the header change', () => {
