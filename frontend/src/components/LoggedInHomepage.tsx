@@ -61,8 +61,8 @@ const LoggedInHomepage: React.FC<LoggedInHomepageProps> = ({
             </h1>
             <p className="text-dark-muted mt-1">
               {pets.length === 1 
-                ? `Managing 1 pet`
-                : `Managing ${pets.length} pets`
+                ? `Managing 1 dog`
+                : `Managing ${pets.length} dogs`
               }
             </p>
           </div>
@@ -92,7 +92,7 @@ const LoggedInHomepage: React.FC<LoggedInHomepageProps> = ({
                       {pet.photoUrl ? (
                         <img src={pet.photoUrl} alt={pet.name} className="w-full h-full object-cover" />
                       ) : (
-                        <span>{pet.species === 'canine' ? '🐕' : '🐈'}</span>
+                        <span>{pet.species === 'canine' ? '🐕' : '🐶'}</span>
                       )}
                     </div>
                     <div className="flex-1 min-w-0">
