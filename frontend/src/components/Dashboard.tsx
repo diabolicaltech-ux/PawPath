@@ -1254,7 +1254,7 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
             <Stethoscope className="w-5 h-5 text-primary-dark" />
             <div>
               <p className="text-sm font-medium text-dark">Had a vet visit recently?</p>
-              <p className="text-xs text-dark-muted">Add it to your pet's medical records</p>
+              <p className="text-xs text-dark-muted">Add it to your dog's medical records</p>
             </div>
           </div>
           <button
@@ -1583,7 +1583,7 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
               {/* What is MER */}
               <div className="bg-primary-light rounded-xl p-4 mb-4 border border-primary-light">
                 <p className="text-xs text-primary-dark leading-relaxed">
-                  <strong>Maintenance Energy Requirement (MER)</strong> is the number of calories your pet needs each day to maintain their current weight. It's calculated using their Resting Energy Requirement (RER) multiplied by adjustment factors for their lifestyle and health status.
+                  <strong>Maintenance Energy Requirement (MER)</strong> is the number of calories your dog needs each day to maintain their current weight. It's calculated using their Resting Energy Requirement (RER) multiplied by adjustment factors for their lifestyle and health status.
                 </p>
               </div>
 
@@ -1698,13 +1698,13 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
               {/* What is BCS */}
               <div className="bg-blue-50 rounded-xl p-4 mb-4 border border-blue-100">
                 <p className="text-xs text-blue-800 leading-relaxed">
-                  <strong>Body Condition Score (BCS)</strong> is a 1–9 scale that estimates your pet's body fat percentage. A score of <strong>5/9</strong> is ideal — neither underweight nor overweight.
+                  <strong>Body Condition Score (BCS)</strong> is a 1–9 scale that estimates your dog's body fat percentage. A score of <strong>5/9</strong> is ideal — neither underweight nor overweight.
                 </p>
               </div>
 
               {/* Current score with plain label */}
               <div className="bg-surface-alt rounded-xl p-4 mb-4 border border-bd text-center">
-                <p className="text-xs text-dark-muted mb-1">Your Pet's Score</p>
+                <p className="text-xs text-dark-muted mb-1">Your Dog's Score</p>
                 <p className="text-3xl font-bold text-dark">{pet.bcs} <span className="text-lg font-normal text-dark-muted">/ 9</span></p>
                 <p className="text-sm font-medium mt-1">{(() => {
                   const s = pet.bcs;
@@ -1747,7 +1747,7 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
               <div className="p-3 bg-blue-50 rounded-xl border border-blue-100">
                 <p className="text-[11px] text-blue-700 leading-relaxed flex items-center gap-1.5">
                   <Stethoscope className="w-4 h-4 shrink-0" />
-                  If you're unsure about your pet's body condition, ask your vet at the next checkup. They can show you how to assess BCS at home.
+                  If you're unsure about your dog's body condition, ask your vet at the next checkup. They can show you how to assess BCS at home.
                 </p>
               </div>
 
@@ -1777,7 +1777,7 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
               {/* What is Life Stage */}
               <div className="bg-green-50 rounded-xl p-4 mb-4 border border-green-100">
                 <p className="text-xs text-green-800 leading-relaxed">
-                  <strong>Life stage</strong> reflects your pet's developmental phase and helps guide nutrition, exercise, and veterinary care. Each stage has different health priorities and recommended checkup frequencies.
+                  <strong>Life stage</strong> reflects your dog's developmental phase and helps guide nutrition, exercise, and veterinary care. Each stage has different health priorities and recommended checkup frequencies.
                 </p>
               </div>
 
@@ -1842,9 +1842,9 @@ const Dashboard: React.FC<DashboardProps> = ({ pet, onBack, onEdit, onPetUpdate,
                     const stages = ['Puppy', 'Junior', 'Adult', 'Mature Adult', 'Senior', 'End-of-Life'];
                     const nextStage = stages.find(s => stageOrder.indexOf(s) > currentIdx);
                     if (nextStage) {
-                      return `Your pet will transition to the <strong>${nextStage}</strong> stage next. Nutritional needs, exercise routines, and vet visit frequency should be adjusted at each transition. Ask your vet for guidance.`;
+                      return `Your dog will transition to the <strong>${nextStage}</strong> stage next. Nutritional needs, exercise routines, and vet visit frequency should be adjusted at each transition. Ask your vet for guidance.`;
                     }
-                    return 'Your pet may need advanced senior care. Focus on comfort and quality of life, and consult your veterinarian regularly about their changing needs.';
+                    return 'Your dog may need advanced senior care. Focus on comfort and quality of life, and consult your veterinarian regularly about their changing needs.';
                   })()}
                 </p>
               </div>

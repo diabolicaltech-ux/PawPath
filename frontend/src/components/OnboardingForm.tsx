@@ -307,7 +307,7 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({ onComplete, initialData
                 <PawPrint className="text-primary w-8 h-8" />
               </div>
               <h2 className="text-2xl font-bold text-dark">Welcome To PawPath!</h2>
-              <p className="text-dark-muted mt-2">Let's start by getting to know your pet.</p>
+              <p className="text-dark-muted mt-2">Let's start by getting to know your dog.</p>
             </div>
             <div className="space-y-4">
               {/* Pet Photo */}
@@ -331,7 +331,7 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({ onComplete, initialData
                   />
                   <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-primary-light group-hover:border-primary transition-all flex items-center justify-center bg-primary-light">
                     {petData.photoUrl ? (
-                      <img src={petData.photoUrl} alt="Pet photo" className="w-full h-full object-cover" />
+                      <img src={petData.photoUrl} alt="Dog photo" className="w-full h-full object-cover" />
                     ) : (
                       <div className="text-center">
                         <span className="text-2xl">{'🐕'}</span>
@@ -349,7 +349,7 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({ onComplete, initialData
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-dark-muted mb-1">Pet's Name</label>
+                <label className="block text-sm font-medium text-dark-muted mb-1">Dog's Name</label>
                 <input
                   type="text"
                   className="w-full px-4 py-3 rounded-lg border border-bd focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
@@ -505,7 +505,7 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({ onComplete, initialData
         {step === 3 && (
           <div className="space-y-6">
             <div className="text-center">
-              <h2 className="text-2xl font-bold text-dark">Pet Profile</h2>
+              <h2 className="text-2xl font-bold text-dark">Dog Profile</h2>
               <p className="text-dark-muted mt-2">Additional details for medical accuracy.</p>
             </div>
             <div className="space-y-6">
@@ -524,7 +524,7 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({ onComplete, initialData
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-dark-muted mb-2">Is your pet fixed / spayed / neutered?</label>
+                  <label className="block text-sm font-medium text-dark-muted mb-2">Is your dog fixed / spayed / neutered?</label>
                   <div className="flex gap-2">
                     <button
                       onClick={() => setPetData({ ...petData, isNeutered: true })}
@@ -545,7 +545,7 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({ onComplete, initialData
                       Not sure
                     </button>
                   </div>
-                  <p className="text-[11px] text-dark-muted mt-1 italic">Neutered pets need fewer calories. "Not sure" uses a general estimate.</p>
+                  <p className="text-[11px] text-dark-muted mt-1 italic">Neutered dogs need fewer calories. "Not sure" uses a general estimate.</p>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
@@ -652,7 +652,7 @@ const OnboardingForm: React.FC<OnboardingFormProps> = ({ onComplete, initialData
                     {petData.recentWeightLoss && <CheckCircle2 className="w-4 h-4 text-white" />}
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-dark-muted">Has your pet lost weight without changing their diet?</p>
+                    <p className="text-sm font-medium text-dark-muted">Has your dog lost weight without changing their diet?</p>
                     <p className="text-xs text-dark-muted">More than 5% body weight in the last month</p>
                   </div>
                 </div>
