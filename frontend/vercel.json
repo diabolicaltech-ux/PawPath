@@ -18,10 +18,6 @@
       "destination": "/breed-health/:slug.html"
     },
     {
-      "source": "/og-image.png",
-      "destination": "/og-image-dog.png"
-    },
-    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
